@@ -300,7 +300,7 @@ LofSolid(4,3) = bbsoild1600D66min[3] - bbsoild1600D66min[2];
 LofSolid(4,4) = bbsoild1600D69min[3] - bbsoild1600D69min[2];
 LofSolid(4,5) = bbsoild1600D612min[3] - bbsoild1600D612min[2];
 
-ofstream data("meshData/data1600.txt");
+ofstream data("data1600.txt");
 data << VofSolid << BottomArea << HofSolid << LofSolid;
 
 cout << "finish saving" << endl;
