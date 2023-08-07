@@ -1,0 +1,204 @@
+load "msh3"
+
+int n = 4;
+int m = 6;
+
+mesh3 soild4000D21min = readmesh3("../experimentData/d2_4000/1min/solid.mesh");
+mesh3 soild4000D22min = readmesh3("../experimentData/d2_4000/2min/solid.mesh");
+mesh3 soild4000D24min = readmesh3("../experimentData/d2_4000/4min/solid.mesh");
+mesh3 soild4000D26min = readmesh3("../experimentData/d2_4000/6min/solid.mesh");
+mesh3 soild4000D29min = readmesh3("../experimentData/d2_4000/9min/solid.mesh");
+
+mesh3 soild4000D31min = readmesh3("../experimentData/d3_4000/1min/solid.mesh");
+mesh3 soild4000D32min = readmesh3("../experimentData/d3_4000/2min/solid.mesh");
+mesh3 soild4000D34min = readmesh3("../experimentData/d3_4000/4min/solid.mesh");
+mesh3 soild4000D36min = readmesh3("../experimentData/d3_4000/6min/solid.mesh");
+mesh3 soild4000D39min = readmesh3("../experimentData/d3_4000/9min/solid.mesh");
+mesh3 soild4000D312min = readmesh3("../experimentData/d3_4000/12min/solid.mesh");
+
+mesh3 soild4000D51min = readmesh3("../experimentData/d5_4000/1min/solid.mesh");
+mesh3 soild4000D52min = readmesh3("../experimentData/d5_4000/2min/solid.mesh");
+mesh3 soild4000D54min = readmesh3("../experimentData/d5_4000/4min/solid.mesh");
+mesh3 soild4000D56min = readmesh3("../experimentData/d5_4000/6min/solid.mesh");
+
+mesh3 soild4000D61min = readmesh3("../experimentData/d6_4000/1min/solid.mesh");
+mesh3 soild4000D62min = readmesh3("../experimentData/d6_4000/2min/solid.mesh");
+mesh3 soild4000D64min = readmesh3("../experimentData/d6_4000/4min/solid.mesh");
+mesh3 soild4000D66min = readmesh3("../experimentData/d6_4000/6min/solid.mesh");
+
+func  newlabel = (z<5.0e-4)? 10 : 1; 
+soild4000D21min=change(soild4000D21min,flabel=newlabel);
+soild4000D22min=change(soild4000D22min,flabel=newlabel);
+soild4000D24min=change(soild4000D24min,flabel=newlabel);
+soild4000D26min=change(soild4000D26min,flabel=newlabel);
+soild4000D29min=change(soild4000D29min,flabel=newlabel);
+
+soild4000D31min=change(soild4000D31min,flabel=newlabel);
+soild4000D32min=change(soild4000D32min,flabel=newlabel);
+soild4000D34min=change(soild4000D34min,flabel=newlabel);
+soild4000D36min=change(soild4000D36min,flabel=newlabel);
+soild4000D39min=change(soild4000D39min,flabel=newlabel);
+soild4000D312min=change(soild4000D312min,flabel=newlabel);
+
+soild4000D51min=change(soild4000D51min,flabel=newlabel);
+soild4000D52min=change(soild4000D52min,flabel=newlabel);
+soild4000D54min=change(soild4000D54min,flabel=newlabel);
+soild4000D56min=change(soild4000D56min,flabel=newlabel);
+
+soild4000D61min=change(soild4000D61min,flabel=newlabel);
+soild4000D62min=change(soild4000D62min,flabel=newlabel);
+soild4000D64min=change(soild4000D64min,flabel=newlabel);
+soild4000D66min=change(soild4000D66min,flabel=newlabel);
+
+
+// Volume
+real[int,int] VofSolid(n,m);
+VofSolid(0,0) = soild4000D21min.measure;
+VofSolid(0,1) = soild4000D22min.measure;
+VofSolid(0,2) = soild4000D24min.measure;
+VofSolid(0,3) = soild4000D26min.measure;
+VofSolid(0,4) = soild4000D29min.measure;
+
+VofSolid(1,0) = soild4000D31min.measure;
+VofSolid(1,1) = soild4000D32min.measure;
+VofSolid(1,2) = soild4000D34min.measure;
+VofSolid(1,3) = soild4000D36min.measure;
+VofSolid(1,4) = soild4000D39min.measure;
+VofSolid(1,5) = soild4000D312min.measure;
+
+VofSolid(2,0) = soild4000D51min.measure;
+VofSolid(2,1) = soild4000D52min.measure;
+VofSolid(2,2) = soild4000D54min.measure;
+VofSolid(2,3) = soild4000D56min.measure;
+
+VofSolid(3,0) = soild4000D61min.measure;
+VofSolid(3,1) = soild4000D62min.measure;
+VofSolid(3,2) = soild4000D64min.measure;
+VofSolid(3,3) = soild4000D66min.measure;
+
+// Bottom area
+real[int,int] BottomArea(n,m);
+BottomArea(0,0) = int2d(soild4000D21min,10)(1.);
+BottomArea(0,1) = int2d(soild4000D22min,10)(1.);
+BottomArea(0,2) = int2d(soild4000D24min,10)(1.);
+BottomArea(0,3) = int2d(soild4000D26min,10)(1.);
+BottomArea(0,4) = int2d(soild4000D29min,10)(1.);
+
+BottomArea(1,0) = int2d(soild4000D31min,10)(1.);
+BottomArea(1,1) = int2d(soild4000D32min,10)(1.);
+BottomArea(1,2) = int2d(soild4000D34min,10)(1.);
+BottomArea(1,3) = int2d(soild4000D36min,10)(1.);
+BottomArea(1,4) = int2d(soild4000D39min,10)(1.);
+BottomArea(1,5) = int2d(soild4000D312min,10)(1.);
+
+BottomArea(2,0) = int2d(soild4000D51min,10)(1.);
+BottomArea(2,1) = int2d(soild4000D52min,10)(1.);
+BottomArea(2,2) = int2d(soild4000D54min,10)(1.);
+BottomArea(2,3) = int2d(soild4000D56min,10)(1.);
+
+BottomArea(3,0) = int2d(soild4000D61min,10)(1.);
+BottomArea(3,1) = int2d(soild4000D62min,10)(1.);
+BottomArea(3,2) = int2d(soild4000D64min,10)(1.);
+BottomArea(3,3) = int2d(soild4000D66min,10)(1.);
+
+
+
+// Height, Length
+real[int,int] HofSolid(n,m);
+real[int,int] LofSolid(n,m);
+
+// bb[0] = xmin, bb[1] = xmax, bb[2] = ymin, bb[3] =ymax, bb[4] = zmin, bb[5] = zmax
+real[int] bbsoild4000D21min(6);
+boundingbox(soild4000D21min, bbsoild4000D21min);
+real[int] bbsoild4000D22min(6);
+boundingbox(soild4000D22min, bbsoild4000D22min);
+real[int] bbsoild4000D24min(6);
+boundingbox(soild4000D24min, bbsoild4000D24min);
+real[int] bbsoild4000D26min(6);
+boundingbox(soild4000D26min, bbsoild4000D26min);
+real[int] bbsoild4000D29min(6);
+boundingbox(soild4000D29min, bbsoild4000D29min);
+
+real[int] bbsoild4000D31min(6);
+boundingbox(soild4000D31min, bbsoild4000D31min);
+real[int] bbsoild4000D32min(6);
+boundingbox(soild4000D32min, bbsoild4000D32min);
+real[int] bbsoild4000D34min(6);
+boundingbox(soild4000D34min, bbsoild4000D34min);
+real[int] bbsoild4000D36min(6);
+boundingbox(soild4000D36min, bbsoild4000D36min);
+real[int] bbsoild4000D39min(6);
+boundingbox(soild4000D39min, bbsoild4000D39min);
+real[int] bbsoild4000D312min(6);
+boundingbox(soild4000D312min, bbsoild4000D312min);
+
+real[int] bbsoild4000D51min(6);
+boundingbox(soild4000D51min, bbsoild4000D51min);
+real[int] bbsoild4000D52min(6);
+boundingbox(soild4000D52min, bbsoild4000D52min);
+real[int] bbsoild4000D54min(6);
+boundingbox(soild4000D54min, bbsoild4000D54min);
+real[int] bbsoild4000D56min(6);
+boundingbox(soild4000D56min, bbsoild4000D56min);
+
+real[int] bbsoild4000D61min(6);
+boundingbox(soild4000D61min, bbsoild4000D61min);
+real[int] bbsoild4000D62min(6);
+boundingbox(soild4000D62min, bbsoild4000D62min);
+real[int] bbsoild4000D64min(6);
+boundingbox(soild4000D64min, bbsoild4000D64min);
+real[int] bbsoild4000D66min(6);
+boundingbox(soild4000D66min, bbsoild4000D66min);
+
+HofSolid(0,0) = bbsoild4000D21min[5] - bbsoild4000D21min[4];
+HofSolid(0,1) = bbsoild4000D22min[5] - bbsoild4000D22min[4];
+HofSolid(0,2) = bbsoild4000D24min[5] - bbsoild4000D24min[4];
+HofSolid(0,3) = bbsoild4000D26min[5] - bbsoild4000D26min[4];
+HofSolid(0,4) = bbsoild4000D29min[5] - bbsoild4000D29min[4];
+
+HofSolid(1,0) = bbsoild4000D31min[5] - bbsoild4000D31min[4];
+HofSolid(1,1) = bbsoild4000D32min[5] - bbsoild4000D32min[4];
+HofSolid(1,2) = bbsoild4000D34min[5] - bbsoild4000D34min[4];
+HofSolid(1,3) = bbsoild4000D36min[5] - bbsoild4000D36min[4];
+HofSolid(1,4) = bbsoild4000D39min[5] - bbsoild4000D39min[4];
+HofSolid(1,5) = bbsoild4000D312min[5] - bbsoild4000D312min[4];
+
+HofSolid(2,0) = bbsoild4000D51min[5] - bbsoild4000D51min[4];
+HofSolid(2,1) = bbsoild4000D52min[5] - bbsoild4000D52min[4];
+HofSolid(2,2) = bbsoild4000D54min[5] - bbsoild4000D54min[4];
+HofSolid(2,3) = bbsoild4000D56min[5] - bbsoild4000D56min[4];
+
+HofSolid(3,0) = bbsoild4000D61min[5] - bbsoild4000D61min[4];
+HofSolid(3,1) = bbsoild4000D62min[5] - bbsoild4000D62min[4];
+HofSolid(3,2) = bbsoild4000D64min[5] - bbsoild4000D64min[4];
+HofSolid(3,3) = bbsoild4000D66min[5] - bbsoild4000D66min[4];
+
+
+
+LofSolid(0,0) = bbsoild4000D21min[3] - bbsoild4000D21min[2];
+LofSolid(0,1) = bbsoild4000D22min[3] - bbsoild4000D22min[2];
+LofSolid(0,2) = bbsoild4000D24min[3] - bbsoild4000D24min[2];
+LofSolid(0,3) = bbsoild4000D26min[3] - bbsoild4000D26min[2];
+LofSolid(0,4) = bbsoild4000D29min[3] - bbsoild4000D29min[2];
+
+LofSolid(1,0) = bbsoild4000D31min[3] - bbsoild4000D31min[2];
+LofSolid(1,1) = bbsoild4000D32min[3] - bbsoild4000D32min[2];
+LofSolid(1,2) = bbsoild4000D34min[3] - bbsoild4000D34min[2];
+LofSolid(1,3) = bbsoild4000D36min[3] - bbsoild4000D36min[2];
+LofSolid(1,4) = bbsoild4000D39min[3] - bbsoild4000D39min[2];
+LofSolid(1,5) = bbsoild4000D312min[3] - bbsoild4000D312min[2];
+
+LofSolid(2,0) = bbsoild4000D51min[3] - bbsoild4000D51min[2];
+LofSolid(2,1) = bbsoild4000D52min[3] - bbsoild4000D52min[2];
+LofSolid(2,2) = bbsoild4000D54min[3] - bbsoild4000D54min[2];
+LofSolid(2,3) = bbsoild4000D56min[3] - bbsoild4000D56min[2];
+
+LofSolid(3,0) = bbsoild4000D61min[3] - bbsoild4000D61min[2];
+LofSolid(3,1) = bbsoild4000D62min[3] - bbsoild4000D62min[2];
+LofSolid(3,2) = bbsoild4000D64min[3] - bbsoild4000D64min[2];
+LofSolid(3,3) = bbsoild4000D66min[3] - bbsoild4000D66min[2];
+
+ofstream data("meshData/data4000.txt");
+data << VofSolid << BottomArea << HofSolid << LofSolid;
+
+cout << "finish saving" << endl;
