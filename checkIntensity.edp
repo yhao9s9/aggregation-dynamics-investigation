@@ -6,7 +6,7 @@ load "medit"
 load "iovtk"
 
 int time = 12;
-int num = 115451904;
+int num = 109375488;
 
 // Read intensity
 real cpu = clock();
@@ -38,6 +38,9 @@ for (int i = 0.; i < Solid.nt; i++){
   coordx = round(((Solid[i][0].x + Solid[i][1].x + Solid[i][2].x + Solid[i][3].x) / 4) / 0.0454);
   coordy = round(((Solid[i][0].y + Solid[i][1].y + Solid[i][2].y + Solid[i][3].y) / 4) / 0.0454);
   coordz = round((Solid[i][0].z + Solid[i][1].z + Solid[i][2].z + Solid[i][3].z) / 4);
+  if (coordy<0){
+    coordy = 0;
+  }
   // if (mpirank == 0)
   //   cout << "Element" << i << " -- coordinates: (" << coordx << ", " << coordy << ", " << coordz << ")" <<endl;
   intenpla[](i) = l2(coordx + coordy * 2752 + coordz * 2752 * 2208);
