@@ -1,0 +1,148 @@
+/*
+This script is used to 
+- read the intensity value to the aggregate mesh, and transform it into volume factor
+of the platelets using the relationships of fluorescence intensity & density;
+- calculate the permeability of the aggregate is calculated via Kozeny-Carman equation;
+- remesh the aggregate mesh according to volume factor;
+- interpolate all data to fluid mesh;
+- remesh the fluid mesh according to aggregate density;
+- save the new meshes & sol data for NS simulation.
+*/
+
+load "msh3"
+load "medit"
+load "iovtk"
+
+load "mshmet"
+load "mmg"
+
+int time = 1;
+
+real rho = 1.025 * 1e-3; // Density of the blood (g mm^-3)
+real niu = 3e-3; // Dynamic viscosity (g mm^-1 s^-1)
+real nu = niu / rho; // (mm^2 s^-1)
+real dia = 2e-3; // Diameter of platelets (mm)
+real spher = 0.71; // Sphericity of platelets
+
+func Pk = P1;
+func Pk0 = P0;
+
+// Read mesh
+mesh3 Solid = readmesh3("solid.mesh");
+mesh3 Mesh = readmesh3("../../30.mesh"); 
+
+Solid = movemesh(Solid, [x*0.001, y*0.001, z*0.001]);
+Mesh = movemesh(Mesh, [x*0.001, y*0.001, z*0.001]);
+
+mesh3 SolidBackup = Solid;
+mesh3 MeshBackup = Mesh;
+
+// ---------------------------------------------------------------------------
+// Solid mesh
+// ---------------------------------------------------------------------------
+cout<<"-- Process the solid mesh --"<<endl;
+fespace SpaceP0PLAGlobal(SolidBackup, Pk0);
+
+SpaceP0PLAGlobal globintenpla = 0;
+SpaceP0PLAGlobal globvfpla = 0;
+SpaceP0PLAGlobal globkpla = 0;
+SpaceP0PLAGlobal globkcoepla = 0;
+
+// Read intensity and calculate permeability
+globintenpla[] = readsol("../intensity/"+time+"min.sol");
+
+for (int j = 0.; j < Solid.nt; j++)
+{
+  globvfpla[](j) = 0.00013245 * globintenpla[](j) + 0.10149263; 
+  if (globvfpla[](j) >= 0.99){
+    globvfpla[](j) = 0.99;
+  }
+  globkpla[](j) = spher^2 * (1 - globvfpla[](j))^3 * dia^2 / (150 * (globvfpla[](j))^2); // Kozney-Carman
+  globkcoepla[](j) = niu / globkpla[](j); // Darcy (dynamic viscosity)
+}
+
+// cout<<globintenpla[].min<<" "<<globintenpla[].max<<endl;
+// cout<<globvfpla[].min<<" "<<globvfpla[].max<<endl;
+
+// Remeshing
+real[int] metSolid = mshmet(SolidBackup, globvfpla, aniso = 0, hmin = 1.2e-3, hmax = 1.5e-3, err = 1.3e-3);
+Solid = mmg3d(SolidBackup,verbose=0, metric = metSolid);
+
+fespace SpaceP0PLA(Solid, Pk0); // Porosity on aggregates
+
+SpaceP0PLA intenpla = 0; // Read intensity
+SpaceP0PLA vfpla = 0; // Volume factor
+SpaceP0PLA kpla = 0; // Permeability
+SpaceP0PLA kcoepla = 0; // Darcy term coefficient
+
+intenpla = globintenpla;
+vfpla = globvfpla;
+kpla = globkpla;
+kcoepla = globkcoepla;
+
+ofstream vffile("../data/vf/"+time+"min.txt");
+vffile << vfpla[] << endl;
+ofstream kfile("../data/k/"+time+"min.txt");
+kfile << kpla[] << endl;
+
+savemesh(Solid, "remeshSolid.mesh");
+savesol("sol_files/kcoepla.sol", Solid, kcoepla, order = 0);
+savesol("sol_files/kpla.sol", Solid, kpla, order = 0);
+savesol("sol_files/vfpla.sol", Solid, vfpla, order = 0);
+savesol("sol_files/intenpla.sol", Solid, intenpla, order = 0);
+
+// int[int] Order = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+// savevtk("aggregates.vtu", Solid, intenpla, vfpla, kcoepla, kpla, dataname="intensity volume_factor coefficient permeability", order=Order);
+
+// ---------------------------------------------------------------------------
+// Fluid mesh
+// ---------------------------------------------------------------------------
+cout<<"-- Process the fluid mesh --"<<endl;
+fespace SpaceP0Global(MeshBackup, Pk0);
+// Interpolation
+SpaceP0Global globinten = 0; // Read intensity
+SpaceP0Global globvf = 0; // Volume factor
+SpaceP0Global globk = 0; // Permeability
+SpaceP0Global globkcoe = 0; // Darcy term coefficient
+
+SpaceP0Global cx = x;
+SpaceP0Global cy = y;
+SpaceP0Global cz = z;
+
+for (int i = 0.; i < MeshBackup.nt; i++)
+{
+  if (chi(Solid)(cx[][i], cy[][i], cz[][i]) == 1)
+  {
+    // inten[](i) = 1;
+    globinten[](i) = intenpla(cx[][i], cy[][i], cz[][i]);
+    globvf[](i) = vfpla(cx[][i], cy[][i], cz[][i]);
+    globk[](i) = kpla(cx[][i], cy[][i], cz[][i]);
+    globkcoe[](i) = kcoepla(cx[][i], cy[][i], cz[][i]);
+  }
+  cout << "\rProcessed: " << i << " / " << SpaceP0Global.ndof;
+}
+
+// Remeshing
+real[int] metMesh = mshmet(MeshBackup, globvf, aniso = 0, hmin = 1.0e-3, hmax = 2.0e-3, err = 1e-3);
+Mesh = mmg3d(MeshBackup, metric = metMesh);
+
+fespace SpaceP0(Mesh, Pk0); // Permeability coefficient space
+
+SpaceP0 inten = 0; // Read intensity
+SpaceP0 vf = 0; // Volume factor
+SpaceP0 k = 0; // Permeability
+SpaceP0 kcoe = 0; // Darcy term coefficient
+
+inten = globinten;
+vf = globvf;
+k = globk;
+kcoe = globkcoe;
+
+savemesh(Mesh, "remesh30.mesh");
+savesol("sol_files/kcoe.sol", Mesh, kcoe, order = 0); // order = o for P0 elements
+savesol("sol_files/k.sol", Mesh, k, order = 0);
+savesol("sol_files/vf.sol", Mesh, vf, order = 0);
+savesol("sol_files/inten.sol", Mesh, inten, order = 0);
+
+// savevtk("fluid.vtu", Mesh, inten, vf, kcoe, k, dataname="intensity volume_factor coefficient permeability", order=Order);
+
