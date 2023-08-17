@@ -57,6 +57,9 @@ for (int j = 0.; j < Solid.nt; j++)
   if (globvfpla[](j) >= 0.99){
     globvfpla[](j) = 0.99;
   }
+  if (globvfpla[](j) <= 0.01){
+    globvfpla[](j) = 0.01;
+  }
   globkpla[](j) = spher^2 * (1 - globvfpla[](j))^3 * dia^2 / (150 * (globvfpla[](j))^2); // Kozney-Carman
   globkcoepla[](j) = niu / globkpla[](j); // Darcy (dynamic viscosity)
 }
