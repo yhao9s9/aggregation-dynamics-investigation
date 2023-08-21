@@ -1,6 +1,6 @@
 ## Image-based flow simulation for platelet aggregate
 
-This repository presents the implementation of image-based flow simulation for *in vitro* platelet aggregate in 3D. The implementation of the finite element simulation is based on open source [FreeFEM](https://freefem.org/).
+This repository presents the implementation of image-based flow simulation for *in vitro* platelet aggregates in 3D. The implementation of the finite element simulation is based on open source [FreeFEM](https://freefem.org/).
 
 The repository contains all the necessary information/data to reproduce the results. The detailed instructions are listed in the following section.
 
@@ -16,18 +16,18 @@ The experimental image processing code is implemented in Python and FreeFEM. Eac
 After having the vtk file for platelet aggregate, the outline of the aggregate could be segmented in 3D Slicer. Then after uniformly remeshing the segmentation stl in [MeshLab](https://www.meshlab.net/), generate the mesh that chould be used for flow simulation in [Gmsh](https://gmsh.info/). 
 
 To get the density of platelets inside the platelet aggregates, the manual counting method is applied (5 measurement points). After having the data, the linear regression method is applied to estimate the relations between fluorescence intensity and platelet density:
-* `checkIntensity.edp` reads the fluorescence intensity to the corresponding aggregate mesh to check the minimum and maximum values of it, which could be used in the estimation of platelet density
-* `linearRegression.py` estimates the relation between the intensity and platelet density with a 95% confidence region. Remember to run with `python <linearRegression.py> relation.txt` to get the coefficients of the regression line
+* `checkIntensity.edp` reads the fluorescence intensity to the corresponding aggregate mesh to check the minimum and maximum values of it, which will be used in the estimation of platelet density
+* `linearRegression.py` estimates the relation between intensity and platelet density with a 95% confidence region. Remember to run with `python <linearRegression.py> relation.txt` to get the coefficients of the regression line
 
 After having this relationship, the fluorescence intensity values need to be re-read to the aggregate mesh and transformed to the corresponding platelet density and permeability:
 * `interpolation.edp` contains the following functions:
   - Read the intensity value to the aggregate mesh, and transform it into the platelet density using the relationships of fluorescence intensity & density
-  - Calculate the permeability of the aggregate is calculated via the Kozeny-Carman equation
+  - Calculate the permeability of the aggregate via the Kozeny-Carman equation
   - Remesh the aggregate mesh according to the volume factor
   - Interpolate all data to fluid mesh and remesh the fluid mesh according to the platelet density
   - Save the new meshes & sol data for NS simulation
 
-All the preparations NOW are done. The flow simulation could start.
+All the preparations are NOW done. The flow simulation could start.
 
 ### Data analysis
 
