@@ -83,6 +83,8 @@ vfpla = globvfpla;
 kpla = globkpla;
 kcoepla = globkcoepla;
 
+ofstream intenfile("../data/intensity/"+time+"min.txt");
+intenfile << intenpla[] << endl;
 ofstream vffile("../data/vf/"+time+"min.txt");
 vffile << vfpla[] << endl;
 ofstream kfile("../data/k/"+time+"min.txt");
