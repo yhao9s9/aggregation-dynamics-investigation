@@ -16,7 +16,7 @@ The experimental image processing code is implemented in Python and FreeFEM. Eac
 After having the vtk file for platelet aggregate, the outline of the aggregate could be segmented in 3D Slicer. Then after uniformly remeshing the segmentation stl in [MeshLab](https://www.meshlab.net/), generate the mesh that chould be used for flow simulation in [Gmsh](https://gmsh.info/). 
 
 To get the density of platelets inside the platelet aggregates, the manual counting method is applied (5 measurement points). After having the data, the linear regression method is applied to estimate the relations between fluorescence intensity and platelet density:
-* `checkIntensity.edp` reads the fluorescence intensity to the corresponding aggregate mesh to check the minimum and maximum values of it, which will be used in the estimation of platelet density
+* `checkIntensity.edp` reads the fluorescence intensity to the corresponding aggregate mesh to check the minimum and maximum values, which will be used in linear regression
 * `linearRegression.py` estimates the relation between intensity and platelet density with a 95% confidence region. Remember to run with `python <linearRegression.py> relation.txt` to get the coefficients of the regression line
 
 After having this relationship, the fluorescence intensity values need to be re-read to the aggregate mesh and transformed to the corresponding platelet density and permeability:
@@ -31,9 +31,12 @@ All the preparations are NOW done. The flow simulation could start.
 
 ### Data analysis
 
-Below are the scripts that are used for analyzing the mesh data and the internal structure of the platelet aggregates:
-* `meshData/mesh_volume_800.edp` collects the volume, height, bottom area and maximum length of the platelet aggregate meshes.
-* `data.py` analyses the interesting values of the aggregates meshes
+The data analysis scripts are all stored in `\analysis`. This directory consists of the following files:
+* `meshData/mesh_volume_800.edp` collects the volume, height, bottom area and maximum length of the platelet aggregate meshes
+* `meshdata.py` analyses the interesting values of the aggregates meshes
+* `densityData/tranDensity` collects the density data of all study cases (`tranPermea` is for permeability and `tranInten` is for fluorescence intensity)
+* `density.py` plots the average density under different WSRs
+* `permeability.py` plots the average permeability under different WSRs
 
 ### Flow simulation
 The flow simulation code is implemented in FreeFEM. A parallel version of FreeFEM should be installed to achieve a better performance, something that is crucial for finer meshes and 3D cases. A proper MPI runtime is required to run parallel FreeFEM (such as OpenMPI or MPICH). The PETSc module should also be installed and linked to FreeFEM (which is usually the default config for installing/compiling FreeFEM). The installation procedure can be found [here](https://doc.freefem.org/introduction/installation.html) for different platforms.
