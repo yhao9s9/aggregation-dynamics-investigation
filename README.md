@@ -33,7 +33,7 @@ All the preparations are NOW done. The flow simulation could start.
 
 The data analysis scripts are all stored in `\analysis`. This directory consists of the following files:
 * `meshData/mesh_volume_800.edp` collects the volume, height, bottom area and maximum length of the platelet aggregate meshes
-* `meshdata.py` analyses the interesting values of the aggregates meshes
+* `meshdata.py` analyses the interesting values of the aggregate meshes
 * `densityData/tranDensity.py` collects the density data of all study cases (`tranPermea.py` is for permeability and `tranInten.py` is for fluorescence intensity)
 * `density.py` plots the average density under different WSRs
 * `permeability.py` plots the average permeability under different WSRs
