@@ -73,11 +73,11 @@ k1600d69min=np.load("data/permeability/d6_1600/9min.npy")
 k1600d612min=np.load("data/permeability/d6_1600/12min.npy")
 
 
-k4000d21min=np.load("data/permeability/d2_4000/1min.npy")
-k4000d22min=np.load("data/permeability/d2_4000/2min.npy")
-k4000d24min=np.load("data/permeability/d2_4000/4min.npy")
-k4000d26min=np.load("data/permeability/d2_4000/6min.npy")
-k4000d29min=np.load("data/permeability/d2_4000/9min.npy")
+# k4000d21min=np.load("data/permeability/d2_4000/1min.npy")
+# k4000d22min=np.load("data/permeability/d2_4000/2min.npy")
+# k4000d24min=np.load("data/permeability/d2_4000/4min.npy")
+# k4000d26min=np.load("data/permeability/d2_4000/6min.npy")
+# k4000d29min=np.load("data/permeability/d2_4000/9min.npy")
 
 k4000d31min=np.load("data/permeability/d3_4000/1min.npy")
 k4000d32min=np.load("data/permeability/d3_4000/2min.npy")
@@ -112,14 +112,14 @@ mean1600d4 = np.array([np.mean(k1600d41min),np.mean(k1600d42min),np.mean(k1600d4
 mean1600d5 = np.array([np.mean(k1600d51min),np.mean(k1600d52min),np.mean(k1600d54min),np.mean(k1600d56min),np.mean(k1600d59min),np.mean(k1600d512min)])
 mean1600d6 = np.array([np.mean(k1600d61min),np.mean(k1600d62min),np.mean(k1600d64min),np.mean(k1600d66min),np.mean(k1600d69min),np.mean(k1600d612min)])
 
-mean4000d2 = np.array([np.mean(k4000d21min),np.mean(k4000d22min),np.mean(k4000d24min),np.mean(k4000d26min)])
+# mean4000d2 = np.array([np.mean(k4000d21min),np.mean(k4000d22min),np.mean(k4000d24min),np.mean(k4000d26min)])
 mean4000d3 = np.array([np.mean(k4000d31min),np.mean(k4000d32min),np.mean(k4000d34min),np.mean(k4000d36min)])
 mean4000d5 = np.array([np.mean(k4000d51min),np.mean(k4000d52min),np.mean(k4000d54min),np.mean(k4000d56min)])
 mean4000d6 = np.array([np.mean(k4000d61min),np.mean(k4000d62min),np.mean(k4000d64min),np.mean(k4000d66min)])
 
 mean800 = np.array([mean800d1,mean800d2,mean800d3,mean800d5,mean800d6])
 mean1600 = np.array([mean1600d2,mean1600d3,mean1600d4,mean1600d5,mean1600d6])
-mean4000 = np.array([mean4000d2,mean4000d3,mean4000d5,mean4000d6])
+mean4000 = np.array([mean4000d3,mean4000d5,mean4000d6])
 
 std800d1 = np.array([np.std(k800d11min),np.std(k800d12min),np.std(k800d14min),np.std(k800d16min),np.std(k800d19min),np.std(k800d112min)])
 std800d2 = np.array([np.std(k800d21min),np.std(k800d22min),np.std(k800d24min),np.std(k800d26min),np.std(k800d29min),np.std(k800d212min)])
@@ -133,7 +133,7 @@ std1600d4 = np.array([np.std(k1600d41min),np.std(k1600d42min),np.std(k1600d44min
 std1600d5 = np.array([np.std(k1600d51min),np.std(k1600d52min),np.std(k1600d54min),np.std(k1600d56min),np.std(k1600d59min),np.std(k1600d512min)])
 std1600d6 = np.array([np.std(k1600d61min),np.std(k1600d62min),np.std(k1600d64min),np.std(k1600d66min),np.std(k1600d69min),np.std(k1600d612min)])
 
-std4000d2 = np.array([np.std(k4000d21min),np.std(k4000d22min),np.std(k4000d24min),np.std(k4000d26min),np.std(k4000d29min)])
+# std4000d2 = np.array([np.std(k4000d21min),np.std(k4000d22min),np.std(k4000d24min),np.std(k4000d26min),np.std(k4000d29min)])
 std4000d3 = np.array([np.std(k4000d31min),np.std(k4000d32min),np.std(k4000d34min),np.std(k4000d36min),np.std(k4000d39min),np.std(k4000d312min)])
 std4000d5 = np.array([np.std(k4000d51min),np.std(k4000d52min),np.std(k4000d54min),np.std(k4000d56min)])
 std4000d6 = np.array([np.std(k4000d61min),np.std(k4000d62min),np.std(k4000d64min),np.std(k4000d66min)])
