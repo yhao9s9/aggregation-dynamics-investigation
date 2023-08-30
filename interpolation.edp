@@ -128,7 +128,7 @@ for (int i = 0.; i < MeshBackup.nt; i++)
 }
 
 // Remeshing
-real[int] metMesh = mshmet(MeshBackup, globvf, aniso = 0, hmin = 1.0e-3, hmax = 2.0e-3, err = 1e-3);
+real[int] metMesh = mshmet(MeshBackup, globvf, aniso = 0, hmin = 1.0e-3, hmax = 2.5e-3, err = 1e-3);
 Mesh = mmg3d(MeshBackup, metric = metMesh);
 
 fespace SpaceP0(Mesh, Pk0); // Permeability coefficient space
