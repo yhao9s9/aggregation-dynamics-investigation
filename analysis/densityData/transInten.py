@@ -110,11 +110,11 @@ inten1600d66min = extract_vertices('../../simulation/d6_1600/data/inten/6min.txt
 inten1600d69min = extract_vertices('../../simulation/d6_1600/data/inten/9min.txt')
 inten1600d612min = extract_vertices('../../simulation/d6_1600/data/inten/12min.txt')
 
-inten4000d21min = extract_vertices('../../simulation/d2_4000/data/inten/1min.txt')
-inten4000d22min = extract_vertices('../../simulation/d2_4000/data/inten/2min.txt')
-inten4000d24min = extract_vertices('../../simulation/d2_4000/data/inten/4min.txt')
-inten4000d26min = extract_vertices('../../simulation/d2_4000/data/inten/6min.txt')
-inten4000d29min = extract_vertices('../../simulation/d2_4000/data/inten/9min.txt')
+# inten4000d21min = extract_vertices('../../simulation/d2_4000/data/inten/1min.txt')
+# inten4000d22min = extract_vertices('../../simulation/d2_4000/data/inten/2min.txt')
+# inten4000d24min = extract_vertices('../../simulation/d2_4000/data/inten/4min.txt')
+# inten4000d26min = extract_vertices('../../simulation/d2_4000/data/inten/6min.txt')
+# inten4000d29min = extract_vertices('../../simulation/d2_4000/data/inten/9min.txt')
 
 inten4000d31min = extract_vertices('../../simulation/d3_4000/data/inten/1min.txt')
 inten4000d32min = extract_vertices('../../simulation/d3_4000/data/inten/2min.txt')
@@ -208,11 +208,11 @@ np.save("data/intensity/d6_1600/9min.npy", inten1600d69min)
 np.save("data/intensity/d6_1600/12min.npy", inten1600d612min)
 
 
-np.save("data/intensity/d2_4000/1min.npy", inten4000d21min)
-np.save("data/intensity/d2_4000/2min.npy", inten4000d22min)
-np.save("data/intensity/d2_4000/4min.npy", inten4000d24min)
-np.save("data/intensity/d2_4000/6min.npy", inten4000d26min)
-np.save("data/intensity/d2_4000/9min.npy", inten4000d29min)
+# np.save("data/intensity/d2_4000/1min.npy", inten4000d21min)
+# np.save("data/intensity/d2_4000/2min.npy", inten4000d22min)
+# np.save("data/intensity/d2_4000/4min.npy", inten4000d24min)
+# np.save("data/intensity/d2_4000/6min.npy", inten4000d26min)
+# np.save("data/intensity/d2_4000/9min.npy", inten4000d29min)
 
 np.save("data/intensity/d3_4000/1min.npy", inten4000d31min)
 np.save("data/intensity/d3_4000/2min.npy", inten4000d32min)
