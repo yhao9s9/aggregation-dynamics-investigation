@@ -1,0 +1,351 @@
+load "PETSc"
+macro dimension()3// EOM
+include "macro_ddm.idp"
+load "iovtk"
+load "msh3"
+load "medit"
+
+macro print(text)
+{
+	cout << text << endl;
+	cout.flush;
+} //
+
+int[int] Order = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+string DataName = "intensity volume_factor permeability coefficient pressure ux uy uz fx fy fz rt shear_rate shear_stress elongation_rate";
+
+// Parameters
+real cpuTime;
+int Inlet = 3;
+int Outlet = 4;
+
+real rho = 1.025 * 1e-3; // Density of the blood (g mm^-3)
+real miu = 3e-3; // Dynamic viscosity (g mm^-1 s^-1)
+real nu = miu / rho; // (mm^2 s^-1)
+
+real dt = 1e-5;
+real t = 0;
+real T = 1e-3; // (s)
+int tstep = 0;
+
+real umax = 40; // Max velocity  (mm/s)
+func uin = - umax * (z-0.05)^2 / 0.05^2 + umax;
+
+macro div(u) (dx(u#x) + dy(u#y) + dz(u#z))//
+macro grad(u) [dx(u), dy(u), dz(u)]//
+macro Grad(u) [grad(u#x), grad(u#y), grad(u#z)]//
+
+func PkVector = [P2, P2, P2, P1];
+func Pk = P2;
+func Pk0 = P0;
+
+
+// Read mesh 
+cpuTime = mpiWtime();
+mesh3 Solid = readmesh3("remeshSolid.mesh");
+mesh3 Mesh = readmesh3("remesh30.mesh"); 
+if (mpirank == 0)
+  print("Read mesh in " + (mpiWtime() - cpuTime) + "s");
+
+mesh3 MeshBackup = Mesh;
+mesh3 SolidBackup = Solid;
+
+
+// Global array
+fespace SpaceP0Global(MeshBackup, P0);
+fespace SpaceP0GlobalS(SolidBackup, P0);
+
+SpaceP0Global globinten=0;
+SpaceP0Global globvf=0;
+SpaceP0Global globk=0;
+SpaceP0Global globkcoe=0;
+
+if (mpirank == 0)
+{
+  globinten[] = readsol("sol_files/inten.sol");
+  globvf[] = readsol("sol_files/vf.sol");
+  globk[] = readsol("sol_files/k.sol");
+  globkcoe[] = readsol("sol_files/kcoe.sol");
+}
+broadcast(processor(0), globinten[]); // broadcast initialized function to all processes
+broadcast(processor(0), globvf[]);
+broadcast(processor(0), globk[]);
+broadcast(processor(0), globkcoe[]);
+
+
+// ---------------------------------------------------------------------------
+int[int] myN2O;
+macro MeshN2O() myN2O//
+Mat NS, R;
+buildDmesh(Mesh);
+{
+  macro def(i)[i, i#B, i#C, i#D]//
+  macro init(i)[i, i, i, i]//
+  createMat(Mesh, NS, PkVector)
+}
+{
+  macro def(i)i//
+  macro init(i)i//
+  createMat(Mesh, R, Pk)
+}
+
+fespace SpaceVector(Mesh, PkVector); // Velocity space
+fespace SpacePk(Mesh, Pk); // Residence time fields
+fespace SpaceP0(Mesh, Pk0); // Permeability coefficient space
+
+fespace SpaceVectorS(Solid, PkVector); // Platelets velocity space
+fespace SpacePkS(Solid, Pk);
+fespace SpaceP0S(Solid, Pk0); // Porosity on platelets
+
+SpaceVector [ux, uy, uz, p];
+SpaceVector [upx, upy, upz, pp];
+SpacePk fx, fy, fz;
+
+SpaceVectorS [uxpla, uypla, uzpla, ppla];
+SpacePkS fxpla, fypla, fzpla;
+
+SpacePk rt, rtold, shearrate, shearstress, elonrate; 
+SpacePk umagdelta, umagsquare;
+SpacePkS rtpla, shearratepla, shearstresspla, elonratepla;
+
+int[int] rstP0 = restrict(SpaceP0, SpaceP0Global, myN2O);
+// int[int] rstP0S = restrict(SpaceP0S, SpaceP0GlobalS, myN2OS);
+
+// Fluid simulation parameters
+SpaceP0 inten = 0; // Read intensity
+SpaceP0 vf = 0; // Volume factor
+SpaceP0 k = 0; // Permeability
+SpaceP0 kcoe = 0; // Darcy term coefficient
+
+inten[] = globinten[](rstP0);
+vf[] = globvf[](rstP0);
+k[] = globk[](rstP0);
+kcoe[] = globkcoe[](rstP0);
+
+// Platelet aggregates information: no buildDmesh for solid mesh, so could read directly the global data
+SpaceP0S intenpla = 0;
+SpaceP0S vfpla = 0;
+SpaceP0S kpla = 0;
+SpaceP0S kcoepla = 0; 
+
+if (mpirank == 0)
+{
+  intenpla[] = readsol("sol_files/intenpla.sol");
+  vfpla[] = readsol("sol_files/vfpla.sol");
+  kpla[] = readsol("sol_files/kpla.sol");
+  kcoepla[] = readsol("sol_files/kcoepla.sol");
+}
+broadcast(processor(0), intenpla[]); 
+broadcast(processor(0), vfpla[]);
+broadcast(processor(0), kpla[]);
+broadcast(processor(0), kcoepla[]);
+
+
+if (mpirank==0)
+{
+  print("Finite Element DOF: " + SpacePk.ndof);
+  print("Number of Elements: " + Mesh.nt);
+}
+
+// ------------------------------------------------------------------------------
+
+
+int total = 0; // total number of DOF
+int currentDOF = SpacePk.ndof;
+mpiAllReduce(currentDOF, total, mpiCommWorld, mpiSUM);
+if (mpirank == 0)
+{
+  print("The average DOF in each MPI process: " + total / mpisize);
+  print("Number of MPI processes: " + mpisize);
+}
+
+// Residence equation
+varf residence(rt, rtv) =
+    int3d(Mesh)(rt/dt*rtv)
+    + int3d(Mesh)(convect([ux, uy, uz], -dt, rtold)*rtv/dt)
+    + int3d(Mesh)(rtv)
+    + on(Inlet, rt=0)
+;
+
+varf navierstokes([ux, uy, uz, p], [uhx, uhy, uhz, ph])
+  = int3d(Mesh) (1/dt * [ux, uy, uz]'* [uhx, uhy, uhz])
+  + int3d(Mesh) (nu * (Grad(u):Grad(uh)))
+  - int3d(Mesh) (p * div(uh))
+  - int3d(Mesh) (ph * div(u))
+  - int3d(Mesh) (1e-10 * p * ph)
+  + int3d(Mesh) (1/rho * kcoe * ux * uhx)
+  + int3d(Mesh) (1/rho * kcoe * uy * uhy)
+  + int3d(Mesh) (1/rho * kcoe * uz * uhz)
+  + int3d(Mesh) (
+    + 1/dt * [convect([upx, upy, upz], -dt, upx), convect([upx, upy, upz], -dt, upy),
+               convect([upx, upy, upz], -dt, upz)]'* [uhx, uhy, uhz]
+    )
+  + on(5,6, ux=0, uy=0, uz=0)
+  + on(1,2, ux=0, uy=uin, uz=0)
+  + on(Inlet, ux=0, uy=uin, uz=0)
+  // + on(Outlet, p=0)
+  ;
+
+
+// Fields initialization
+[ux, uy, uz, p]=[1.0, 1.0, 1.0, 2.0]; // fields numbers: 1: velocity, 2: pressure
+[upx, upy, upz, pp] = [ux, uy, uz, p];
+rt = 0;
+
+NS = navierstokes(SpaceVector, SpaceVector, tgv=-1);
+real[int] NSrhs(SpaceVector.ndof);
+R = residence(SpacePk, SpacePk);
+real[int] Rrhs(SpacePk.ndof);
+
+string[int] names(2);
+names[0] = "velocity";
+names[1] = "pressure";
+set(R, sparams = "-pc_type hypre");
+set(NS, sparams = "-ksp_type fgmres -ksp_converged_reason -pc_type fieldsplit -pc_fieldsplit_type schur "
+                + "-fieldsplit_velocity_pc_type gamg -fieldsplit_pressure_ksp_max_it 5 "
+                + "-fieldsplit_pressure_pc_type jacobi -fieldsplit_velocity_ksp_type preonly -pc_fieldsplit_schur_fact_type full",
+                fields = ux[], names = names);
+
+fespace SpaceVectorGlobal(MeshBackup, PkVector);
+fespace SpacePkGlobal(MeshBackup, Pk);
+int[int] rst = restrict(SpaceVector, SpaceVectorGlobal, myN2O);
+int[int] rstPk = restrict(SpacePk, SpacePkGlobal, myN2O);
+SpaceVectorGlobal [globux, globuy, globuz, globp], [sumux, sumuy, sumuz, sump]; 
+SpacePkGlobal sumfx, sumfy, sumfz;// Darcy force (force density * volume)
+SpaceVector [uxTemp, uyTemp, uzTemp, pTemp];
+SpacePkGlobal globrt, sumrt, sumshearrate, sumshearstress, sumelonrate;
+SpacePk rtTemp;
+
+
+for ( t=0.0; t<=T; t+=dt) 
+{
+  cpuTime = mpiWtime();
+  tstep += 1;
+  if(mpirank == 0)
+    print("Solving iteration " + tstep);
+  
+  rtold = rt;
+  [upx, upy, upz, pp] = [ux, uy, uz, p];
+
+  NSrhs = navierstokes(0, SpaceVector, tgv=-1);
+  ux[] = 0;
+  ux[] = NS^-1 * NSrhs;
+
+  Rrhs  = residence(0, SpacePk);
+  rt[] = R^-1 * Rrhs;
+
+  if(mpirank == 0)
+    print("Solved in " + (mpiWtime() - cpuTime) + " s")
+
+}  
+
+// Compute the final error
+umagsquare = (sqrt(ux^2+uy^2+uz^2))^2;
+umagdelta = (sqrt(ux^2+uy^2+uz^2) - sqrt(upx^2+upy^2+upz^2))^2;
+real err = sqrt(umagdelta[].sum)/sqrt(umagsquare[].sum);
+
+// Find the maximum error on all mpirank
+real finalerr;
+mpiAllReduce(err, finalerr, mpiCommWorld, mpiMAX);
+
+if(mpirank == 0)
+  print("Final error "+finalerr)
+
+// Save results
+fx = kcoe*ux;
+fy = kcoe*uy;
+fz = kcoe*uz;
+shearrate = sqrt(2*((dx(ux))^2+dy(uy)^2+dz(uz)^2)
+                    +(dz(ux)+dx(uz))^2+(dy(ux)+dx(uy))^2+(dy(uz)+dz(uy))^2);
+shearstress = miu * shearrate;
+elonrate = sqrt((dx(ux))^2+dy(uy)^2+dz(uz)^2);
+
+savevtk("tmp/model.vtu", Mesh, inten, vf, k, kcoe, p, ux, uy, uz, fx, fy, fz, rt, shearrate, shearstress, elonrate, dataname=DataName, order=Order);
+
+
+// To global solution
+cpuTime = mpiWtime();
+if(mpirank == 0)
+  print("Save to global solution")
+globux[] = 0;
+globuy[] = 0;
+globuz[] = 0;
+globp[] = 0;
+
+[uxTemp, uyTemp, uzTemp, pTemp] = [ux, uy, uz, p];
+
+uxTemp[] .*= NS.D;
+uyTemp[] .*= NS.D;
+uzTemp[] .*= NS.D;
+pTemp[] .*= NS.D;
+
+for[i, v : rst] globux[][v] = uxTemp[][i];
+for[i, v : rst] globuy[][v] = uyTemp[][i];
+for[i, v : rst] globuz[][v] = uzTemp[][i];
+for[i, v : rst] globp[][v] = pTemp[][i];
+
+mpiAllReduce(globux[], sumux[], mpiCommWorld, mpiSUM);
+mpiAllReduce(globuy[], sumuy[], mpiCommWorld, mpiSUM);
+mpiAllReduce(globuz[], sumuz[], mpiCommWorld, mpiSUM);
+mpiAllReduce(globp[], sump[], mpiCommWorld, mpiSUM);
+
+sumfx = kcoe*sumux; // Force density (g mm^-2 s^-2)
+sumfy = kcoe*sumuy;
+sumfz = kcoe*sumuz;
+sumshearrate = sqrt(2*((dx(sumux))^2+dy(sumuy)^2+dz(sumuz)^2)
+                +(dz(sumux)+dx(sumuz))^2+(dy(sumux)+dx(sumuy))^2+(dy(sumuz)+dz(sumuy))^2);
+sumshearstress = miu * sumshearrate;
+sumelonrate = sqrt((dx(sumux))^2+dy(sumuy)^2+dz(sumuz)^2);
+
+globrt[] = 0;
+rtTemp = rt;
+rtTemp[] .*= R.D;
+for[i, v : rstPk] globrt[][v] = rtTemp[][i];
+mpiAllReduce(globrt[], sumrt[], mpiCommWorld, mpiSUM);
+
+if(mpirank == 0)
+    print("mpiSUM to global in " + (mpiWtime() - cpuTime) + " s")
+
+// Interpolation
+if (mpirank == 0)
+  print("Interpolation to solid mesh");
+[uxpla, uypla, uzpla, ppla] = [sumux, sumuy, sumuz, sump];
+
+fxpla = -sumfx; // Interaction force
+fypla = -sumfy;
+fzpla = -sumfz;
+
+shearratepla = sumshearrate;
+shearstresspla = sumshearstress;
+elonratepla = sumelonrate;
+
+rtpla = sumrt;
+
+// Save global solution
+if(mpirank == 0){
+  savevtk("tmp/global/global.vtu", MeshBackup, sumux, sumuy, sumuz, sumfx, sumfy, sumfz, sumrt, sumshearrate, sumshearstress, sumelonrate, dataname="ux uy uz fx fy fz rt sr ss er", order=Order);
+  savevtk("tmp/global/solid.vtu", Solid, intenpla, vfpla, kpla, kcoepla, ppla, uxpla, uypla, uzpla, fxpla, fypla, fzpla, rtpla, shearratepla, shearstresspla, elonratepla, dataname=DataName, order=Order);
+}
+
+if(mpirank == 0)
+  print("Finish saving in " + (mpiWtime() - cpuTime) + " s")
+
+
+// -------------------------------------------------------------------
+// Save force file
+// if (mpirank == 0)
+//   print("Save force data ... ");
+
+// savesol("force/fx.sol", Solid, fxpla);
+// savesol("force/fy.sol", Solid, fypla);
+// savesol("force/fz.sol", Solid, fzpla);
+
+// ofstream fufile("force/fx.txt");
+// fufile << fxpla[] << endl;
+// ofstream fyfile("force/fy.txt");
+// fyfile << fypla[] << endl;
+// ofstream fzfile("force/fz.txt");
+// fzfile << fzpla[] << endl;
+
+// if (mpirank == 0)
+//   print("Finish saving");
