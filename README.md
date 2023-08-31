@@ -43,6 +43,8 @@ The flow simulation code is implemented in FreeFEM. A parallel version of FreeFE
 
 After installing the required software packages, the code can be run like this:
 
-`$ ff-mpirun -np 4 neohook.edp -v 0`
+`$ ff-mpirun -np 128 ns_3d.edp -v 0`
 
-You can specify the number of employed cores (which also implies the number of mesh sub-partitions) by the `-n` switch (it is 4 in this example). The `-v 0` switch is used to suppress the verbosity of FreeFEM. The configs (such as the input mesh or the output location) can be modified in the source files.
+You can specify the number of employed cores (which also implies the number of mesh sub-partitions) by the `-n` switch (it is 128 in this example). The `-v 0` switch is used to suppress the verbosity of FreeFEM. The configs (such as the input mesh or the output location) can be modified in the source files.
+
+Additionally, it is possible to run the code on a supercomputer by submitting a job using `$ sbatch run.sl`.
