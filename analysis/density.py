@@ -75,13 +75,6 @@ vf1600d66min=np.load("data/density/d6_1600/6min.npy")
 vf1600d69min=np.load("data/density/d6_1600/9min.npy")
 vf1600d612min=np.load("data/density/d6_1600/12min.npy")
 
-
-# vf4000d21min=np.load("data/density/d2_4000/1min.npy")
-# vf4000d22min=np.load("data/density/d2_4000/2min.npy")
-# vf4000d24min=np.load("data/density/d2_4000/4min.npy")
-# vf4000d26min=np.load("data/density/d2_4000/6min.npy")
-# vf4000d29min=np.load("data/density/d2_4000/9min.npy")
-
 vf4000d31min=np.load("data/density/d3_4000/1min.npy")
 vf4000d32min=np.load("data/density/d3_4000/2min.npy")
 vf4000d34min=np.load("data/density/d3_4000/4min.npy")
@@ -170,12 +163,6 @@ highvf1600d64min = np.array([vf1600d64min[vf1600d64min>0.5]])
 highvf1600d66min = np.array([vf1600d66min[vf1600d66min>0.5]])
 highvf1600d69min = np.array([vf1600d69min[vf1600d69min>0.5]])
 highvf1600d612min = np.array([vf1600d612min[vf1600d612min>0.5]])
-
-# highvf4000d21min = np.array([vf4000d21min[vf4000d21min>0.5]])
-# highvf4000d22min = np.array([vf4000d22min[vf4000d22min>0.5]])
-# highvf4000d24min = np.array([vf4000d24min[vf4000d24min>0.5]])
-# highvf4000d26min = np.array([vf4000d26min[vf4000d26min>0.5]])
-# highvf4000d29min = np.array([vf4000d29min[vf4000d29min>0.5]])
 
 highvf4000d31min = np.array([vf4000d31min[vf4000d31min>0.5]])
 highvf4000d32min = np.array([vf4000d32min[vf4000d32min>0.5]])
@@ -266,12 +253,6 @@ lowvf1600d66min = np.array([vf1600d66min[vf1600d66min<0.5]])
 lowvf1600d69min = np.array([vf1600d69min[vf1600d69min<0.5]])
 lowvf1600d612min = np.array([vf1600d612min[vf1600d612min<0.5]])
 
-# lowvf4000d21min = np.array([vf4000d21min[vf4000d21min<0.5]])
-# lowvf4000d22min = np.array([vf4000d22min[vf4000d22min<0.5]])
-# lowvf4000d24min = np.array([vf4000d24min[vf4000d24min<0.5]])
-# lowvf4000d26min = np.array([vf4000d26min[vf4000d26min<0.5]])
-# lowvf4000d29min = np.array([vf4000d29min[vf4000d29min<0.5]])
-
 lowvf4000d31min = np.array([vf4000d31min[vf4000d31min<0.5]])
 lowvf4000d32min = np.array([vf4000d32min[vf4000d32min<0.5]])
 lowvf4000d34min = np.array([vf4000d34min[vf4000d34min<0.5]])
@@ -305,7 +286,6 @@ mean1600d4 = np.array([np.mean(vf1600d41min),np.mean(vf1600d42min),np.mean(vf160
 mean1600d5 = np.array([np.mean(vf1600d51min),np.mean(vf1600d52min),np.mean(vf1600d54min),np.mean(vf1600d56min),np.mean(vf1600d59min),np.mean(vf1600d512min)])
 mean1600d6 = np.array([np.mean(vf1600d61min),np.mean(vf1600d62min),np.mean(vf1600d64min),np.mean(vf1600d66min),np.mean(vf1600d69min),np.mean(vf1600d612min)])
 
-# mean4000d2 = np.array([np.mean(vf4000d21min),np.mean(vf4000d22min),np.mean(vf4000d24min),np.mean(vf4000d26min)])
 mean4000d3 = np.array([np.mean(vf4000d31min),np.mean(vf4000d32min),np.mean(vf4000d34min),np.mean(vf4000d36min)])
 mean4000d5 = np.array([np.mean(vf4000d51min),np.mean(vf4000d52min),np.mean(vf4000d54min),np.mean(vf4000d56min)])
 mean4000d6 = np.array([np.mean(vf4000d61min),np.mean(vf4000d62min),np.mean(vf4000d64min),np.mean(vf4000d66min)])
@@ -327,7 +307,6 @@ std1600d4 = np.array([np.std(vf1600d41min),np.std(vf1600d42min),np.std(vf1600d44
 std1600d5 = np.array([np.std(vf1600d51min),np.std(vf1600d52min),np.std(vf1600d54min),np.std(vf1600d56min),np.std(vf1600d59min),np.std(vf1600d512min)])
 std1600d6 = np.array([np.std(vf1600d61min),np.std(vf1600d62min),np.std(vf1600d64min),np.std(vf1600d66min),np.std(vf1600d69min),np.std(vf1600d612min)])
 
-# std4000d2 = np.array([np.std(vf4000d21min),np.std(vf4000d22min),np.std(vf4000d24min),np.std(vf4000d26min)])
 std4000d3 = np.array([np.std(vf4000d31min),np.std(vf4000d32min),np.std(vf4000d34min),np.std(vf4000d36min)])
 std4000d5 = np.array([np.std(vf4000d51min),np.std(vf4000d52min),np.std(vf4000d54min),np.std(vf4000d56min)])
 std4000d6 = np.array([np.std(vf4000d61min),np.std(vf4000d62min),np.std(vf4000d64min),np.std(vf4000d66min)])
@@ -360,8 +339,6 @@ high1600d5 = np.array([highvf1600d51min.shape[1]/vf1600d51min.shape[0],highvf160
 high1600d6 = np.array([highvf1600d61min.shape[1]/vf1600d61min.shape[0],highvf1600d62min.shape[1]/vf1600d62min.shape[0],highvf1600d64min.shape[1]/vf1600d64min.shape[0],\
                       highvf1600d66min.shape[1]/vf1600d66min.shape[0],highvf1600d69min.shape[1]/vf1600d69min.shape[0],highvf1600d612min.shape[1]/vf1600d612min.shape[0]])
 
-# high4000d2 = np.array([highvf4000d21min.shape[1]/vf4000d21min.shape[0],highvf4000d22min.shape[1]/vf4000d22min.shape[0],highvf4000d24min.shape[1]/vf4000d24min.shape[0],\
-#                       highvf4000d26min.shape[1]/vf4000d26min.shape[0]])
 high4000d3 = np.array([highvf4000d31min.shape[1]/vf4000d31min.shape[0],highvf4000d32min.shape[1]/vf4000d32min.shape[0],highvf4000d34min.shape[1]/vf4000d34min.shape[0],\
                       highvf4000d36min.shape[1]/vf4000d36min.shape[0]])
 high4000d5 = np.array([highvf4000d51min.shape[1]/vf4000d51min.shape[0],highvf4000d52min.shape[1]/vf4000d52min.shape[0],highvf4000d54min.shape[1]/vf4000d54min.shape[0],\
@@ -397,8 +374,6 @@ low1600d5 = np.array([lowvf1600d51min.shape[1]/vf1600d51min.shape[0],lowvf1600d5
 low1600d6 = np.array([lowvf1600d61min.shape[1]/vf1600d61min.shape[0],lowvf1600d62min.shape[1]/vf1600d62min.shape[0],lowvf1600d64min.shape[1]/vf1600d64min.shape[0],\
                       lowvf1600d66min.shape[1]/vf1600d66min.shape[0],lowvf1600d69min.shape[1]/vf1600d69min.shape[0],lowvf1600d612min.shape[1]/vf1600d612min.shape[0]])
 
-# low4000d2 = np.array([lowvf4000d21min.shape[1]/vf4000d21min.shape[0],lowvf4000d22min.shape[1]/vf4000d22min.shape[0],lowvf4000d24min.shape[1]/vf4000d24min.shape[0],\
-#                       lowvf4000d26min.shape[1]/vf4000d26min.shape[0]])
 low4000d3 = np.array([lowvf4000d31min.shape[1]/vf4000d31min.shape[0],lowvf4000d32min.shape[1]/vf4000d32min.shape[0],lowvf4000d34min.shape[1]/vf4000d34min.shape[0],\
                       lowvf4000d36min.shape[1]/vf4000d36min.shape[0]])
 low4000d5 = np.array([lowvf4000d51min.shape[1]/vf4000d51min.shape[0],lowvf4000d52min.shape[1]/vf4000d52min.shape[0],lowvf4000d54min.shape[1]/vf4000d54min.shape[0],\
@@ -442,7 +417,7 @@ ax.bar(time2+width, np.mean(low4000,axis=0)*100, yerr=np.std(low4000,axis=0)*100
 
 ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
 ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('Average ratio of volume with density <0.5 \n with total volume', fontsize=fontsize)
+plt.title('density < 0.5', fontsize=fontsize)
 
 # ax.set_xlim(3,12)
 ax.set_ylim(0,)
@@ -451,7 +426,7 @@ plt.xticks(time1, labels=labels)
 ax.tick_params(axis='x', labelsize= ticksize)
 ax.tick_params(axis='y', labelsize= ticksize)
 
-plt.legend(loc=1,fontsize=12)
+# plt.legend(loc=1,fontsize=12)
 plt.grid(alpha=0.3)
 
 plt.savefig('DLr5.png',bbox_inches='tight')
@@ -466,7 +441,7 @@ ax.bar(time2+width, np.mean(high4000,axis=0)*100, yerr=np.std(high4000,axis=0)*1
 
 ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
 ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('Average ratio of volume with density >0.5 \n  with total volume', fontsize=fontsize)
+plt.title('density > 0.5', fontsize=fontsize)
 
 # ax.set_xlim(3,12)
 ax.set_ylim(0,)
@@ -475,7 +450,7 @@ plt.xticks(time1, labels=labels)
 ax.tick_params(axis='x', labelsize= ticksize)
 ax.tick_params(axis='y', labelsize= ticksize)
 
-plt.legend(loc=2,fontsize=12)
+# plt.legend(loc=2,fontsize=20,ncol=3,bbox_to_anchor=(-2, 0., 0.5, 0.5))
 plt.grid(alpha=0.3)
 
 plt.savefig('DHr5.png',bbox_inches='tight')
@@ -630,7 +605,6 @@ plt.show()
 # meanhigh1600d5 = np.array([np.mean(highvf1600d51min),np.mean(highvf1600d52min),np.mean(highvf1600d54min),np.mean(highvf1600d56min),np.mean(highvf1600d59min),np.mean(highvf1600d512min)])
 # meanhigh1600d6 = np.array([np.mean(highvf1600d61min),np.mean(highvf1600d62min),np.mean(highvf1600d64min),np.mean(highvf1600d66min),np.mean(highvf1600d69min),np.mean(highvf1600d612min)])
 
-# # meanhigh4000d2 = np.array([np.mean(highvf4000d21min),np.mean(highvf4000d22min),np.mean(highvf4000d24min),np.mean(highvf4000d26min)])
 # meanhigh4000d3 = np.array([np.mean(highvf4000d31min),np.mean(highvf4000d32min),np.mean(highvf4000d34min),np.mean(highvf4000d36min)])
 # meanhigh4000d5 = np.array([np.mean(highvf4000d51min),np.mean(highvf4000d52min),np.mean(highvf4000d54min),np.mean(highvf4000d56min)])
 # meanhigh4000d6 = np.array([np.mean(highvf4000d61min),np.mean(highvf4000d62min),np.mean(highvf4000d64min),np.mean(highvf4000d66min)])
@@ -651,7 +625,6 @@ plt.show()
 # stdhigh1600d5 = np.array([np.std(highvf1600d51min),np.std(highvf1600d52min),np.std(highvf1600d54min),np.std(highvf1600d56min),np.std(highvf1600d59min),np.std(highvf1600d512min)])
 # stdhigh1600d6 = np.array([np.std(highvf1600d61min),np.std(highvf1600d62min),np.std(highvf1600d64min),np.std(highvf1600d66min),np.std(highvf1600d69min),np.std(highvf1600d612min)])
 
-# # stdhigh4000d2 = np.array([np.std(highvf4000d21min),np.std(highvf4000d22min),np.std(highvf4000d24min),np.std(highvf4000d26min),np.std(highvf4000d29min)])
 # stdhigh4000d3 = np.array([np.std(highvf4000d31min),np.std(highvf4000d32min),np.std(highvf4000d34min),np.std(highvf4000d36min),np.std(highvf4000d39min),np.std(highvf4000d312min)])
 # stdhigh4000d5 = np.array([np.std(highvf4000d51min),np.std(highvf4000d52min),np.std(highvf4000d54min),np.std(highvf4000d56min)])
 # stdhigh4000d6 = np.array([np.std(highvf4000d61min),np.std(highvf4000d62min),np.std(highvf4000d64min),np.std(highvf4000d66min)])
@@ -670,7 +643,6 @@ plt.show()
 # meanlow1600d5 = np.array([np.mean(lowvf1600d51min),np.mean(lowvf1600d52min),np.mean(lowvf1600d54min),np.mean(lowvf1600d56min),np.mean(lowvf1600d59min),np.mean(lowvf1600d512min)])
 # meanlow1600d6 = np.array([np.mean(lowvf1600d61min),np.mean(lowvf1600d62min),np.mean(lowvf1600d64min),np.mean(lowvf1600d66min),np.mean(lowvf1600d69min),np.mean(lowvf1600d612min)])
 
-# # meanlow4000d2 = np.array([np.mean(lowvf4000d21min),np.mean(lowvf4000d22min),np.mean(lowvf4000d24min),np.mean(lowvf4000d26min)])
 # meanlow4000d3 = np.array([np.mean(lowvf4000d31min),np.mean(lowvf4000d32min),np.mean(lowvf4000d34min),np.mean(lowvf4000d36min)])
 # meanlow4000d5 = np.array([np.mean(lowvf4000d51min),np.mean(lowvf4000d52min),np.mean(lowvf4000d54min),np.mean(lowvf4000d56min)])
 # meanlow4000d6 = np.array([np.mean(lowvf4000d61min),np.mean(lowvf4000d62min),np.mean(lowvf4000d64min),np.mean(lowvf4000d66min)])
@@ -691,7 +663,6 @@ plt.show()
 # stdlow1600d5 = np.array([np.std(lowvf1600d51min),np.std(lowvf1600d52min),np.std(lowvf1600d54min),np.std(lowvf1600d56min),np.std(lowvf1600d59min),np.std(lowvf1600d512min)])
 # stdlow1600d6 = np.array([np.std(lowvf1600d61min),np.std(lowvf1600d62min),np.std(lowvf1600d64min),np.std(lowvf1600d66min),np.std(lowvf1600d69min),np.std(lowvf1600d612min)])
 
-# # stdlow4000d2 = np.array([np.std(lowvf4000d21min),np.std(lowvf4000d22min),np.std(lowvf4000d24min),np.std(lowvf4000d26min),np.std(lowvf4000d29min)])
 # stdlow4000d3 = np.array([np.std(lowvf4000d31min),np.std(lowvf4000d32min),np.std(lowvf4000d34min),np.std(lowvf4000d36min),np.std(lowvf4000d39min),np.std(lowvf4000d312min)])
 # stdlow4000d5 = np.array([np.std(lowvf4000d51min),np.std(lowvf4000d52min),np.std(lowvf4000d54min),np.std(lowvf4000d56min)])
 # stdlow4000d6 = np.array([np.std(lowvf4000d61min),np.std(lowvf4000d62min),np.std(lowvf4000d64min),np.std(lowvf4000d66min)])
