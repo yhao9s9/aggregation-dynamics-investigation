@@ -145,11 +145,11 @@ edgecolor = (102/255,100/255,100/255)
 
 ## average permeability
 fig, ax = plt.subplots()
-ax.plot(time[0:6],np.mean(mean800,axis=0),'^-', color=color1, markersize=6, label='800 1/s')
+ax.plot(time[0:6],np.mean(mean800,axis=0),'^--', color=color1, markersize=6, label='800 1/s')
 ax.fill_between(time[0:6],np.mean(mean800,axis=0)-np.std(mean800,axis=0), np.mean(mean800,axis=0)+np.std(mean800,axis=0), color=color1, alpha=0.3)
-ax.plot(time[0:6],np.mean(mean1600,axis=0),'^-', color=color2, markersize=6, label='1600 1/s')
+ax.plot(time[0:6],np.mean(mean1600,axis=0),'o--', color=color2, markersize=6, label='1600 1/s')
 ax.fill_between(time[0:6],np.mean(mean1600,axis=0)-np.std(mean1600,axis=0), np.mean(mean1600,axis=0)+np.std(mean1600,axis=0), color=color2, alpha=0.3)
-ax.plot(time[0:4],np.mean(mean4000,axis=0),'^-', color=color3, markersize=6, label='4000 1/s')
+ax.plot(time[0:4],np.mean(mean4000,axis=0),'s--', color=color3, markersize=6, label='4000 1/s')
 ax.fill_between(time[0:4],np.mean(mean4000,axis=0)-np.std(mean4000,axis=0), np.mean(mean4000,axis=0)+np.std(mean4000,axis=0), color=color3, alpha=0.3)
 
 ax.set_ylabel('permeability $[mm^2]$',fontsize=fontsize)

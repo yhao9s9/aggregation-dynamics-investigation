@@ -409,78 +409,78 @@ width = 0.4
 
 
 
-### low density ratio vs. time
-fig, ax = plt.subplots()
-ax.bar(time1-width, np.mean(low800,axis=0)*100, yerr=np.std(low800,axis=0)*100, alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
-ax.bar(time1, np.mean(low1600,axis=0)*100, yerr=np.std(low1600,axis=0)*100, alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
-ax.bar(time2+width, np.mean(low4000,axis=0)*100, yerr=np.std(low4000,axis=0)*100, alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
-
-ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
-ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('density < 0.5', fontsize=fontsize)
-
-# ax.set_xlim(3,12)
-ax.set_ylim(0,)
-
-plt.xticks(time1, labels=labels)
-ax.tick_params(axis='x', labelsize= ticksize)
-ax.tick_params(axis='y', labelsize= ticksize)
-
-# plt.legend(loc=1,fontsize=12)
-plt.grid(alpha=0.3)
-
-plt.savefig('DLr5.png',bbox_inches='tight')
-plt.show()
-
-
-### high density ratio vs. time
-fig, ax = plt.subplots()
-ax.bar(time1-width, np.mean(high800,axis=0)*100, yerr=np.std(high800,axis=0)*100, alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
-ax.bar(time1, np.mean(high1600,axis=0)*100, yerr=np.std(high1600,axis=0)*100, alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
-ax.bar(time2+width, np.mean(high4000,axis=0)*100, yerr=np.std(high4000,axis=0)*100, alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
-
-ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
-ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('density > 0.5', fontsize=fontsize)
-
-# ax.set_xlim(3,12)
-ax.set_ylim(0,)
-
-plt.xticks(time1, labels=labels)
-ax.tick_params(axis='x', labelsize= ticksize)
-ax.tick_params(axis='y', labelsize= ticksize)
-
-# plt.legend(loc=2,fontsize=20,ncol=3,bbox_to_anchor=(-2, 0., 0.5, 0.5))
-plt.grid(alpha=0.3)
-
-plt.savefig('DHr5.png',bbox_inches='tight')
-plt.show()
-
-
-
-# ## average density
+# ### low density ratio vs. time
 # fig, ax = plt.subplots()
-# ax.plot(time[0:6],np.mean(mean800,axis=0),'^-', color=color1, markersize=6, label='800 1/s')
-# ax.fill_between(time[0:6],np.mean(mean800,axis=0)-np.std(mean800,axis=0), np.mean(mean800,axis=0)+np.std(mean800,axis=0), color=color1, alpha=0.3)
-# ax.plot(time[0:6],np.mean(mean1600,axis=0),'^-', color=color2, markersize=6, label='1600 1/s')
-# ax.fill_between(time[0:6],np.mean(mean1600,axis=0)-np.std(mean1600,axis=0), np.mean(mean1600,axis=0)+np.std(mean1600,axis=0), color=color2, alpha=0.3)
-# ax.plot(time[0:4],np.mean(mean4000,axis=0),'^-', color=color3, markersize=6, label='4000 1/s')
-# ax.fill_between(time[0:4],np.mean(mean4000,axis=0)-np.std(mean4000,axis=0), np.mean(mean4000,axis=0)+np.std(mean4000,axis=0), color=color3, alpha=0.3)
+# ax.bar(time1-width, np.mean(low800,axis=0)*100, yerr=np.std(low800,axis=0)*100, alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
+# ax.bar(time1, np.mean(low1600,axis=0)*100, yerr=np.std(low1600,axis=0)*100, alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
+# ax.bar(time2+width, np.mean(low4000,axis=0)*100, yerr=np.std(low4000,axis=0)*100, alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
 
-# ax.set_ylabel('density $[V/V]$',fontsize=fontsize)
+# ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
 # ax.set_xlabel('time $[min]$',fontsize=fontsize)
-# plt.title('Average density',fontsize=fontsize)
+# plt.title('density < 0.5', fontsize=fontsize)
 
-# # ax.set_ylim(0,5)
+# # ax.set_xlim(3,12)
+# ax.set_ylim(0,)
 
+# plt.xticks(time1, labels=labels)
 # ax.tick_params(axis='x', labelsize= ticksize)
 # ax.tick_params(axis='y', labelsize= ticksize)
 
-# plt.legend(loc=1,fontsize=12)
+# # plt.legend(loc=1,fontsize=12)
 # plt.grid(alpha=0.3)
 
-# plt.savefig('avD.png',bbox_inches='tight')
+# plt.savefig('DLr5.png',bbox_inches='tight')
 # plt.show()
+
+
+# ### high density ratio vs. time
+# fig, ax = plt.subplots()
+# ax.bar(time1-width, np.mean(high800,axis=0)*100, yerr=np.std(high800,axis=0)*100, alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
+# ax.bar(time1, np.mean(high1600,axis=0)*100, yerr=np.std(high1600,axis=0)*100, alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
+# ax.bar(time2+width, np.mean(high4000,axis=0)*100, yerr=np.std(high4000,axis=0)*100, alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
+
+# ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
+# ax.set_xlabel('time $[min]$',fontsize=fontsize)
+# plt.title('density > 0.5', fontsize=fontsize)
+
+# # ax.set_xlim(3,12)
+# ax.set_ylim(0,)
+
+# plt.xticks(time1, labels=labels)
+# ax.tick_params(axis='x', labelsize= ticksize)
+# ax.tick_params(axis='y', labelsize= ticksize)
+
+# # plt.legend(loc=2,fontsize=20,ncol=3,bbox_to_anchor=(-2, 0., 0.5, 0.5))
+# plt.grid(alpha=0.3)
+
+# plt.savefig('DHr5.png',bbox_inches='tight')
+# plt.show()
+
+
+
+## average density
+fig, ax = plt.subplots()
+ax.plot(time[0:6],np.mean(mean800,axis=0),'^--', color=color1, markersize=6, label='800 1/s')
+ax.fill_between(time[0:6],np.mean(mean800,axis=0)-np.std(mean800,axis=0), np.mean(mean800,axis=0)+np.std(mean800,axis=0), color=color1, alpha=0.3)
+ax.plot(time[0:6],np.mean(mean1600,axis=0),'o--', color=color2, markersize=6, label='1600 1/s')
+ax.fill_between(time[0:6],np.mean(mean1600,axis=0)-np.std(mean1600,axis=0), np.mean(mean1600,axis=0)+np.std(mean1600,axis=0), color=color2, alpha=0.3)
+ax.plot(time[0:4],np.mean(mean4000,axis=0),'s--', color=color3, markersize=6, label='4000 1/s')
+ax.fill_between(time[0:4],np.mean(mean4000,axis=0)-np.std(mean4000,axis=0), np.mean(mean4000,axis=0)+np.std(mean4000,axis=0), color=color3, alpha=0.3)
+
+ax.set_ylabel('density $[V/V]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Average density',fontsize=fontsize)
+
+# ax.set_ylim(0,5)
+
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
+
+plt.legend(loc=1,fontsize=12)
+plt.grid(alpha=0.3)
+
+plt.savefig('avD.png',bbox_inches='tight')
+plt.show()
 
 
 # # average density -- 1600 1/s
