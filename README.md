@@ -51,6 +51,6 @@ Additionally, if you have access to a supercomputer, you can submit a job to run
 
 ### Results processing
 Flow simulation results are saved in vtk file, which can be processed in [Paraview](https://www.paraview.org/). In order to process the result more efficiently, it's recommended to import the resultsProcess.py script as a macro within Paraview. This script offers several essential functions, including:
-- Calculation of velocity magnitude, shear rate, shear stress, and elongational rate within platelet aggregates.
-- Access to all simulation results from the faceward, backward, top, and entire surface of platelet aggregates.
+- Calculation of velocity magnitude, shear rate, shear stress, and elongational rate within platelet aggregates
+- Access to all simulation results from the faceward, backward, top, and entire surface of platelet aggregates
 - The ability to export these results into CSV files for subsequent utilization.
