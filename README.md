@@ -4,7 +4,7 @@ This repository presents the implementation of image-based flow simulation for *
 
 The repository contains all the necessary information/data to reproduce the results. The detailed instructions are listed in the following section.
 
-### Experimental image process
+### Experimental image processing
 
 The experimental image processing code is implemented in Python and FreeFEM, organized into several steps, each corresponding to a .py or .edp file:
 
@@ -49,7 +49,7 @@ You can specify the number of employed cores (which also implies the number of m
 
 Additionally, if you have access to a supercomputer, you can submit a job to run the code using the following command: `$ sbatch run.sl`.
 
-### Results process
+### Results processing
 Flow simulation results are saved in vtk file, which can be processed in [Paraview](https://www.paraview.org/). In order to process the result more efficiently, it's recommended to import the resultsProcess.py script as a macro within Paraview. This script offers several essential functions, including:
 - Calculation of velocity magnitude, shear rate, shear stress, and elongational rate within platelet aggregates.
 - Access to all simulation results from the faceward, backward, top, and entire surface of platelet aggregates.
