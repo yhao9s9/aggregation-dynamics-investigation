@@ -6,20 +6,20 @@ The repository contains all the necessary information/data to reproduce the resu
 
 ### Experimental image processing
 
-The experimental image processing code is implemented in Python and FreeFEM. Each step corresponds to a .py/.edp file:
+The experimental image processing code is implemented in Python and FreeFEM, organized into several steps, each corresponding to a .py or .edp file:
 
 * `transform.py` contains the following functions:
-  - Transform the experimental image data to vtk file which could be segmented in [3D Slicer] (https://www.slicer.org/) 
+  - Transform the experimental image data to vtk file which could be further segmented in [3D Slicer](https://www.slicer.org/)  
   - Read fluorescence intensity from the image
   - Remember to run with `python <transform.py> output.txt` to get the number of intensity values in each case
 
-After having the vtk file for platelet aggregate, the outline of the aggregate could be segmented in 3D Slicer. Then after uniformly remeshing the segmentation stl in [MeshLab](https://www.meshlab.net/), generate the mesh that chould be used for flow simulation in [Gmsh](https://gmsh.info/). 
+After having the vtk file for platelet aggregate, the outline of the aggregate could be segmented in 3D Slicer. Then after uniformly remeshing the segmentation stl in [MeshLab](https://www.meshlab.net/), generate the mesh that will be used for flow simulation in [Gmsh](https://gmsh.info/). 
 
-To get the density of platelets inside the platelet aggregates, the manual counting method is applied (5 measurement points). After having the data, the linear regression method is applied to estimate the relations between fluorescence intensity and platelet density:
+To determine the density of platelets within the platelet aggregates, a manual counting method is applied at five measurement points. Once we have the data, the linear regression method is applied to estimate the relationship between fluorescence intensity and platelet density:
 * `checkIntensity.edp` reads the fluorescence intensity to the corresponding aggregate mesh to check the minimum and maximum values, which will be used in linear regression
 * `linearRegression.py` estimates the relation between intensity and platelet density with a 95% confidence region. Remember to run with `python <linearRegression.py> relation.txt` to get the coefficients of the regression line
 
-After having this relationship, the fluorescence intensity values need to be re-read to the aggregate mesh and transformed to the corresponding platelet density and permeability:
+After establishing this relationship, the fluorescence intensity values need to be re-read for the aggregate mesh and transformed into corresponding platelet density and permeability:
 * `interpolation.edp` contains the following functions:
   - Read the intensity value to the aggregate mesh, and transform it into the platelet density using the relationships of fluorescence intensity & density
   - Calculate the permeability of the aggregate via the Kozeny-Carman equation
@@ -47,4 +47,10 @@ After installing the required software packages, the code can be run like this:
 
 You can specify the number of employed cores (which also implies the number of mesh sub-partitions) by the `-n` switch (it is 128 in this example). The `-v 0` switch is used to suppress the verbosity of FreeFEM. The configs (such as the input mesh or the output location) can be modified in the source files.
 
-Additionally, it is possible to run the code on a supercomputer by submitting a job using `$ sbatch run.sl`.
+Additionally, if you have access to a supercomputer, you can submit a job to run the code using the following command: `$ sbatch run.sl`.
+
+### Flow simulation
+Flow simulation results are saved in vtk file, which can be processed in [Paraview](https://www.paraview.org/). In order to process the result more efficiently, it's recommended to import the resultsProcess.py script as a macro within Paraview. This script offers several essential functions, including:
+- Calculation of velocity magnitude, shear rate, shear stress, and elongational rate within platelet aggregates.
+- Access to all simulation results from the faceward, backward, top, and entire surface of platelet aggregates.
+- The ability to export these results into CSV files for subsequent utilization.
