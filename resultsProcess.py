@@ -319,13 +319,13 @@ ExportView('/Users/yhao/Downloads/top.csv', view=spreadSheetView1)
 clip3Display_1 = Show(clip3, spreadSheetView1, 'SpreadSheetRepresentation')
 
 # export view
-ExportView('/Users/yhao/Downloads/faceward.csv', view=spreadSheetView1)
+ExportView('/Users/yhao/Downloads/backward.csv', view=spreadSheetView1)
 
 # show data in view
 clip4Display_1 = Show(clip4, spreadSheetView1, 'SpreadSheetRepresentation')
 
 # export view
-ExportView('/Users/yhao/Downloads/backward.csv', view=spreadSheetView1)
+ExportView('/Users/yhao/Downloads/faceward.csv', view=spreadSheetView1)
 
 #================================================================
 # addendum: following script captures some of the application
