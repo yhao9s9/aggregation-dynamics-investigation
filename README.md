@@ -50,7 +50,14 @@ You can specify the number of employed cores (which also implies the number of m
 Additionally, if you have access to a supercomputer, you can submit a job to run the code using the following command: `$ sbatch run.sl`.
 
 ### Results processing
-Flow simulation results are saved in vtk file, which can be processed in [Paraview](https://www.paraview.org/). In order to process the result more efficiently, it's recommended to import the resultsProcess.py script as a macro within Paraview. This script offers several essential functions, including:
-- Calculation of velocity magnitude, shear rate, shear stress, and elongational rate within platelet aggregates
-- Access to all simulation results from the faceward, backward, top, and entire surface of platelet aggregates
-- The ability to export these results into CSV files for subsequent utilization.
+All the necessary scripts for processing the results are stored in \resultProcessing.
+
+Flow simulation results are saved in vtk file, which can be effectively analyzed in [Paraview](https://www.paraview.org/). In order to process the result more efficiently, we recommend importing the scripts as macros within Paraview. Two scripts are provided here:
+* `process.py` encompasses the following functions:
+  - Calculate essential results such as velocity magnitude, shear rate, shear stress, and elongational rate within platelet aggregates
+  - Interpolate the flow field result to the surface mesh of a platelet aggregate 
+  - Access to all simulation results from the faceward, backward, top, and entire surface, as well as the volume of platelet aggregates
+  - The ability to export these results into csv files for subsequent utilization
+* In cases when the results involve multiple aggregates, `VandS.py` can be applied after `process.py`, which extracts the volume and surface information of each individual aggregate 
+
+After saving all the wanted results into csv files, the script `csvData.py` can remove the first row (information headers) from these csv files and transform them into npy files for easy access when plotting.
