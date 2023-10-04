@@ -360,7 +360,7 @@ spreadSheetView1.HiddenColumnLabels = []
 spreadSheetView1.HiddenColumnLabels = ['Point ID', 'vtkOriginalPointIds', 'Points', 'Points_Magnitude', 'coefficient', 'elongation_rate', 'fx', 'fy', 'fz', 'intensity', 'permeability', 'pressure', 'rt', 'shear_rate', 'shear_stress', 'ux', 'uy', 'uz', 'velocity', 'velocity_Magnitude', 'volume_factor', 'Block Number']
 
 # Properties modified on spreadSheetView1
-spreadSheetView1.HiddenColumnLabels = ['Point ID', 'vtkOriginalPointIds', 'Points', 'Points_Magnitude', 'coefficient', 'elongation_rate', 'fx', 'fy', 'fz', 'intensity', 'permeability', 'pressure', 'rt', 'shear_rate', 'shear_stress', 'ux', 'uy', 'uz', 'velocity', 'volume_factor', 'Block Number']
+spreadSheetView1.HiddenColumnLabels = ['Point ID', 'vtkOriginalPointIds', 'Points', 'Points_Magnitude', 'coefficient', 'fx', 'fy', 'fz', 'intensity', 'permeability', 'pressure', 'rt', 'ux', 'uy', 'uz', 'velocity', 'volume_factor', 'Block Number']
 
 # export view
 ExportView('/Users/yhao/Downloads/volume.csv', view=spreadSheetView1)
