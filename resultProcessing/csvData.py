@@ -7,7 +7,7 @@ import pandas as pd
 
 dirt = ['d1_800/','d2_800/','d2_1600/','d3_800/','d3_1600/','d3_4000/','d4_1600/','d5_800/','d5_1600/','d5_4000/','d6_800/','d6_1600/','d6_4000/']
 time = ['1min/','2min/','4min/','6min/']
-name = ['backward','faceward','volume','top','surface']
+name = ['volume','surface','toppercent','topfix','faceward','backward']
 
 for i in dirt:
     for j in time:
@@ -26,7 +26,7 @@ for i in dirt1:
 
 dirt2 = ['d2_800/','d5_800/']
 time2 = ['1min/','2min/','4min/','6min/','9min/','12min/']
-name2 = ['1backward','1faceward','1volume','1top','1surface','2backward','2faceward','2volume','2top','2surface']
+name2 = ['1volume','1surface','1toppercent','1topfix','1faceward','1backward','2volume','2surface','2toppercent','2topfix','2faceward','2backward']
 
 for i in dirt2:
     for j in time2:
