@@ -1056,8 +1056,8 @@ width34 = 0.6
 
 # ### Legend
 # fig, ax = plt.subplots()
-# marker800 = mlines.Line2D([], [], color='k', marker='o', linestyle='None', markersize=12, label='800 $1/s$')
-# marker1600 = mlines.Line2D([], [], color='k', marker='^', linestyle='None', markersize=12, label='1600 $1/s$')
+# marker800 = mlines.Line2D([], [], color='k', marker='^', linestyle='None', markersize=12, label='800 $1/s$')
+# marker1600 = mlines.Line2D([], [], color='k', marker='o', linestyle='None', markersize=12, label='1600 $1/s$')
 # marker4000 = mlines.Line2D([], [], color='k', marker='s', linestyle='None', markersize=12, label='4000 $1/s$')
 # linetop13 = mlines.Line2D([], [], color=color5, marker='None', linestyle='-', linewidth=3, label='top 1/3')
 # linetop2 = mlines.Line2D([], [], color=color4, marker='None', linestyle='--', linewidth=3, label='top 2 $\mu m$')
@@ -1073,35 +1073,52 @@ width34 = 0.6
 # plt.show()
 
 
-### velocity
-fig, ax = plt.subplots()
-ax.plot(time[0:6],meanvel800volume,'--^', color=color4, markersize=6, label='volume')
-ax.fill_between(time[0:6],meanvel800volume-stdvel800volume, meanvel800volume+stdvel800volume, color=color4, alpha=0.2)
-ax.plot(time[0:6],meanvel800surface,'--o', color=color5, markersize=6, label='surface')
-ax.fill_between(time[0:6],meanvel800surface-stdvel800surface, meanvel800surface+stdvel800surface, color=color5, alpha=0.2)
-ax.errorbar(time[0:6],meanvel800topp,yerr=stdvel800topp,fmt='--s', color=color6, markersize=6, capsize=3, label='topp')
-ax.errorbar(time[0:6],meanvel800topf,yerr=stdvel800topf,fmt='--s', color=color7, markersize=6, capsize=3, label='topf')
-# ax.errorbar(time[0:6],meanvel1600surface,yerr=stdvel1600surface,fmt='--o', color=color2, ecolor='k', markersize=6, capsize=3, label='1600 1/s')
-# ax.errorbar(time[0:4],meanvel4000surface,yerr=stdvel4000surface,fmt='--o', color=color3, ecolor='k', markersize=6, capsize=3, label='4000 1/s')
-ax.plot(time[0:4],meanvel4000volume,'--^', color=color4, markersize=6, label='volume')
-ax.fill_between(time[0:4],meanvel4000volume-stdvel4000volume, meanvel4000volume+stdvel4000volume, color=color4, alpha=0.2)
-ax.plot(time[0:4],meanvel4000surface,'--o', color=color5, markersize=6, label='surface')
-ax.fill_between(time[0:4],meanvel4000surface-stdvel4000surface, meanvel4000surface+stdvel4000surface, color=color5, alpha=0.2)
+# ### velocity
+# fig, ax = plt.subplots()
+# ax.plot(time[0:6],meanvel800volume,'--^', color=color1, markersize=6, label='800 1/s')
+# ax.fill_between(time[0:6],meanvel800volume-stdvel800volume, meanvel800volume+stdvel800volume, color=color1, alpha=0.3)
+# ax.plot(time[0:6],meanvel1600volume,'--o', color=color2, markersize=6, label='1600 1/s')
+# ax.fill_between(time[0:6],meanvel1600volume-stdvel1600volume, meanvel1600volume+stdvel1600volume, color=color2, alpha=0.3)
+# # ax.errorbar(time[0:6],meanvel1600surface,yerr=stdvel1600surface,fmt='--o', color=color2, ecolor='k', markersize=6, capsize=3, label='1600 1/s')
+# # ax.errorbar(time[0:4],meanvel4000surface,yerr=stdvel4000surface,fmt='--o', color=color3, ecolor='k', markersize=6, capsize=3, label='4000 1/s')
+# ax.plot(time[0:4],meanvel4000volume,'--s', color=color3, markersize=6, label='4000 1/s')
+# ax.fill_between(time[0:4],meanvel4000volume-stdvel4000volume, meanvel4000volume+stdvel4000volume, color=color3, alpha=0.3)
 
-ax.set_ylabel('velocity $[mm/s]$',fontsize=fontsize)
-ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('Average velocity', fontsize=fontsize)
+# ax.set_ylabel('velocity $[mm/s]$',fontsize=fontsize)
+# ax.set_xlabel('time $[min]$',fontsize=fontsize)
+# plt.title('Average velocity', fontsize=fontsize)
 
-# ax.set_ylim(0,5)
+# # ax.set_ylim(0,5)
 
-ax.tick_params(axis='x', labelsize= ticksize)
-ax.tick_params(axis='y', labelsize= ticksize)
+# ax.tick_params(axis='x', labelsize= ticksize)
+# ax.tick_params(axis='y', labelsize= ticksize)
 
-plt.legend(loc=1,fontsize=12)
-plt.grid(alpha=0.3)
+# plt.legend(loc=1,fontsize=12)
+# plt.grid(alpha=0.3)
 
-plt.savefig('vel.png',bbox_inches='tight')
-plt.show()
+# plt.savefig('vel.png',bbox_inches='tight')
+# plt.show()
+
+
+# ### velocity -- zoom in
+# fig, ax = plt.subplots()
+# ax.plot(time[0:6],meanvel800volume,'--^', color=color1, markersize=6, label='800 1/s')
+# ax.fill_between(time[0:6],meanvel800volume-stdvel800volume, meanvel800volume+stdvel800volume, color=color1, alpha=0.3)
+# ax.plot(time[0:6],meanvel1600volume,'--o', color=color2, markersize=6, label='1600 1/s')
+# ax.fill_between(time[0:6],meanvel1600volume-stdvel1600volume, meanvel1600volume+stdvel1600volume, color=color2, alpha=0.3)
+# ax.plot(time[0:4],meanvel4000volume,'--s', color=color3, markersize=6, label='4000 1/s')
+# ax.fill_between(time[0:4],meanvel4000volume-stdvel4000volume, meanvel4000volume+stdvel4000volume, color=color3, alpha=0.3)
+
+# ax.set_ylim(ymax=0.25)
+
+# ax.tick_params(axis='x', labelsize= ticksize)
+# ax.tick_params(axis='y', labelsize= ticksize)
+
+# plt.legend(loc=1,fontsize=12)
+# plt.grid(alpha=0.3)
+
+# plt.savefig('vel_zoom.png',bbox_inches='tight')
+# plt.show()
 
 
 # ### Rate of elongation faceward vs. backward
@@ -1223,11 +1240,11 @@ plt.show()
 
 # ### Shear rate top
 # fig, ax = plt.subplots()
-# ax.errorbar(time[0:6],meanshear800topp,yerr=stdshear800topp,fmt='-o', color=color5, markersize=8, capsize=3)
-# ax.errorbar(time[0:6],meanshear1600topp,yerr=stdshear1600topp,fmt='-^', color=color5, markersize=8, capsize=3)
+# ax.errorbar(time[0:6],meanshear800topp,yerr=stdshear800topp,fmt='-^', color=color5, markersize=8, capsize=3)
+# ax.errorbar(time[0:6],meanshear1600topp,yerr=stdshear1600topp,fmt='-o', color=color5, markersize=8, capsize=3)
 # ax.errorbar(time[0:4],meanshear4000topp,yerr=stdshear4000topp,fmt='-s', color=color5, markersize=8, capsize=3)
-# ax.errorbar(time[0:6],meanshear800topf,yerr=stdshear800topf,fmt='--o', color=color4, markersize=8, capsize=3)
-# ax.errorbar(time[0:6],meanshear1600topf,yerr=stdshear1600topf,fmt='--^', color=color4, markersize=8, capsize=3)
+# ax.errorbar(time[0:6],meanshear800topf,yerr=stdshear800topf,fmt='--^', color=color4, markersize=8, capsize=3)
+# ax.errorbar(time[0:6],meanshear1600topf,yerr=stdshear1600topf,fmt='--o', color=color4, markersize=8, capsize=3)
 # ax.errorbar(time[0:4],meanshear4000topf,yerr=stdshear4000topf,fmt='--s', color=color4, markersize=8, capsize=3)
 
 # ax.set_ylabel('shear rate $[1/s]$',fontsize=fontsize)
@@ -1240,8 +1257,8 @@ plt.show()
 # ax.tick_params(axis='x', labelsize= ticksize)
 # ax.tick_params(axis='y', labelsize= ticksize)
 
-# marker800 = mlines.Line2D([], [], color='k', marker='o', linestyle='None', markersize=8, label='800 $1/s$')
-# marker1600 = mlines.Line2D([], [], color='k', marker='^', linestyle='None', markersize=8, label='1600 $1/s$')
+# marker800 = mlines.Line2D([], [], color='k', marker='^', linestyle='None', markersize=8, label='800 $1/s$')
+# marker1600 = mlines.Line2D([], [], color='k', marker='o', linestyle='None', markersize=8, label='1600 $1/s$')
 # marker4000 = mlines.Line2D([], [], color='k', marker='s', linestyle='None', markersize=8, label='4000 $1/s$')
 # linetop13 = mlines.Line2D([], [], color=color5, marker='None', linestyle='-', linewidth=2, label='top 1/3')
 # linetop2 = mlines.Line2D([], [], color=color4, marker='None', linestyle='--', linewidth=2, label='top 2 $\mu m$')
@@ -1263,10 +1280,10 @@ plt.show()
 
 # ### shear rate top zoom in
 # fig, ax = plt.subplots()
-# ax.errorbar(time[0:6],meanshear800topp,yerr=stdshear800topp,fmt='-o', color=color5, linewidth=3, markersize=12, capsize=6)
-# ax.errorbar(time[0:6],meanshear1600topp,yerr=stdshear1600topp,fmt='-^', color=color5, linewidth=3, markersize=12, capsize=6)
-# ax.errorbar(time[0:6],meanshear800topf,yerr=stdshear800topf,fmt='--o', color=color4, linewidth=3, markersize=12, capsize=6)
-# ax.errorbar(time[0:6],meanshear1600topf,yerr=stdshear1600topf,fmt='--^', color=color4, linewidth=3, markersize=12, capsize=6)
+# ax.errorbar(time[0:6],meanshear800topp,yerr=stdshear800topp,fmt='-^', color=color5, linewidth=3, markersize=12, capsize=6)
+# ax.errorbar(time[0:6],meanshear1600topp,yerr=stdshear1600topp,fmt='-o', color=color5, linewidth=3, markersize=12, capsize=6)
+# ax.errorbar(time[0:6],meanshear800topf,yerr=stdshear800topf,fmt='--^', color=color4, linewidth=3, markersize=12, capsize=6)
+# ax.errorbar(time[0:6],meanshear1600topf,yerr=stdshear1600topf,fmt='--o', color=color4, linewidth=3, markersize=12, capsize=6)
 
 # ax.set_ylim(500,2000)
 
@@ -1282,11 +1299,11 @@ plt.show()
 
 # ### Rate of elongation top
 # fig, ax = plt.subplots()
-# ax.errorbar(time[0:6],meanelon800topp,yerr=stdelon800topp,fmt='-o', color=color5, markersize=8, capsize=3)
-# ax.errorbar(time[0:6],meanelon1600topp,yerr=stdelon1600topp,fmt='-^', color=color5, markersize=8, capsize=3)
+# ax.errorbar(time[0:6],meanelon800topp,yerr=stdelon800topp,fmt='-^', color=color5, markersize=8, capsize=3)
+# ax.errorbar(time[0:6],meanelon1600topp,yerr=stdelon1600topp,fmt='-o', color=color5, markersize=8, capsize=3)
 # ax.errorbar(time[0:4],meanelon4000topp,yerr=stdelon4000topp,fmt='-s', color=color5, markersize=8, capsize=3)
-# ax.errorbar(time[0:6],meanelon800topf,yerr=stdelon800topf,fmt='--o', color=color4, markersize=8, capsize=3)
-# ax.errorbar(time[0:6],meanelon1600topf,yerr=stdelon1600topf,fmt='--^', color=color4, markersize=8, capsize=3)
+# ax.errorbar(time[0:6],meanelon800topf,yerr=stdelon800topf,fmt='--^', color=color4, markersize=8, capsize=3)
+# ax.errorbar(time[0:6],meanelon1600topf,yerr=stdelon1600topf,fmt='--o', color=color4, markersize=8, capsize=3)
 # ax.errorbar(time[0:4],meanelon4000topf,yerr=stdelon4000topf,fmt='--s', color=color4, markersize=8, capsize=3)
 
 # ax.set_ylabel('rate of elongation $[1/s]$',fontsize=fontsize)
@@ -1299,8 +1316,8 @@ plt.show()
 # ax.tick_params(axis='x', labelsize= ticksize)
 # ax.tick_params(axis='y', labelsize= ticksize)
 
-# marker800 = mlines.Line2D([], [], color='k', marker='o', linestyle='None', markersize=8, label='800 $1/s$')
-# marker1600 = mlines.Line2D([], [], color='k', marker='^', linestyle='None', markersize=8, label='1600 $1/s$')
+# marker800 = mlines.Line2D([], [], color='k', marker='^', linestyle='None', markersize=8, label='800 $1/s$')
+# marker1600 = mlines.Line2D([], [], color='k', marker='o', linestyle='None', markersize=8, label='1600 $1/s$')
 # marker4000 = mlines.Line2D([], [], color='k', marker='s', linestyle='None', markersize=8, label='4000 $1/s$')
 # linetop13 = mlines.Line2D([], [], color=color5, marker='None', linestyle='-', linewidth=2, label='top 1/3')
 # linetop2 = mlines.Line2D([], [], color=color4, marker='None', linestyle='--', linewidth=2, label='top 2 $\mu m$')
@@ -1322,10 +1339,10 @@ plt.show()
 
 # ### rate of elongation top zoom in
 # fig, ax = plt.subplots()
-# ax.errorbar(time[0:6],meanelon800topp,yerr=stdelon800topp,fmt='-o', color=color5, linewidth=3, markersize=12, capsize=6)
-# ax.errorbar(time[0:6],meanelon1600topp,yerr=stdelon1600topp,fmt='-^', color=color5, linewidth=3, markersize=12, capsize=6)
-# ax.errorbar(time[0:6],meanelon800topf,yerr=stdelon800topf,fmt='--o', color=color4, linewidth=3, markersize=12, capsize=6)
-# ax.errorbar(time[0:6],meanelon1600topf,yerr=stdelon1600topf,fmt='--^', color=color4, linewidth=3, markersize=12, capsize=6)
+# ax.errorbar(time[0:6],meanelon800topp,yerr=stdelon800topp,fmt='-^', color=color5, linewidth=3, markersize=12, capsize=6)
+# ax.errorbar(time[0:6],meanelon1600topp,yerr=stdelon1600topp,fmt='-o', color=color5, linewidth=3, markersize=12, capsize=6)
+# ax.errorbar(time[0:6],meanelon800topf,yerr=stdelon800topf,fmt='--^', color=color4, linewidth=3, markersize=12, capsize=6)
+# ax.errorbar(time[0:6],meanelon1600topf,yerr=stdelon1600topf,fmt='--o', color=color4, linewidth=3, markersize=12, capsize=6)
 
 # # ax.set_ylim(0,5)
 
@@ -1341,49 +1358,99 @@ plt.show()
 
 
 
-# ### Shear rate surface
-# fig, ax = plt.subplots()
-# ax.errorbar(time[0:6],meanshear800surface,yerr=stdshear800surface,fmt='--o', color=color1, ecolor='k', markersize=6, capsize=3, label='800 1/s')
-# ax.errorbar(time[0:6],meanshear1600surface,yerr=stdshear1600surface,fmt='--o', color=color2, ecolor='k', markersize=6, capsize=3, label='1600 1/s')
-# ax.errorbar(time[0:4],meanshear4000surface,yerr=stdshear4000surface,fmt='--o', color=color3, ecolor='k', markersize=6, capsize=3, label='4000 1/s')
+### Shear rate surface
+fig, ax = plt.subplots()
+ax.plot(time[0:6],meanshear800surface,'--^', color=color1, markersize=8, label='800 1/s')
+ax.fill_between(time[0:6],meanshear800surface-stdshear800surface, meanshear800surface+stdshear800surface, color=color1, alpha=0.2)
+ax.plot(time[0:6],meanshear1600surface,'--o', color=color2, markersize=8, label='1600 1/s')
+ax.fill_between(time[0:6],meanshear1600surface-stdshear1600surface, meanshear1600surface+stdshear1600surface, color=color2, alpha=0.2)
+ax.plot(time[0:4],meanshear4000surface,'--s', color=color3, markersize=8, label='4000 1/s')
+ax.fill_between(time[0:4],meanshear4000surface-stdshear4000surface, meanshear4000surface+stdshear4000surface, color=color3, alpha=0.2)
+# ax.errorbar(time[0:6],meanshear800surface,yerr=stdshear800surface,fmt='--o', color=color1, markersize=6, capsize=3, label='800 1/s')
+# ax.errorbar(time[0:6],meanshear1600surface,yerr=stdshear1600surface,fmt='--o', color=color2, markersize=6, capsize=3, label='1600 1/s')
+# ax.errorbar(time[0:4],meanshear4000surface,yerr=stdshear4000surface,fmt='--o', color=color3, markersize=6, capsize=3, label='4000 1/s')
 
-# ax.set_ylabel('shear rate $[1/s]$',fontsize=fontsize)
-# ax.set_xlabel('time $[min]$',fontsize=fontsize)
-# plt.title('Average shear rate on the whole surface', fontsize=fontsize)
+ax.set_ylabel('shear rate $[1/s]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Average shear rate on surface', fontsize=fontsize)
 
-# # ax.set_ylim(0,5)
+# ax.set_ylim(0,5)
 
-# ax.tick_params(axis='x', labelsize= ticksize)
-# ax.tick_params(axis='y', labelsize= ticksize)
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
 
-# plt.legend(loc=1,fontsize=12)
-# plt.grid(alpha=0.3)
+plt.legend(loc=1,fontsize=12)
+plt.grid(alpha=0.3)
 
-# plt.savefig('shearS.png',bbox_inches='tight')
-# plt.show()
+plt.savefig('shearS.png',bbox_inches='tight')
+plt.show()
 
 
-# ### rate of elongation surface
-# fig, ax = plt.subplots()
+## rate of elongation surface
+fig, ax = plt.subplots()
+ax.plot(time[0:6],meanelon800surface,'--^', color=color1, markersize=8, label='800 1/s')
+ax.fill_between(time[0:6],meanelon800surface-stdelon800surface, meanelon800surface+stdelon800surface, color=color1, alpha=0.2)
+ax.plot(time[0:6],meanelon1600surface,'--o', color=color2, markersize=8, label='1600 1/s')
+ax.fill_between(time[0:6],meanelon1600surface-stdelon1600surface, meanelon1600surface+stdelon1600surface, color=color2, alpha=0.2)
+ax.plot(time[0:4],meanelon4000surface,'--s', color=color3, markersize=8, label='4000 1/s')
+ax.fill_between(time[0:4],meanelon4000surface-stdelon4000surface, meanelon4000surface+stdelon4000surface, color=color3, alpha=0.2)
 # ax.errorbar(time[0:6],meanelon800surface,yerr=stdelon800surface,fmt='--o', color=color1, ecolor='k', markersize=6, capsize=3, label='800 1/s')
 # ax.errorbar(time[0:6],meanelon1600surface,yerr=stdelon1600surface,fmt='--o', color=color2, ecolor='k', markersize=6, capsize=3, label='1600 1/s')
 # ax.errorbar(time[0:4],meanelon4000surface,yerr=stdelon4000surface,fmt='--o', color=color3, ecolor='k', markersize=6, capsize=3, label='4000 1/s')
 
-# ax.set_ylabel('rate of elongation $[1/s]$',fontsize=fontsize)
-# ax.set_xlabel('time $[min]$',fontsize=fontsize)
-# plt.title('Average rate of elongation on the whole surface', fontsize=fontsize)
+ax.set_ylabel('rate of elongation $[1/s]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Average rate of elongation on surface', fontsize=fontsize)
 
-# # ax.set_ylim(0,5)
+# ax.set_ylim(0,5)
 
-# ax.tick_params(axis='x', labelsize= ticksize)
-# ax.tick_params(axis='y', labelsize= ticksize)
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
 
-# plt.legend(loc=1,fontsize=12)
-# plt.grid(alpha=0.3)
+plt.legend(loc=1,fontsize=12)
+plt.grid(alpha=0.3)
 
-# plt.savefig('elonS.png',bbox_inches='tight')
-# plt.show()
+plt.savefig('elonS.png',bbox_inches='tight')
+plt.show()
 
+
+
+### Normalised result surface
+fig, ax = plt.subplots()
+ax.plot(time[0:6],meanelon800surface/meanelon800surface[0]*100,'-^', color=color5, markersize=8)
+ax.plot(time[0:6],meanelon1600surface/meanelon1600surface[0]*100,'-o', color=color5, markersize=8)
+ax.plot(time[0:4],meanelon4000surface/meanelon4000surface[0]*100,'-s', color=color5, markersize=8)
+ax.plot(time[0:6],meanshear800surface/meanshear800surface[0]*100,'--^', color=color4, markersize=8)
+ax.plot(time[0:6],meanshear1600surface/meanshear1600surface[0]*100,'--o', color=color4, markersize=8)
+ax.plot(time[0:4],meanshear4000surface/meanshear4000surface[0]*100,'--s', color=color4, markersize=8)
+
+
+ax.set_ylabel('percentage $[\%]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Normalised average results', fontsize=fontsize)
+
+# ax.set_ylim(0,5)
+
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
+
+marker800 = mlines.Line2D([], [], color='k', marker='^', linestyle='None', markersize=8, label='800 $1/s$')
+marker1600 = mlines.Line2D([], [], color='k', marker='o', linestyle='None', markersize=8, label='1600 $1/s$')
+marker4000 = mlines.Line2D([], [], color='k', marker='s', linestyle='None', markersize=8, label='4000 $1/s$')
+lineElon = mlines.Line2D([], [], color=color5, marker='None', linestyle='-', linewidth=2, label='shear rate')
+lineShear = mlines.Line2D([], [], color=color4, marker='None', linestyle='--', linewidth=2, label='rate of elongation')
+
+ax.legend(
+    handles=[marker800, marker1600, marker4000, lineElon, lineShear],
+    loc=1, # "upper center" puts it below the line
+    ncol=1,
+    fontsize=12
+);
+
+plt.grid(alpha=0.3)
+
+plt.savefig('normalS.png',bbox_inches='tight')
+plt.show()
 
 ####-----------------------------not used---------------------------------####
 ## PointZ -- height
