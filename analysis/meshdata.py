@@ -9,7 +9,7 @@ def readdata(directory):
     data_list = []
     with open(file_path, 'r') as file:
         for line in file:
-            if line.strip() == '6 6' or line.strip() == '4 6' or line.strip() == '5 6':
+            if line.strip() == '7 6' or line.strip() == '4 6' or line.strip() == '5 6':
                 # Skip the header line
                 continue
             # Split the line by whitespace and convert each element to a float
@@ -21,25 +21,25 @@ def readdata(directory):
     data_array = np.array(data_list)
     return data_array
 
-data800 = readdata('../meshData/data800.txt')
-data1600 = readdata('../meshData/data1600.txt')
-data4000 = readdata('../meshData/data4000.txt')
-# print(data800.shape)
+data800 = readdata('meshData/data800.txt')
+data1600 = readdata('meshData/data1600.txt')
+data4000 = readdata('meshData/data4000.txt')
+print(data800.shape)
 
 # print(np.insert(data800[:6,0:5],0,0,axis=1).shape)
 
 time = np.array([1,2,4,6,9,12])
 time1 = np.array([1,3,5,7,9,11])
 time2 = np.array([1,3,5,7])
-grV800 = (data800[:6,0:6]-np.insert(data800[:6,0:5],0,0,axis=1))/(time[0:6]-np.insert(time[0:5],0,0))
+grV800 = (data800[:7,0:6]-np.insert(data800[:7,0:5],0,0,axis=1))/(time[0:6]-np.insert(time[0:5],0,0))
 grV1600 = (data1600[:5,0:6]-np.insert(data1600[:5,0:5],0,0,axis=1))/(time[0:6]-np.insert(time[0:5],0,0))
 grV4000 = (data4000[1:4,0:4]-np.insert(data4000[1:4,0:3],0,0,axis=1))/(time[0:4]-np.insert(time[0:3],0,0))
 
-grA800 = (data800[6:12,0:6]-np.insert(data800[6:12,0:5],0,0,axis=1))/(time[0:6]-np.insert(time[0:5],0,0))
+grA800 = (data800[7:14,0:6]-np.insert(data800[7:14,0:5],0,0,axis=1))/(time[0:6]-np.insert(time[0:5],0,0))
 grA1600 = (data1600[5:10,0:6]-np.insert(data1600[5:10,0:5],0,0,axis=1))/(time[0:6]-np.insert(time[0:5],0,0))
 grA4000 = (data4000[5:8,0:4]-np.insert(data4000[5:8,0:3],0,0,axis=1))/(time[0:4]-np.insert(time[0:3],0,0))
 
-grH800 = (data800[12:18,0:6]-np.insert(data800[12:18,0:5],0,0,axis=1))/(time[0:6]-np.insert(time[0:5],0,0))
+grH800 = (data800[14:21,0:6]-np.insert(data800[14:21,0:5],0,0,axis=1))/(time[0:6]-np.insert(time[0:5],0,0))
 grH1600 = (data1600[10:15,0:6]-np.insert(data1600[10:15,0:5],0,0,axis=1))/(time[0:6]-np.insert(time[0:5],0,0))
 grH4000 = (data4000[9:12,0:4]-np.insert(data4000[9:12,0:3],0,0,axis=1))/(time[0:4]-np.insert(time[0:3],0,0))
 
@@ -57,104 +57,59 @@ edgecolor = (102/255,100/255,100/255)
 
 width = 0.4
 
-# ### bottom area vs. time
-# fig, ax = plt.subplots()
-# ax.bar(time1-width, np.mean(data800[6:12,0:6],axis=0), yerr=np.std(data800[6:12,0:6],axis=0), alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
-# ax.bar(time1, np.mean(data1600[5:10,0:6],axis=0), yerr=np.std(data1600[5:10,0:6],axis=0), alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
-# ax.bar(time2+width, np.mean(data4000[5:8,0:4],axis=0), yerr=np.std(data4000[5:8,0:4],axis=0), alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
-# # ax.bar(time-width, np.mean(data800[6:12,0:6],axis=0), alpha=0.5, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
-# # ax.bar(time, np.mean(data1600[5:10,0:6],axis=0), alpha=0.5, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
-# # ax.bar(time+width, np.mean(data4000[4:8,0:6],axis=0), alpha=0.5, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
+### bottom area vs. time
+fig, ax = plt.subplots()
+ax.bar(time1-width, np.mean(data800[7:14,0:6],axis=0), yerr=np.std(data800[7:14,0:6],axis=0), alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
+ax.bar(time1, np.mean(data1600[5:10,0:6],axis=0), yerr=np.std(data1600[5:10,0:6],axis=0), alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
+ax.bar(time2+width, np.mean(data4000[5:8,0:4],axis=0), yerr=np.std(data4000[5:8,0:4],axis=0), alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
+# ax.bar(time-width, np.mean(data800[6:12,0:6],axis=0), alpha=0.5, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
+# ax.bar(time, np.mean(data1600[5:10,0:6],axis=0), alpha=0.5, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
+# ax.bar(time+width, np.mean(data4000[4:8,0:6],axis=0), alpha=0.5, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
 
-# ax.set_ylabel('area $[\mu m^2]$',fontsize=fontsize)
-# ax.set_xlabel('time $[min]$',fontsize=fontsize)
-# plt.title('Average attachment surface area', fontsize=fontsize)
+ax.set_ylabel('area $[\mu m^2]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Average attachment surface area', fontsize=fontsize)
 
-# # ax.set_xlim(3,12)
-# ax.set_ylim(0,)
+# ax.set_xlim(3,12)
+ax.set_ylim(0,)
 
-# plt.xticks(time1, labels=labels)
-# ax.tick_params(axis='x', labelsize= ticksize)
-# ax.tick_params(axis='y', labelsize= ticksize)
+plt.xticks(time1, labels=labels)
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
 
-# plt.legend(loc=2,fontsize=12)
-# plt.grid(alpha=0.3)
+plt.legend(loc=2,fontsize=12)
+plt.grid(alpha=0.3)
 
-# plt.savefig('TB.png',bbox_inches='tight')
-# plt.show()
-
-
-
-# ### height vs. time
-# fig, ax = plt.subplots()
-# ax.bar(time1-width, np.mean(data800[12:18,0:6],axis=0), yerr=np.std(data800[12:18,0:6],axis=0), alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
-# ax.bar(time1, np.mean(data1600[10:15,0:6],axis=0), yerr=np.std(data1600[10:15,0:6],axis=0), alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
-# ax.bar(time2+width, np.mean(data4000[9:12,0:4],axis=0), yerr=np.std(data4000[9:12,0:4],axis=0), alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
-
-# ax.set_ylabel('average height $[\mu m]$',fontsize=fontsize)
-# ax.set_xlabel('time $[min]$',fontsize=fontsize)
-# plt.title('Average aggregation height', fontsize=fontsize)
-
-# # ax.set_xlim(3,12)
-# ax.set_ylim(0,)
-
-# plt.xticks(time1, labels=labels)
-# ax.tick_params(axis='x', labelsize= ticksize)
-# ax.tick_params(axis='y', labelsize= ticksize)
-
-# plt.legend(loc=2,fontsize=12)
-# plt.grid(alpha=0.3)
-
-# plt.savefig('TH.png',bbox_inches='tight')
-# plt.show()
-
-
-# ### average ratio (height/bottom area) vs. time
-# fig, ax = plt.subplots()
-# ax.bar(time1-width, np.mean(data800[12:18,0:6]/data800[6:12,0:6],axis=0), yerr=np.std(data800[12:18,0:6]/data800[6:12,0:6],axis=0), alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
-# ax.bar(time1, np.mean(data1600[10:15,0:6]/data1600[5:10,0:6],axis=0), yerr=np.std(data1600[10:15,0:6]/data1600[5:10,0:6],axis=0), alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
-# ax.bar(time2+width, np.mean(data4000[9:12,0:4]/data4000[5:8,0:4],axis=0), yerr=np.std(data4000[9:12,0:4]/data4000[5:8,0:4],axis=0), alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
-
-# ax.set_ylabel('ratio $[1/\mu m]$',fontsize=fontsize)
-# ax.set_xlabel('time $[min]$',fontsize=fontsize)
-# plt.title('Average ratio of aggregation height \n with attachment surface area',fontsize=fontsize)
-
-# # ax.set_xlim(3,12)
-# # ax.set_ylim(0,3)
-
-# plt.xticks(time1, labels=labels)
-# ax.tick_params(axis='x', labelsize= ticksize)
-# ax.tick_params(axis='y', labelsize= ticksize)
-
-# plt.legend(loc=1,fontsize=12)
-# plt.grid(alpha=0.3)
-
-# plt.savefig('arHB.png',bbox_inches='tight')
-# plt.show()
+plt.savefig('TB.png',bbox_inches='tight')
+plt.show()
 
 
 
-# ### average ratio (height/length) vs. time
-# fig, ax = plt.subplots()
-# ax.bar(time1-width, np.mean(data800[12:18,0:6]/data800[18:24,0:6],axis=0), yerr=np.std(data800[12:18,0:6]/data800[18:24,0:6],axis=0), alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
-# ax.bar(time1, np.mean(data1600[10:15,0:6]/data1600[15:20,0:6],axis=0), yerr=np.std(data1600[10:15,0:6]/data1600[15:20,0:6],axis=0), alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
-# ax.bar(time2+width, np.mean(data4000[9:12,0:4]/data4000[13:16,0:4],axis=0), yerr=np.std(data4000[9:12,0:4]/data4000[13:16,0:4],axis=0), alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
+### height vs. time
+fig, ax = plt.subplots()
+ax.bar(time1-width, np.mean(data800[14:21,0:6],axis=0), yerr=np.std(data800[14:21,0:6],axis=0), alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
+ax.bar(time1, np.mean(data1600[10:15,0:6],axis=0), yerr=np.std(data1600[10:15,0:6],axis=0), alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
+ax.bar(time2+width, np.mean(data4000[9:12,0:4],axis=0), yerr=np.std(data4000[9:12,0:4],axis=0), alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
 
-# ax.set_ylabel('ratio',fontsize=fontsize)
-# ax.set_xlabel('time $[min]$',fontsize=fontsize)
-# plt.title('Average ratio of aggregation height \n with maximum length',fontsize=fontsize)
+ax.set_ylabel('average height $[\mu m]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Average aggregation height', fontsize=fontsize)
 
-# # ax.set_ylim(0,60000)
+# ax.set_xlim(3,12)
+ax.set_ylim(0,)
 
-# plt.xticks(time1, labels=labels)
-# ax.tick_params(axis='x', labelsize= ticksize)
-# ax.tick_params(axis='y', labelsize= ticksize)
+plt.xticks(time1, labels=labels)
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
 
-# plt.legend(loc=1,fontsize=12)
-# plt.grid(alpha=0.3)
+plt.legend(loc=2,fontsize=12)
+plt.grid(alpha=0.3)
 
-# plt.savefig('arHL.png',bbox_inches='tight')
-# plt.show()
+plt.savefig('TH.png',bbox_inches='tight')
+plt.show()
+
+
+
 
 
 
@@ -270,73 +225,73 @@ plt.savefig('grV_zooming.png',bbox_inches='tight')
 plt.show()
 
 
-### distribution of aggregate volume
-# fig, ax = plt.subplots()
-# bp1=ax.boxplot(data800[0:6,:],vert=True,sym='',patch_artist=True, labels=labels,
-#                     boxprops=dict(facecolor=color1, color=color1),
-#                     capprops=dict(color=color1),
-#                     whiskerprops=dict(color=color1),
-#                     flierprops=dict(color=color1, markeredgecolor=color1),
-#                     medianprops=dict(color=color1))
-# bp2=ax.boxplot(data1600[0:5,:],vert=True,sym='',patch_artist=True, labels=labels,
-#                     boxprops=dict(facecolor=color2, color=color2),
-#                     capprops=dict(color=color2),
-#                     whiskerprops=dict(color=color2),
-#                     flierprops=dict(color=color2, markeredgecolor=color2),
-#                     medianprops=dict(color=color2))
+## distribution of aggregate volume
+fig, ax = plt.subplots()
+bp1=ax.boxplot(data800[0:7,:],vert=True,sym='',patch_artist=True, labels=labels,
+                    boxprops=dict(facecolor=color1, color=color1),
+                    capprops=dict(color=color1),
+                    whiskerprops=dict(color=color1),
+                    flierprops=dict(color=color1, markeredgecolor=color1),
+                    medianprops=dict(color=color1))
+bp2=ax.boxplot(data1600[0:5,:],vert=True,sym='',patch_artist=True, labels=labels,
+                    boxprops=dict(facecolor=color2, color=color2),
+                    capprops=dict(color=color2),
+                    whiskerprops=dict(color=color2),
+                    flierprops=dict(color=color2, markeredgecolor=color2),
+                    medianprops=dict(color=color2))
 
-# ax.set_ylabel('volume $[\mu m^3]$',fontsize=fontsize)
-# ax.set_xlabel('time $[min]$',fontsize=fontsize)
+ax.set_ylabel('volume $[\mu m^3]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
 
-# # ax.set_ylim(0,7000)
+# ax.set_ylim(0,7000)
 
-# ax.tick_params(axis='x', labelsize= ticksize)
-# ax.tick_params(axis='y', labelsize= ticksize)
-
-# # ax.legend([bp1["boxes"][0], bp2["boxes"][0], bp3["boxes"][0]], ['800 1/s', '1600 1/s', '4000 1/s'], loc=2, fontsize=12)
-# plt.grid(alpha=0.3)
-
-# plt.savefig('vD2.png',bbox_inches='tight')
-# plt.show()
-
-
-
-# ### distribution of aggregate volume
-# fig, ax = plt.subplots()
-# bp1=ax.boxplot(data800[0:6,:],vert=True,sym='',patch_artist=True, labels=labels,
-#                     boxprops=dict(facecolor=color1, color=color1),
-#                     capprops=dict(color=color1),
-#                     whiskerprops=dict(color=color1),
-#                     flierprops=dict(color=color1, markeredgecolor=color1),
-#                     medianprops=dict(color=color1))
-# bp2=ax.boxplot(data1600[0:5,:],vert=True,sym='',patch_artist=True, labels=labels,
-#                     boxprops=dict(facecolor=color2, color=color2),
-#                     capprops=dict(color=color2),
-#                     whiskerprops=dict(color=color2),
-#                     flierprops=dict(color=color2, markeredgecolor=color2),
-#                     medianprops=dict(color=color2))
-# bp3=ax.boxplot(data4000[1:4,0:4],vert=True,sym='',patch_artist=True, labels=labels[:4],
-#                     boxprops=dict(facecolor=color3, color=color3),
-#                     capprops=dict(color=color3),
-#                     whiskerprops=dict(color=color3),
-#                     flierprops=dict(color=color3, markeredgecolor=color3),
-#                     medianprops=dict(color=color3))
-
-# ax.set_ylabel('volume $[\mu m^3]$',fontsize=fontsize)
-# ax.set_xlabel('time $[min]$',fontsize=fontsize)
-# plt.title('Average platelet aggregation volume',fontsize=fontsize)
-
-# # ax.set_ylim(0,7000)
-
-# ax.tick_params(axis='x', labelsize= ticksize)
-# ax.tick_params(axis='y', labelsize= ticksize)
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
 
 # ax.legend([bp1["boxes"][0], bp2["boxes"][0], bp3["boxes"][0]], ['800 1/s', '1600 1/s', '4000 1/s'], loc=2, fontsize=12)
-# # ax.legend([bp1["boxes"][0], bp2["boxes"][0], bp3["boxes"][0]], ['800 1/s', '1600 1/s', '4000 1/s'], loc=2, fontsize=12)
-# plt.grid(alpha=0.3)
+plt.grid(alpha=0.3)
 
-# plt.savefig('vD3.png',bbox_inches='tight')
-# plt.show()
+plt.savefig('vD2.png',bbox_inches='tight')
+plt.show()
+
+
+
+### distribution of aggregate volume
+fig, ax = plt.subplots()
+bp1=ax.boxplot(data800[0:7,:],vert=True,sym='',patch_artist=True, labels=labels,
+                    boxprops=dict(facecolor=color1, color=color1),
+                    capprops=dict(color=color1),
+                    whiskerprops=dict(color=color1),
+                    flierprops=dict(color=color1, markeredgecolor=color1),
+                    medianprops=dict(color=color1))
+bp2=ax.boxplot(data1600[0:5,:],vert=True,sym='',patch_artist=True, labels=labels,
+                    boxprops=dict(facecolor=color2, color=color2),
+                    capprops=dict(color=color2),
+                    whiskerprops=dict(color=color2),
+                    flierprops=dict(color=color2, markeredgecolor=color2),
+                    medianprops=dict(color=color2))
+bp3=ax.boxplot(data4000[1:4,0:4],vert=True,sym='',patch_artist=True, labels=labels[:4],
+                    boxprops=dict(facecolor=color3, color=color3),
+                    capprops=dict(color=color3),
+                    whiskerprops=dict(color=color3),
+                    flierprops=dict(color=color3, markeredgecolor=color3),
+                    medianprops=dict(color=color3))
+
+ax.set_ylabel('volume $[\mu m^3]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Average platelet aggregation volume',fontsize=fontsize)
+
+# ax.set_ylim(0,7000)
+
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
+
+ax.legend([bp1["boxes"][0], bp2["boxes"][0], bp3["boxes"][0]], ['800 1/s', '1600 1/s', '4000 1/s'], loc=2, fontsize=12)
+# ax.legend([bp1["boxes"][0], bp2["boxes"][0], bp3["boxes"][0]], ['800 1/s', '1600 1/s', '4000 1/s'], loc=2, fontsize=12)
+plt.grid(alpha=0.3)
+
+plt.savefig('vD3.png',bbox_inches='tight')
+plt.show()
 
 
 
@@ -380,6 +335,54 @@ plt.show()
 
 
 ####------------------------------------------------NOT USING------------------------------------------------####
+# ### average ratio (height/bottom area) vs. time
+# fig, ax = plt.subplots()
+# ax.bar(time1-width, np.mean(data800[12:18,0:6]/data800[6:12,0:6],axis=0), yerr=np.std(data800[12:18,0:6]/data800[6:12,0:6],axis=0), alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
+# ax.bar(time1, np.mean(data1600[10:15,0:6]/data1600[5:10,0:6],axis=0), yerr=np.std(data1600[10:15,0:6]/data1600[5:10,0:6],axis=0), alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
+# ax.bar(time2+width, np.mean(data4000[9:12,0:4]/data4000[5:8,0:4],axis=0), yerr=np.std(data4000[9:12,0:4]/data4000[5:8,0:4],axis=0), alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
+
+# ax.set_ylabel('ratio $[1/\mu m]$',fontsize=fontsize)
+# ax.set_xlabel('time $[min]$',fontsize=fontsize)
+# plt.title('Average ratio of aggregation height \n with attachment surface area',fontsize=fontsize)
+
+# # ax.set_xlim(3,12)
+# # ax.set_ylim(0,3)
+
+# plt.xticks(time1, labels=labels)
+# ax.tick_params(axis='x', labelsize= ticksize)
+# ax.tick_params(axis='y', labelsize= ticksize)
+
+# plt.legend(loc=1,fontsize=12)
+# plt.grid(alpha=0.3)
+
+# plt.savefig('arHB.png',bbox_inches='tight')
+# plt.show()
+
+
+
+# ### average ratio (height/length) vs. time
+# fig, ax = plt.subplots()
+# ax.bar(time1-width, np.mean(data800[12:18,0:6]/data800[18:24,0:6],axis=0), yerr=np.std(data800[12:18,0:6]/data800[18:24,0:6],axis=0), alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width)
+# ax.bar(time1, np.mean(data1600[10:15,0:6]/data1600[15:20,0:6],axis=0), yerr=np.std(data1600[10:15,0:6]/data1600[15:20,0:6],axis=0), alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width)
+# ax.bar(time2+width, np.mean(data4000[9:12,0:4]/data4000[13:16,0:4],axis=0), yerr=np.std(data4000[9:12,0:4]/data4000[13:16,0:4],axis=0), alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width)
+
+# ax.set_ylabel('ratio',fontsize=fontsize)
+# ax.set_xlabel('time $[min]$',fontsize=fontsize)
+# plt.title('Average ratio of aggregation height \n with maximum length',fontsize=fontsize)
+
+# # ax.set_ylim(0,60000)
+
+# plt.xticks(time1, labels=labels)
+# ax.tick_params(axis='x', labelsize= ticksize)
+# ax.tick_params(axis='y', labelsize= ticksize)
+
+# plt.legend(loc=1,fontsize=12)
+# plt.grid(alpha=0.3)
+
+# plt.savefig('arHL.png',bbox_inches='tight')
+# plt.show()
+
+
 # ### average maximum length vs. time
 # fig, ax = plt.subplots()
 # ax.plot(time[0:6],np.mean(data800[18:24,0:6],axis=0),'*-',color=color1,label='800 1/s')

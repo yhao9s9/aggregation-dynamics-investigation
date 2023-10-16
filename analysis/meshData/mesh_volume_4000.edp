@@ -3,28 +3,28 @@ load "msh3"
 int n = 4;
 int m = 6;
 
-mesh3 soild4000D21min = readmesh3("../experimentData/d2_4000/1min/solid.mesh");
-mesh3 soild4000D22min = readmesh3("../experimentData/d2_4000/2min/solid.mesh");
-mesh3 soild4000D24min = readmesh3("../experimentData/d2_4000/4min/solid.mesh");
-mesh3 soild4000D26min = readmesh3("../experimentData/d2_4000/6min/solid.mesh");
-mesh3 soild4000D29min = readmesh3("../experimentData/d2_4000/9min/solid.mesh");
+mesh3 soild4000D21min = readmesh3("../../experimentData/d2_4000/1min/solid.mesh");
+mesh3 soild4000D22min = readmesh3("../../experimentData/d2_4000/2min/solid.mesh");
+mesh3 soild4000D24min = readmesh3("../../experimentData/d2_4000/4min/solid.mesh");
+mesh3 soild4000D26min = readmesh3("../../experimentData/d2_4000/6min/solid.mesh");
+mesh3 soild4000D29min = readmesh3("../../experimentData/d2_4000/9min/solid.mesh");
 
-mesh3 soild4000D31min = readmesh3("../experimentData/d3_4000/1min/solid.mesh");
-mesh3 soild4000D32min = readmesh3("../experimentData/d3_4000/2min/solid.mesh");
-mesh3 soild4000D34min = readmesh3("../experimentData/d3_4000/4min/solid.mesh");
-mesh3 soild4000D36min = readmesh3("../experimentData/d3_4000/6min/solid.mesh");
-mesh3 soild4000D39min = readmesh3("../experimentData/d3_4000/9min/solid.mesh");
-mesh3 soild4000D312min = readmesh3("../experimentData/d3_4000/12min/solid.mesh");
+mesh3 soild4000D31min = readmesh3("../../experimentData/d3_4000/1min/solid.mesh");
+mesh3 soild4000D32min = readmesh3("../../experimentData/d3_4000/2min/solid.mesh");
+mesh3 soild4000D34min = readmesh3("../../experimentData/d3_4000/4min/solid.mesh");
+mesh3 soild4000D36min = readmesh3("../../experimentData/d3_4000/6min/solid.mesh");
+mesh3 soild4000D39min = readmesh3("../../experimentData/d3_4000/9min/solid.mesh");
+mesh3 soild4000D312min = readmesh3("../../experimentData/d3_4000/12min/solid.mesh");
 
-mesh3 soild4000D51min = readmesh3("../experimentData/d5_4000/1min/solid.mesh");
-mesh3 soild4000D52min = readmesh3("../experimentData/d5_4000/2min/solid.mesh");
-mesh3 soild4000D54min = readmesh3("../experimentData/d5_4000/4min/solid.mesh");
-mesh3 soild4000D56min = readmesh3("../experimentData/d5_4000/6min/solid.mesh");
+mesh3 soild4000D51min = readmesh3("../../experimentData/d5_4000/1min/solid.mesh");
+mesh3 soild4000D52min = readmesh3("../../experimentData/d5_4000/2min/solid.mesh");
+mesh3 soild4000D54min = readmesh3("../../experimentData/d5_4000/4min/solid.mesh");
+mesh3 soild4000D56min = readmesh3("../../experimentData/d5_4000/6min/solid.mesh");
 
-mesh3 soild4000D61min = readmesh3("../experimentData/d6_4000/1min/solid.mesh");
-mesh3 soild4000D62min = readmesh3("../experimentData/d6_4000/2min/solid.mesh");
-mesh3 soild4000D64min = readmesh3("../experimentData/d6_4000/4min/solid.mesh");
-mesh3 soild4000D66min = readmesh3("../experimentData/d6_4000/6min/solid.mesh");
+mesh3 soild4000D61min = readmesh3("../../experimentData/d6_4000/1min/solid.mesh");
+mesh3 soild4000D62min = readmesh3("../../experimentData/d6_4000/2min/solid.mesh");
+mesh3 soild4000D64min = readmesh3("../../experimentData/d6_4000/4min/solid.mesh");
+mesh3 soild4000D66min = readmesh3("../../experimentData/d6_4000/6min/solid.mesh");
 
 func  newlabel = (z<5.0e-4)? 10 : 1; 
 soild4000D21min=change(soild4000D21min,flabel=newlabel);

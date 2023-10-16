@@ -1,49 +1,56 @@
 load "msh3"
 
-int n = 6;
+int n = 7;
 int m = 6;
 
-mesh3 soild800D11min = readmesh3("../experimentData/d1_800/1min/solid.mesh");
-mesh3 soild800D12min = readmesh3("../experimentData/d1_800/2min/solid.mesh");
-mesh3 soild800D14min = readmesh3("../experimentData/d1_800/4min/solid.mesh");
-mesh3 soild800D16min = readmesh3("../experimentData/d1_800/6min/solid.mesh");
-mesh3 soild800D19min = readmesh3("../experimentData/d1_800/9min/solid.mesh");
-mesh3 soild800D112min = readmesh3("../experimentData/d1_800/12min/solid.mesh");
+mesh3 soild800D11min = readmesh3("../../../experimentData/d1_800/1min/solid.mesh");
+mesh3 soild800D12min = readmesh3("../../../experimentData/d1_800/2min/solid.mesh");
+mesh3 soild800D14min = readmesh3("../../../experimentData/d1_800/4min/solid.mesh");
+mesh3 soild800D16min = readmesh3("../../../experimentData/d1_800/6min/solid.mesh");
+mesh3 soild800D19min = readmesh3("../../../experimentData/d1_800/9min/solid.mesh");
+mesh3 soild800D112min = readmesh3("../../../experimentData/d1_800/12min/solid.mesh");
 
-mesh3 soild800D21min1 = readmesh3("../experimentData/d2_800/1min/1.mesh");
-mesh3 soild800D22min1 = readmesh3("../experimentData/d2_800/2min/1.mesh");
-mesh3 soild800D24min1 = readmesh3("../experimentData/d2_800/4min/1.mesh");
-mesh3 soild800D26min1 = readmesh3("../experimentData/d2_800/6min/1.mesh");
-mesh3 soild800D29min1 = readmesh3("../experimentData/d2_800/9min/1.mesh");
-mesh3 soild800D212min1 = readmesh3("../experimentData/d2_800/12min/1.mesh");
+mesh3 soild800D21min1 = readmesh3("../../../experimentData/d2_800/1min/1.mesh");
+mesh3 soild800D22min1 = readmesh3("../../../experimentData/d2_800/2min/1.mesh");
+mesh3 soild800D24min1 = readmesh3("../../../experimentData/d2_800/4min/1.mesh");
+mesh3 soild800D26min1 = readmesh3("../../../experimentData/d2_800/6min/1.mesh");
+mesh3 soild800D29min1 = readmesh3("../../../experimentData/d2_800/9min/1.mesh");
+mesh3 soild800D212min1 = readmesh3("../../../experimentData/d2_800/12min/1.mesh");
 
-mesh3 soild800D21min2 = readmesh3("../experimentData/d2_800/1min/2.mesh");
-mesh3 soild800D22min2 = readmesh3("../experimentData/d2_800/2min/2.mesh");
-mesh3 soild800D24min2 = readmesh3("../experimentData/d2_800/4min/2.mesh");
-mesh3 soild800D26min2 = readmesh3("../experimentData/d2_800/6min/2.mesh");
-mesh3 soild800D29min2 = readmesh3("../experimentData/d2_800/9min/2.mesh");
-mesh3 soild800D212min2 = readmesh3("../experimentData/d2_800/12min/2.mesh");
+mesh3 soild800D21min2 = readmesh3("../../../experimentData/d2_800/1min/2.mesh");
+mesh3 soild800D22min2 = readmesh3("../../../experimentData/d2_800/2min/2.mesh");
+mesh3 soild800D24min2 = readmesh3("../../../experimentData/d2_800/4min/2.mesh");
+mesh3 soild800D26min2 = readmesh3("../../../experimentData/d2_800/6min/2.mesh");
+mesh3 soild800D29min2 = readmesh3("../../../experimentData/d2_800/9min/2.mesh");
+mesh3 soild800D212min2 = readmesh3("../../../experimentData/d2_800/12min/2.mesh");
 
-mesh3 soild800D31min = readmesh3("../experimentData/d3_800/1min/solid.mesh");
-mesh3 soild800D32min = readmesh3("../experimentData/d3_800/2min/solid.mesh");
-mesh3 soild800D34min = readmesh3("../experimentData/d3_800/4min/solid.mesh");
-mesh3 soild800D36min = readmesh3("../experimentData/d3_800/6min/1.mesh");
-mesh3 soild800D39min = readmesh3("../experimentData/d3_800/9min/1.mesh");
-mesh3 soild800D312min = readmesh3("../experimentData/d3_800/12min/1.mesh");
+mesh3 soild800D31min = readmesh3("../../../experimentData/d3_800/1min/solid.mesh");
+mesh3 soild800D32min = readmesh3("../../../experimentData/d3_800/2min/solid.mesh");
+mesh3 soild800D34min = readmesh3("../../../experimentData/d3_800/4min/solid.mesh");
+mesh3 soild800D36min = readmesh3("../../../experimentData/d3_800/6min/1.mesh");
+mesh3 soild800D39min = readmesh3("../../../experimentData/d3_800/9min/1.mesh");
+mesh3 soild800D312min = readmesh3("../../../experimentData/d3_800/12min/1.mesh");
 
-mesh3 soild800D51min = readmesh3("../experimentData/d5_800/1min/1.mesh");
-mesh3 soild800D52min = readmesh3("../experimentData/d5_800/2min/1.mesh");
-mesh3 soild800D54min = readmesh3("../experimentData/d5_800/4min/1.mesh");
-mesh3 soild800D56min = readmesh3("../experimentData/d5_800/6min/1.mesh");
-mesh3 soild800D59min = readmesh3("../experimentData/d5_800/9min/1.mesh");
-mesh3 soild800D512min = readmesh3("../experimentData/d5_800/12min/1.mesh");
+mesh3 soild800D51min1 = readmesh3("../../../experimentData/d5_800/1min/1.mesh");
+mesh3 soild800D52min1 = readmesh3("../../../experimentData/d5_800/2min/1.mesh");
+mesh3 soild800D54min1 = readmesh3("../../../experimentData/d5_800/4min/1.mesh");
+mesh3 soild800D56min1 = readmesh3("../../../experimentData/d5_800/6min/1.mesh");
+mesh3 soild800D59min1 = readmesh3("../../../experimentData/d5_800/9min/1.mesh");
+mesh3 soild800D512min1 = readmesh3("../../../experimentData/d5_800/12min/1.mesh");
 
-mesh3 soild800D61min = readmesh3("../experimentData/d6_800/1min/solid.mesh");
-mesh3 soild800D62min = readmesh3("../experimentData/d6_800/2min/solid.mesh");
-mesh3 soild800D64min = readmesh3("../experimentData/d6_800/4min/solid.mesh");
-mesh3 soild800D66min = readmesh3("../experimentData/d6_800/6min/1.mesh");
-mesh3 soild800D69min = readmesh3("../experimentData/d6_800/9min/1.mesh");
-mesh3 soild800D612min = readmesh3("../experimentData/d6_800/12min/1.mesh");
+mesh3 soild800D51min2 = readmesh3("../../../experimentData/d5_800/1min/2.mesh");
+mesh3 soild800D52min2 = readmesh3("../../../experimentData/d5_800/2min/2.mesh");
+mesh3 soild800D54min2 = readmesh3("../../../experimentData/d5_800/4min/2.mesh");
+mesh3 soild800D56min2 = readmesh3("../../../experimentData/d5_800/6min/2.mesh");
+mesh3 soild800D59min2 = readmesh3("../../../experimentData/d5_800/9min/2.mesh");
+mesh3 soild800D512min2 = readmesh3("../../../experimentData/d5_800/12min/2.mesh");
+
+mesh3 soild800D61min = readmesh3("../../../experimentData/d6_800/1min/solid.mesh");
+mesh3 soild800D62min = readmesh3("../../../experimentData/d6_800/2min/solid.mesh");
+mesh3 soild800D64min = readmesh3("../../../experimentData/d6_800/4min/solid.mesh");
+mesh3 soild800D66min = readmesh3("../../../experimentData/d6_800/6min/1.mesh");
+mesh3 soild800D69min = readmesh3("../../../experimentData/d6_800/9min/1.mesh");
+mesh3 soild800D612min = readmesh3("../../../experimentData/d6_800/12min/1.mesh");
 
 func  newlabel = (z<5.0e-4)? 10 : 1; 
 soild800D11min=change(soild800D11min,flabel=newlabel);
@@ -74,12 +81,19 @@ soild800D36min=change(soild800D36min,flabel=newlabel);
 soild800D39min=change(soild800D39min,flabel=newlabel);
 soild800D312min=change(soild800D312min,flabel=newlabel);
 
-soild800D51min=change(soild800D51min,flabel=newlabel);
-soild800D52min=change(soild800D52min,flabel=newlabel);
-soild800D54min=change(soild800D54min,flabel=newlabel);
-soild800D56min=change(soild800D56min,flabel=newlabel);
-soild800D59min=change(soild800D59min,flabel=newlabel);
-soild800D512min=change(soild800D512min,flabel=newlabel);
+soild800D51min1=change(soild800D51min1,flabel=newlabel);
+soild800D52min1=change(soild800D52min1,flabel=newlabel);
+soild800D54min1=change(soild800D54min1,flabel=newlabel);
+soild800D56min1=change(soild800D56min1,flabel=newlabel);
+soild800D59min1=change(soild800D59min1,flabel=newlabel);
+soild800D512min1=change(soild800D512min1,flabel=newlabel);
+
+soild800D51min2=change(soild800D51min2,flabel=newlabel);
+soild800D52min2=change(soild800D52min2,flabel=newlabel);
+soild800D54min2=change(soild800D54min2,flabel=newlabel);
+soild800D56min2=change(soild800D56min2,flabel=newlabel);
+soild800D59min2=change(soild800D59min2,flabel=newlabel);
+soild800D512min2=change(soild800D512min2,flabel=newlabel);
 
 soild800D61min=change(soild800D61min,flabel=newlabel);
 soild800D62min=change(soild800D62min,flabel=newlabel);
@@ -126,19 +140,26 @@ VofSolid(3,3) = soild800D36min.measure;
 VofSolid(3,4) = soild800D39min.measure;
 VofSolid(3,5) = soild800D312min.measure;
 
-VofSolid(4,0) = soild800D51min.measure;
-VofSolid(4,1) = soild800D52min.measure;
-VofSolid(4,2) = soild800D54min.measure;
-VofSolid(4,3) = soild800D56min.measure;
-VofSolid(4,4) = soild800D59min.measure;
-VofSolid(4,5) = soild800D512min.measure;
+VofSolid(4,0) = soild800D51min1.measure;
+VofSolid(4,1) = soild800D52min1.measure;
+VofSolid(4,2) = soild800D54min1.measure;
+VofSolid(4,3) = soild800D56min1.measure;
+VofSolid(4,4) = soild800D59min1.measure;
+VofSolid(4,5) = soild800D512min1.measure;
 
-VofSolid(5,0) = soild800D61min.measure;
-VofSolid(5,1) = soild800D62min.measure;
-VofSolid(5,2) = soild800D64min.measure;
-VofSolid(5,3) = soild800D66min.measure;
-VofSolid(5,4) = soild800D69min.measure;
-VofSolid(5,5) = soild800D612min.measure;
+VofSolid(5,0) = soild800D51min2.measure;
+VofSolid(5,1) = soild800D52min2.measure;
+VofSolid(5,2) = soild800D54min2.measure;
+VofSolid(5,3) = soild800D56min2.measure;
+VofSolid(5,4) = soild800D59min2.measure;
+VofSolid(5,5) = soild800D512min2.measure;
+
+VofSolid(6,0) = soild800D61min.measure;
+VofSolid(6,1) = soild800D62min.measure;
+VofSolid(6,2) = soild800D64min.measure;
+VofSolid(6,3) = soild800D66min.measure;
+VofSolid(6,4) = soild800D69min.measure;
+VofSolid(6,5) = soild800D612min.measure;
 
 // Bottom area
 real[int,int] BottomArea(n,m);
@@ -170,19 +191,26 @@ BottomArea(3,3) = int2d(soild800D36min,10)(1.);
 BottomArea(3,4) = int2d(soild800D39min,10)(1.);
 BottomArea(3,5) = int2d(soild800D312min,10)(1.);
 
-BottomArea(4,0) = int2d(soild800D51min,10)(1.);
-BottomArea(4,1) = int2d(soild800D52min,10)(1.);
-BottomArea(4,2) = int2d(soild800D54min,10)(1.);
-BottomArea(4,3) = int2d(soild800D56min,10)(1.);
-BottomArea(4,4) = int2d(soild800D59min,10)(1.);
-BottomArea(4,5) = int2d(soild800D512min,10)(1.);
+BottomArea(4,0) = int2d(soild800D51min1,10)(1.);
+BottomArea(4,1) = int2d(soild800D52min1,10)(1.);
+BottomArea(4,2) = int2d(soild800D54min1,10)(1.);
+BottomArea(4,3) = int2d(soild800D56min1,10)(1.);
+BottomArea(4,4) = int2d(soild800D59min1,10)(1.);
+BottomArea(4,5) = int2d(soild800D512min1,10)(1.);
 
-BottomArea(5,0) = int2d(soild800D61min,10)(1.);
-BottomArea(5,1) = int2d(soild800D62min,10)(1.);
-BottomArea(5,2) = int2d(soild800D64min,10)(1.);
-BottomArea(5,3) = int2d(soild800D66min,10)(1.);
-BottomArea(5,4) = int2d(soild800D69min,10)(1.);
-BottomArea(5,5) = int2d(soild800D612min,10)(1.);
+BottomArea(5,0) = int2d(soild800D51min2,10)(1.);
+BottomArea(5,1) = int2d(soild800D52min2,10)(1.);
+BottomArea(5,2) = int2d(soild800D54min2,10)(1.);
+BottomArea(5,3) = int2d(soild800D56min2,10)(1.);
+BottomArea(5,4) = int2d(soild800D59min2,10)(1.);
+BottomArea(5,5) = int2d(soild800D512min2,10)(1.);
+
+BottomArea(6,0) = int2d(soild800D61min,10)(1.);
+BottomArea(6,1) = int2d(soild800D62min,10)(1.);
+BottomArea(6,2) = int2d(soild800D64min,10)(1.);
+BottomArea(6,3) = int2d(soild800D66min,10)(1.);
+BottomArea(6,4) = int2d(soild800D69min,10)(1.);
+BottomArea(6,5) = int2d(soild800D612min,10)(1.);
 
 
 
@@ -243,18 +271,31 @@ boundingbox(soild800D39min, bbsoild800D39min);
 real[int] bbsoild800D312min(6);
 boundingbox(soild800D312min, bbsoild800D312min);
 
-real[int] bbsoild800D51min(6);
-boundingbox(soild800D51min, bbsoild800D51min);
-real[int] bbsoild800D52min(6);
-boundingbox(soild800D52min, bbsoild800D52min);
-real[int] bbsoild800D54min(6);
-boundingbox(soild800D54min, bbsoild800D54min);
-real[int] bbsoild800D56min(6);
-boundingbox(soild800D56min, bbsoild800D56min);
-real[int] bbsoild800D59min(6);
-boundingbox(soild800D59min, bbsoild800D59min);
-real[int] bbsoild800D512min(6);
-boundingbox(soild800D512min, bbsoild800D512min);
+real[int] bbsoild800D51min1(6);
+boundingbox(soild800D51min1, bbsoild800D51min1);
+real[int] bbsoild800D52min1(6);
+boundingbox(soild800D52min1, bbsoild800D52min1);
+real[int] bbsoild800D54min1(6);
+boundingbox(soild800D54min1, bbsoild800D54min1);
+real[int] bbsoild800D56min1(6);
+boundingbox(soild800D56min1, bbsoild800D56min1);
+real[int] bbsoild800D59min1(6);
+boundingbox(soild800D59min1, bbsoild800D59min1);
+real[int] bbsoild800D512min1(6);
+boundingbox(soild800D512min1, bbsoild800D512min1);
+
+real[int] bbsoild800D51min2(6);
+boundingbox(soild800D51min2, bbsoild800D51min2);
+real[int] bbsoild800D52min2(6);
+boundingbox(soild800D52min2, bbsoild800D52min2);
+real[int] bbsoild800D54min2(6);
+boundingbox(soild800D54min2, bbsoild800D54min2);
+real[int] bbsoild800D56min2(6);
+boundingbox(soild800D56min2, bbsoild800D56min2);
+real[int] bbsoild800D59min2(6);
+boundingbox(soild800D59min2, bbsoild800D59min2);
+real[int] bbsoild800D512min2(6);
+boundingbox(soild800D512min2, bbsoild800D512min2);
 
 real[int] bbsoild800D61min(6);
 boundingbox(soild800D61min, bbsoild800D61min);
@@ -297,19 +338,26 @@ HofSolid(3,3) = bbsoild800D36min[5] - bbsoild800D36min[4];
 HofSolid(3,4) = bbsoild800D39min[5] - bbsoild800D39min[4];
 HofSolid(3,5) = bbsoild800D312min[5] - bbsoild800D312min[4];
 
-HofSolid(4,0) = bbsoild800D51min[5] - bbsoild800D51min[4];
-HofSolid(4,1) = bbsoild800D52min[5] - bbsoild800D52min[4];
-HofSolid(4,2) = bbsoild800D54min[5] - bbsoild800D54min[4];
-HofSolid(4,3) = bbsoild800D56min[5] - bbsoild800D56min[4];
-HofSolid(4,4) = bbsoild800D59min[5] - bbsoild800D59min[4];
-HofSolid(4,5) = bbsoild800D512min[5] - bbsoild800D512min[4];
+HofSolid(4,0) = bbsoild800D51min1[5] - bbsoild800D51min1[4];
+HofSolid(4,1) = bbsoild800D52min1[5] - bbsoild800D52min1[4];
+HofSolid(4,2) = bbsoild800D54min1[5] - bbsoild800D54min1[4];
+HofSolid(4,3) = bbsoild800D56min1[5] - bbsoild800D56min1[4];
+HofSolid(4,4) = bbsoild800D59min1[5] - bbsoild800D59min1[4];
+HofSolid(4,5) = bbsoild800D512min1[5] - bbsoild800D512min1[4];
 
-HofSolid(5,0) = bbsoild800D61min[5] - bbsoild800D61min[4];
-HofSolid(5,1) = bbsoild800D62min[5] - bbsoild800D62min[4];
-HofSolid(5,2) = bbsoild800D64min[5] - bbsoild800D64min[4];
-HofSolid(5,3) = bbsoild800D66min[5] - bbsoild800D66min[4];
-HofSolid(5,4) = bbsoild800D69min[5] - bbsoild800D69min[4];
-HofSolid(5,5) = bbsoild800D612min[5] - bbsoild800D612min[4];
+HofSolid(5,0) = bbsoild800D51min2[5] - bbsoild800D51min2[4];
+HofSolid(5,1) = bbsoild800D52min2[5] - bbsoild800D52min2[4];
+HofSolid(5,2) = bbsoild800D54min2[5] - bbsoild800D54min2[4];
+HofSolid(5,3) = bbsoild800D56min2[5] - bbsoild800D56min2[4];
+HofSolid(5,4) = bbsoild800D59min2[5] - bbsoild800D59min2[4];
+HofSolid(5,5) = bbsoild800D512min2[5] - bbsoild800D512min2[4];
+
+HofSolid(6,0) = bbsoild800D61min[5] - bbsoild800D61min[4];
+HofSolid(6,1) = bbsoild800D62min[5] - bbsoild800D62min[4];
+HofSolid(6,2) = bbsoild800D64min[5] - bbsoild800D64min[4];
+HofSolid(6,3) = bbsoild800D66min[5] - bbsoild800D66min[4];
+HofSolid(6,4) = bbsoild800D69min[5] - bbsoild800D69min[4];
+HofSolid(6,5) = bbsoild800D612min[5] - bbsoild800D612min[4];
 
 
 
@@ -341,19 +389,26 @@ LofSolid(3,3) = bbsoild800D36min[3] - bbsoild800D36min[2];
 LofSolid(3,4) = bbsoild800D39min[3] - bbsoild800D39min[2];
 LofSolid(3,5) = bbsoild800D312min[3] - bbsoild800D312min[2];
 
-LofSolid(4,0) = bbsoild800D51min[3] - bbsoild800D51min[2];
-LofSolid(4,1) = bbsoild800D52min[3] - bbsoild800D52min[2];
-LofSolid(4,2) = bbsoild800D54min[3] - bbsoild800D54min[2];
-LofSolid(4,3) = bbsoild800D56min[3] - bbsoild800D56min[2];
-LofSolid(4,4) = bbsoild800D59min[3] - bbsoild800D59min[2];
-LofSolid(4,5) = bbsoild800D512min[3] - bbsoild800D512min[2];
+LofSolid(4,0) = bbsoild800D51min1[3] - bbsoild800D51min1[2];
+LofSolid(4,1) = bbsoild800D52min1[3] - bbsoild800D52min1[2];
+LofSolid(4,2) = bbsoild800D54min1[3] - bbsoild800D54min1[2];
+LofSolid(4,3) = bbsoild800D56min1[3] - bbsoild800D56min1[2];
+LofSolid(4,4) = bbsoild800D59min1[3] - bbsoild800D59min1[2];
+LofSolid(4,5) = bbsoild800D512min1[3] - bbsoild800D512min1[2];
 
-LofSolid(5,0) = bbsoild800D61min[3] - bbsoild800D61min[2];
-LofSolid(5,1) = bbsoild800D62min[3] - bbsoild800D62min[2];
-LofSolid(5,2) = bbsoild800D64min[3] - bbsoild800D64min[2];
-LofSolid(5,3) = bbsoild800D66min[3] - bbsoild800D66min[2];
-LofSolid(5,4) = bbsoild800D69min[3] - bbsoild800D69min[2];
-LofSolid(5,5) = bbsoild800D612min[3] - bbsoild800D612min[2];
+LofSolid(5,0) = bbsoild800D51min2[3] - bbsoild800D51min2[2];
+LofSolid(5,1) = bbsoild800D52min2[3] - bbsoild800D52min2[2];
+LofSolid(5,2) = bbsoild800D54min2[3] - bbsoild800D54min2[2];
+LofSolid(5,3) = bbsoild800D56min2[3] - bbsoild800D56min2[2];
+LofSolid(5,4) = bbsoild800D59min2[3] - bbsoild800D59min2[2];
+LofSolid(5,5) = bbsoild800D512min2[3] - bbsoild800D512min2[2];
+
+LofSolid(6,0) = bbsoild800D61min[3] - bbsoild800D61min[2];
+LofSolid(6,1) = bbsoild800D62min[3] - bbsoild800D62min[2];
+LofSolid(6,2) = bbsoild800D64min[3] - bbsoild800D64min[2];
+LofSolid(6,3) = bbsoild800D66min[3] - bbsoild800D66min[2];
+LofSolid(6,4) = bbsoild800D69min[3] - bbsoild800D69min[2];
+LofSolid(6,5) = bbsoild800D612min[3] - bbsoild800D612min[2];
 
 ofstream data("data800.txt");
 data << VofSolid << BottomArea << HofSolid << LofSolid;
