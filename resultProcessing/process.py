@@ -175,7 +175,7 @@ pointD = paraview.servermanager.Fetch(extractSelection2)
 xValue = pointD.GetPoint(0)[0]
 yValue = pointD.GetPoint(0)[1]
 maxZ = pointD.GetPoint(0)[2]
-zValuePercent = maxZ*2/3
+zValuePercent = maxZ*9/10
 zValueFix = maxZ-0.002
 
 # set active source
@@ -281,7 +281,7 @@ Show3DWidgets(proxy=clip1.ClipType)
 clip4 = Clip(registrationName='Clip4', Input=clip1)
 
 # Properties modified on clip4.ClipType
-clip4.ClipType.Origin = [xValue, yValue, zValuePercent]
+clip4.ClipType.Origin = [xValue, yValue, zValueFix]
 clip4.ClipType.Normal = [0.0, 1.0, 0.0]
 
 # show data in view
@@ -312,7 +312,7 @@ Show3DWidgets(proxy=clip1.ClipType)
 clip5 = Clip(registrationName='Clip5', Input=clip1)
 
 # Properties modified on clip5.ClipType
-clip5.ClipType.Origin = [xValue, yValue, zValuePercent]
+clip5.ClipType.Origin = [xValue, yValue, zValueFix]
 clip5.ClipType.Normal = [0.0, -1.0, 0.0]
 
 # show data in view
