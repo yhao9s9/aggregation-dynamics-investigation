@@ -72,7 +72,7 @@ data.append(data_d5800_dirt_2)
 #           d2_800_solid1[6][5],d2_800_solid2[6][5],d5_800_solid1[6][5],d5_800_solid2[6][5]]
 ## d5_4000 9min & 12min: []
 ## d1_800/4min/volume = data[0][2][0] -> 2D array = num_node * [elongation, shear rate, shear stress, velocity]
-## d2_800/6min/2toppercent = data[14][3][2] -> 2D array = num_node * [PointZ, elongation, shear rate, shear stress, velocity]
+## d2_800/6min/2toppercent = data[14][3][2] -> 2D array = num_node * [elongation, PointZ, shear rate, shear stress, velocity]
 
 
 # m1_800 = np.concatenate([data[0][0][2],data[3][0][2],data[10][0][2],data[13][0][2],data[14][0][2],data[15][0][2],data[16][0][2]])
@@ -94,530 +94,66 @@ data.append(data_d5800_dirt_2)
 # plt.show()
 
 ## Average rate of elongation
-meanelon800face = np.array([np.mean([np.mean(data[0][0][4],axis=0)[1],np.mean(data[3][0][4],axis=0)[1],np.mean(data[10][0][4],axis=0)[1],\
-                                    np.mean(data[13][0][4],axis=0)[1],np.mean(data[14][0][4],axis=0)[1],np.mean(data[15][0][4],axis=0)[1],np.mean(data[16][0][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][1][4],axis=0)[1],np.mean(data[3][1][4],axis=0)[1],np.mean(data[10][1][4],axis=0)[1],\
-                                    np.mean(data[13][1][4],axis=0)[1],np.mean(data[14][1][4],axis=0)[1],np.mean(data[15][1][4],axis=0)[1],np.mean(data[16][1][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][2][4],axis=0)[1],np.mean(data[3][2][4],axis=0)[1],np.mean(data[10][2][4],axis=0)[1],\
-                                    np.mean(data[13][2][4],axis=0)[1],np.mean(data[14][2][4],axis=0)[1],np.mean(data[15][2][4],axis=0)[1],np.mean(data[16][2][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][3][4],axis=0)[1],np.mean(data[3][3][4],axis=0)[1],np.mean(data[10][3][4],axis=0)[1],\
-                                    np.mean(data[13][3][4],axis=0)[1],np.mean(data[14][3][4],axis=0)[1],np.mean(data[15][3][4],axis=0)[1],np.mean(data[16][3][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][4][4],axis=0)[1],np.mean(data[3][4][4],axis=0)[1],np.mean(data[10][4][4],axis=0)[1],\
-                                    np.mean(data[13][4][4],axis=0)[1],np.mean(data[14][4][4],axis=0)[1],np.mean(data[15][4][4],axis=0)[1],np.mean(data[16][4][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][5][4],axis=0)[1],np.mean(data[3][5][4],axis=0)[1],np.mean(data[10][5][4],axis=0)[1],\
-                                    np.mean(data[13][5][4],axis=0)[1],np.mean(data[14][5][4],axis=0)[1],np.mean(data[15][5][4],axis=0)[1],np.mean(data[16][5][4],axis=0)[1]])])
-meanelon1600face = np.array([np.mean([np.mean(data[2][0][4],axis=0)[1],np.mean(data[4][0][4],axis=0)[1],np.mean(data[6][0][4],axis=0)[1],\
-                                 np.mean(data[8][0][4],axis=0)[1],np.mean(data[11][0][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][1][4],axis=0)[1],np.mean(data[4][1][4],axis=0)[1],np.mean(data[6][1][4],axis=0)[1],\
-                                 np.mean(data[8][1][4],axis=0)[1],np.mean(data[11][1][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][2][4],axis=0)[1],np.mean(data[4][2][4],axis=0)[1],np.mean(data[6][2][4],axis=0)[1],\
-                                 np.mean(data[8][2][4],axis=0)[1],np.mean(data[11][2][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][3][4],axis=0)[1],np.mean(data[4][3][4],axis=0)[1],np.mean(data[6][3][4],axis=0)[1],\
-                                 np.mean(data[8][3][4],axis=0)[1],np.mean(data[11][3][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][4][4],axis=0)[1],np.mean(data[4][4][4],axis=0)[1],np.mean(data[6][4][4],axis=0)[1],\
-                                 np.mean(data[8][4][4],axis=0)[1],np.mean(data[11][4][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][5][4],axis=0)[1],np.mean(data[4][5][4],axis=0)[1],np.mean(data[6][5][4],axis=0)[1],\
-                                 np.mean(data[8][5][4],axis=0)[1],np.mean(data[11][5][4],axis=0)[1]])])
-meanelon4000face = np.array([np.mean([np.mean(data[5][0][4],axis=0)[1],np.mean(data[9][0][4],axis=0)[1],np.mean(data[12][0][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][1][4],axis=0)[1],np.mean(data[9][1][4],axis=0)[1],np.mean(data[12][1][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][2][4],axis=0)[1],np.mean(data[9][2][4],axis=0)[1],np.mean(data[12][2][4],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][3][4],axis=0)[1],np.mean(data[9][3][4],axis=0)[1],np.mean(data[12][3][4],axis=0)[1]])])
+meanelon800surface = np.array([np.mean([np.mean(data[0][0][1],axis=0)[0],np.mean(data[3][0][1],axis=0)[0],np.mean(data[10][0][1],axis=0)[0],\
+                                    np.mean(data[13][0][1],axis=0)[0],np.mean(data[14][0][1],axis=0)[0],np.mean(data[15][0][1],axis=0)[0],np.mean(data[16][0][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[0][1][1],axis=0)[0],np.mean(data[3][1][1],axis=0)[0],np.mean(data[10][1][1],axis=0)[0],\
+                                    np.mean(data[13][1][1],axis=0)[0],np.mean(data[14][1][1],axis=0)[0],np.mean(data[15][1][1],axis=0)[0],np.mean(data[16][1][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[0][2][1],axis=0)[0],np.mean(data[3][2][1],axis=0)[0],np.mean(data[10][2][1],axis=0)[0],\
+                                    np.mean(data[13][2][1],axis=0)[0],np.mean(data[14][2][1],axis=0)[0],np.mean(data[15][2][1],axis=0)[0],np.mean(data[16][2][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[0][3][1],axis=0)[0],np.mean(data[3][3][1],axis=0)[0],np.mean(data[10][3][1],axis=0)[0],\
+                                    np.mean(data[13][3][1],axis=0)[0],np.mean(data[14][3][1],axis=0)[0],np.mean(data[15][3][1],axis=0)[0],np.mean(data[16][3][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[0][4][1],axis=0)[0],np.mean(data[3][4][1],axis=0)[0],np.mean(data[10][4][1],axis=0)[0],\
+                                    np.mean(data[13][4][1],axis=0)[0],np.mean(data[14][4][1],axis=0)[0],np.mean(data[15][4][1],axis=0)[0],np.mean(data[16][4][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[0][5][1],axis=0)[0],np.mean(data[3][5][1],axis=0)[0],np.mean(data[10][5][1],axis=0)[0],\
+                                    np.mean(data[13][5][1],axis=0)[0],np.mean(data[14][5][1],axis=0)[0],np.mean(data[15][5][1],axis=0)[0],np.mean(data[16][5][1],axis=0)[0]])])
+meanelon1600surface = np.array([np.mean([np.mean(data[2][0][1],axis=0)[0],np.mean(data[4][0][1],axis=0)[0],np.mean(data[6][0][1],axis=0)[0],\
+                                 np.mean(data[8][0][1],axis=0)[0],np.mean(data[11][0][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[2][1][1],axis=0)[0],np.mean(data[4][1][1],axis=0)[0],np.mean(data[6][1][1],axis=0)[0],\
+                                 np.mean(data[8][1][1],axis=0)[0],np.mean(data[11][1][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[2][2][1],axis=0)[0],np.mean(data[4][2][1],axis=0)[0],np.mean(data[6][2][1],axis=0)[0],\
+                                 np.mean(data[8][2][1],axis=0)[0],np.mean(data[11][2][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[2][3][1],axis=0)[0],np.mean(data[4][3][1],axis=0)[0],np.mean(data[6][3][1],axis=0)[0],\
+                                 np.mean(data[8][3][1],axis=0)[0],np.mean(data[11][3][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[2][4][1],axis=0)[0],np.mean(data[4][4][1],axis=0)[0],np.mean(data[6][4][1],axis=0)[0],\
+                                 np.mean(data[8][4][1],axis=0)[0],np.mean(data[11][4][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[2][5][1],axis=0)[0],np.mean(data[4][5][1],axis=0)[0],np.mean(data[6][5][1],axis=0)[0],\
+                                 np.mean(data[8][5][1],axis=0)[0],np.mean(data[11][5][1],axis=0)[0]])])
+meanelon4000surface = np.array([np.mean([np.mean(data[5][0][1],axis=0)[0],np.mean(data[9][0][1],axis=0)[0],np.mean(data[12][0][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[5][1][1],axis=0)[0],np.mean(data[9][1][1],axis=0)[0],np.mean(data[12][1][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[5][2][1],axis=0)[0],np.mean(data[9][2][1],axis=0)[0],np.mean(data[12][2][1],axis=0)[0]]),\
+                       np.mean([np.mean(data[5][3][1],axis=0)[0],np.mean(data[9][3][1],axis=0)[0],np.mean(data[12][3][1],axis=0)[0]])])
 
-stdelon800face = np.array([np.std([np.mean(data[0][0][4],axis=0)[1],np.mean(data[3][0][4],axis=0)[1],np.mean(data[10][0][4],axis=0)[1],\
-                                    np.mean(data[13][0][4],axis=0)[1],np.mean(data[14][0][4],axis=0)[1],np.mean(data[15][0][4],axis=0)[1],np.mean(data[16][0][4],axis=0)[1]]),\
-                       np.std([np.mean(data[0][1][4],axis=0)[1],np.mean(data[3][1][4],axis=0)[1],np.mean(data[10][1][4],axis=0)[1],\
-                                    np.mean(data[13][1][4],axis=0)[1],np.mean(data[14][1][4],axis=0)[1],np.mean(data[15][1][4],axis=0)[1],np.mean(data[16][1][4],axis=0)[1]]),\
-                       np.std([np.mean(data[0][2][4],axis=0)[1],np.mean(data[3][2][4],axis=0)[1],np.mean(data[10][2][4],axis=0)[1],\
-                                    np.mean(data[13][2][4],axis=0)[1],np.mean(data[14][2][4],axis=0)[1],np.mean(data[15][2][4],axis=0)[1],np.mean(data[16][2][4],axis=0)[1]]),\
-                       np.std([np.mean(data[0][3][4],axis=0)[1],np.mean(data[3][3][4],axis=0)[1],np.mean(data[10][3][4],axis=0)[1],\
-                                    np.mean(data[13][3][4],axis=0)[1],np.mean(data[14][3][4],axis=0)[1],np.mean(data[15][3][4],axis=0)[1],np.mean(data[16][3][4],axis=0)[1]]),\
-                       np.std([np.mean(data[0][4][4],axis=0)[1],np.mean(data[3][4][4],axis=0)[1],np.mean(data[10][4][4],axis=0)[1],\
-                                    np.mean(data[13][4][4],axis=0)[1],np.mean(data[14][4][4],axis=0)[1],np.mean(data[15][4][4],axis=0)[1],np.mean(data[16][4][4],axis=0)[1]]),\
-                       np.std([np.mean(data[0][5][4],axis=0)[1],np.mean(data[3][5][4],axis=0)[1],np.mean(data[10][5][4],axis=0)[1],\
-                                    np.mean(data[13][5][4],axis=0)[1],np.mean(data[14][5][4],axis=0)[1],np.mean(data[15][5][4],axis=0)[1],np.mean(data[16][5][4],axis=0)[1]])])
-stdelon1600face = np.array([np.std([np.mean(data[2][0][4],axis=0)[1],np.mean(data[4][0][4],axis=0)[1],np.mean(data[6][0][4],axis=0)[1],\
-                                 np.mean(data[8][0][4],axis=0)[1],np.mean(data[11][0][4],axis=0)[1]]),\
-                       np.std([np.mean(data[2][1][4],axis=0)[1],np.mean(data[4][1][4],axis=0)[1],np.mean(data[6][1][4],axis=0)[1],\
-                                 np.mean(data[8][1][4],axis=0)[1],np.mean(data[11][1][4],axis=0)[1]]),\
-                       np.std([np.mean(data[2][2][4],axis=0)[1],np.mean(data[4][2][4],axis=0)[1],np.mean(data[6][2][4],axis=0)[1],\
-                                 np.mean(data[8][2][4],axis=0)[1],np.mean(data[11][2][4],axis=0)[1]]),\
-                       np.std([np.mean(data[2][3][4],axis=0)[1],np.mean(data[4][3][4],axis=0)[1],np.mean(data[6][3][4],axis=0)[1],\
-                                 np.mean(data[8][3][4],axis=0)[1],np.mean(data[11][3][4],axis=0)[1]]),\
-                       np.std([np.mean(data[2][4][4],axis=0)[1],np.mean(data[4][4][4],axis=0)[1],np.mean(data[6][4][4],axis=0)[1],\
-                                 np.mean(data[8][4][4],axis=0)[1],np.mean(data[11][4][4],axis=0)[1]]),\
-                       np.std([np.mean(data[2][5][4],axis=0)[1],np.mean(data[4][5][4],axis=0)[1],np.mean(data[6][5][4],axis=0)[1],\
-                                 np.mean(data[8][5][4],axis=0)[1],np.mean(data[11][5][4],axis=0)[1]])])
-stdelon4000face = np.array([np.std([np.mean(data[5][0][4],axis=0)[1],np.mean(data[9][0][4],axis=0)[1],np.mean(data[12][0][4],axis=0)[1]]),\
-                       np.std([np.mean(data[5][1][4],axis=0)[1],np.mean(data[9][1][4],axis=0)[1],np.mean(data[12][1][4],axis=0)[1]]),\
-                       np.std([np.mean(data[5][2][4],axis=0)[1],np.mean(data[9][2][4],axis=0)[1],np.mean(data[12][2][4],axis=0)[1]]),\
-                       np.std([np.mean(data[5][3][4],axis=0)[1],np.mean(data[9][3][4],axis=0)[1],np.mean(data[12][3][4],axis=0)[1]])])
-
-meanelon800back = np.array([np.mean([np.mean(data[0][0][5],axis=0)[1],np.mean(data[3][0][5],axis=0)[1],np.mean(data[10][0][5],axis=0)[1],\
-                                    np.mean(data[13][0][5],axis=0)[1],np.mean(data[14][0][5],axis=0)[1],np.mean(data[15][0][5],axis=0)[1],np.mean(data[16][0][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][1][5],axis=0)[1],np.mean(data[3][1][5],axis=0)[1],np.mean(data[10][1][5],axis=0)[1],\
-                                    np.mean(data[13][1][5],axis=0)[1],np.mean(data[14][1][5],axis=0)[1],np.mean(data[15][1][5],axis=0)[1],np.mean(data[16][1][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][2][5],axis=0)[1],np.mean(data[3][2][5],axis=0)[1],np.mean(data[10][2][5],axis=0)[1],\
-                                    np.mean(data[13][2][5],axis=0)[1],np.mean(data[14][2][5],axis=0)[1],np.mean(data[15][2][5],axis=0)[1],np.mean(data[16][2][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][3][5],axis=0)[1],np.mean(data[3][3][5],axis=0)[1],np.mean(data[10][3][5],axis=0)[1],\
-                                    np.mean(data[13][3][5],axis=0)[1],np.mean(data[14][3][5],axis=0)[1],np.mean(data[15][3][5],axis=0)[1],np.mean(data[16][3][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][4][5],axis=0)[1],np.mean(data[3][4][5],axis=0)[1],np.mean(data[10][4][5],axis=0)[1],\
-                                    np.mean(data[13][4][5],axis=0)[1],np.mean(data[14][4][5],axis=0)[1],np.mean(data[15][4][5],axis=0)[1],np.mean(data[16][4][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][5][5],axis=0)[1],np.mean(data[3][5][5],axis=0)[1],np.mean(data[10][5][5],axis=0)[1],\
-                                    np.mean(data[13][5][5],axis=0)[1],np.mean(data[14][5][5],axis=0)[1],np.mean(data[15][5][5],axis=0)[1],np.mean(data[16][5][5],axis=0)[1]])])
-meanelon1600back = np.array([np.mean([np.mean(data[2][0][5],axis=0)[1],np.mean(data[4][0][5],axis=0)[1],np.mean(data[6][0][5],axis=0)[1],\
-                                 np.mean(data[8][0][5],axis=0)[1],np.mean(data[11][0][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][1][5],axis=0)[1],np.mean(data[4][1][5],axis=0)[1],np.mean(data[6][1][5],axis=0)[1],\
-                                 np.mean(data[8][1][5],axis=0)[1],np.mean(data[11][1][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][2][5],axis=0)[1],np.mean(data[4][2][5],axis=0)[1],np.mean(data[6][2][5],axis=0)[1],\
-                                 np.mean(data[8][2][5],axis=0)[1],np.mean(data[11][2][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][3][5],axis=0)[1],np.mean(data[4][3][5],axis=0)[1],np.mean(data[6][3][5],axis=0)[1],\
-                                 np.mean(data[8][3][5],axis=0)[1],np.mean(data[11][3][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][4][5],axis=0)[1],np.mean(data[4][4][5],axis=0)[1],np.mean(data[6][4][5],axis=0)[1],\
-                                 np.mean(data[8][4][5],axis=0)[1],np.mean(data[11][4][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][5][5],axis=0)[1],np.mean(data[4][5][5],axis=0)[1],np.mean(data[6][5][5],axis=0)[1],\
-                                 np.mean(data[8][5][5],axis=0)[1],np.mean(data[11][5][5],axis=0)[1]])])
-meanelon4000back = np.array([np.mean([np.mean(data[5][0][5],axis=0)[1],np.mean(data[9][0][5],axis=0)[1],np.mean(data[12][0][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][1][5],axis=0)[1],np.mean(data[9][1][5],axis=0)[1],np.mean(data[12][1][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][2][5],axis=0)[1],np.mean(data[9][2][5],axis=0)[1],np.mean(data[12][2][5],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][3][5],axis=0)[1],np.mean(data[9][3][5],axis=0)[1],np.mean(data[12][3][5],axis=0)[1]])])
-
-stdelon800back = np.array([np.std([np.mean(data[0][0][5],axis=0)[1],np.mean(data[3][0][5],axis=0)[1],np.mean(data[10][0][5],axis=0)[1],\
-                                    np.mean(data[13][0][5],axis=0)[1],np.mean(data[14][0][5],axis=0)[1],np.mean(data[15][0][5],axis=0)[1],np.mean(data[16][0][5],axis=0)[1]]),\
-                       np.std([np.mean(data[0][1][5],axis=0)[1],np.mean(data[3][1][5],axis=0)[1],np.mean(data[10][1][5],axis=0)[1],\
-                                    np.mean(data[13][1][5],axis=0)[1],np.mean(data[14][1][5],axis=0)[1],np.mean(data[15][1][5],axis=0)[1],np.mean(data[16][1][5],axis=0)[1]]),\
-                       np.std([np.mean(data[0][2][5],axis=0)[1],np.mean(data[3][2][5],axis=0)[1],np.mean(data[10][2][5],axis=0)[1],\
-                                    np.mean(data[13][2][5],axis=0)[1],np.mean(data[14][2][5],axis=0)[1],np.mean(data[15][2][5],axis=0)[1],np.mean(data[16][2][5],axis=0)[1]]),\
-                       np.std([np.mean(data[0][3][5],axis=0)[1],np.mean(data[3][3][5],axis=0)[1],np.mean(data[10][3][5],axis=0)[1],\
-                                    np.mean(data[13][3][5],axis=0)[1],np.mean(data[14][3][5],axis=0)[1],np.mean(data[15][3][5],axis=0)[1],np.mean(data[16][3][5],axis=0)[1]]),\
-                       np.std([np.mean(data[0][4][5],axis=0)[1],np.mean(data[3][4][5],axis=0)[1],np.mean(data[10][4][5],axis=0)[1],\
-                                    np.mean(data[13][4][5],axis=0)[1],np.mean(data[14][4][5],axis=0)[1],np.mean(data[15][4][5],axis=0)[1],np.mean(data[16][4][5],axis=0)[1]]),\
-                       np.std([np.mean(data[0][5][5],axis=0)[1],np.mean(data[3][5][5],axis=0)[1],np.mean(data[10][5][5],axis=0)[1],\
-                                    np.mean(data[13][5][5],axis=0)[1],np.mean(data[14][5][5],axis=0)[1],np.mean(data[15][5][5],axis=0)[1],np.mean(data[16][5][5],axis=0)[1]])])
-stdelon1600back = np.array([np.std([np.mean(data[2][0][5],axis=0)[1],np.mean(data[4][0][5],axis=0)[1],np.mean(data[6][0][5],axis=0)[1],\
-                                 np.mean(data[8][0][5],axis=0)[1],np.mean(data[11][0][5],axis=0)[1]]),\
-                       np.std([np.mean(data[2][1][5],axis=0)[1],np.mean(data[4][1][5],axis=0)[1],np.mean(data[6][1][5],axis=0)[1],\
-                                 np.mean(data[8][1][5],axis=0)[1],np.mean(data[11][1][5],axis=0)[1]]),\
-                       np.std([np.mean(data[2][2][5],axis=0)[1],np.mean(data[4][2][5],axis=0)[1],np.mean(data[6][2][5],axis=0)[1],\
-                                 np.mean(data[8][2][5],axis=0)[1],np.mean(data[11][2][5],axis=0)[1]]),\
-                       np.std([np.mean(data[2][3][5],axis=0)[1],np.mean(data[4][3][5],axis=0)[1],np.mean(data[6][3][5],axis=0)[1],\
-                                 np.mean(data[8][3][5],axis=0)[1],np.mean(data[11][3][5],axis=0)[1]]),\
-                       np.std([np.mean(data[2][4][5],axis=0)[1],np.mean(data[4][4][5],axis=0)[1],np.mean(data[6][4][5],axis=0)[1],\
-                                 np.mean(data[8][4][5],axis=0)[1],np.mean(data[11][4][5],axis=0)[1]]),\
-                       np.std([np.mean(data[2][5][5],axis=0)[1],np.mean(data[4][5][5],axis=0)[1],np.mean(data[6][5][5],axis=0)[1],\
-                                 np.mean(data[8][5][5],axis=0)[1],np.mean(data[11][5][5],axis=0)[1]])])
-stdelon4000back = np.array([np.std([np.mean(data[5][0][5],axis=0)[1],np.mean(data[9][0][5],axis=0)[1],np.mean(data[12][0][5],axis=0)[1]]),\
-                       np.std([np.mean(data[5][1][5],axis=0)[1],np.mean(data[9][1][5],axis=0)[1],np.mean(data[12][1][5],axis=0)[1]]),\
-                       np.std([np.mean(data[5][2][5],axis=0)[1],np.mean(data[9][2][5],axis=0)[1],np.mean(data[12][2][5],axis=0)[1]]),\
-                       np.std([np.mean(data[5][3][5],axis=0)[1],np.mean(data[9][3][5],axis=0)[1],np.mean(data[12][3][5],axis=0)[1]])])
-
-meanelon800topp = np.array([np.mean([np.mean(data[0][0][2],axis=0)[1],np.mean(data[3][0][2],axis=0)[1],np.mean(data[10][0][2],axis=0)[1],\
-                                    np.mean(data[13][0][2],axis=0)[1],np.mean(data[14][0][2],axis=0)[1],np.mean(data[15][0][2],axis=0)[1],np.mean(data[16][0][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][1][2],axis=0)[1],np.mean(data[3][1][2],axis=0)[1],np.mean(data[10][1][2],axis=0)[1],\
-                                    np.mean(data[13][1][2],axis=0)[1],np.mean(data[14][1][2],axis=0)[1],np.mean(data[15][1][2],axis=0)[1],np.mean(data[16][1][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][2][2],axis=0)[1],np.mean(data[3][2][2],axis=0)[1],np.mean(data[10][2][2],axis=0)[1],\
-                                    np.mean(data[13][2][2],axis=0)[1],np.mean(data[14][2][2],axis=0)[1],np.mean(data[15][2][2],axis=0)[1],np.mean(data[16][2][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][3][2],axis=0)[1],np.mean(data[3][3][2],axis=0)[1],np.mean(data[10][3][2],axis=0)[1],\
-                                    np.mean(data[13][3][2],axis=0)[1],np.mean(data[14][3][2],axis=0)[1],np.mean(data[15][3][2],axis=0)[1],np.mean(data[16][3][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][4][2],axis=0)[1],np.mean(data[3][4][2],axis=0)[1],np.mean(data[10][4][2],axis=0)[1],\
-                                    np.mean(data[13][4][2],axis=0)[1],np.mean(data[14][4][2],axis=0)[1],np.mean(data[15][4][2],axis=0)[1],np.mean(data[16][4][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][5][2],axis=0)[1],np.mean(data[3][5][2],axis=0)[1],np.mean(data[10][5][2],axis=0)[1],\
-                                    np.mean(data[13][5][2],axis=0)[1],np.mean(data[14][5][2],axis=0)[1],np.mean(data[15][5][2],axis=0)[1],np.mean(data[16][5][2],axis=0)[1]])])
-meanelon1600topp = np.array([np.mean([np.mean(data[2][0][2],axis=0)[1],np.mean(data[4][0][2],axis=0)[1],np.mean(data[6][0][2],axis=0)[1],\
-                                 np.mean(data[8][0][2],axis=0)[1],np.mean(data[11][0][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][1][2],axis=0)[1],np.mean(data[4][1][2],axis=0)[1],np.mean(data[6][1][2],axis=0)[1],\
-                                 np.mean(data[8][1][2],axis=0)[1],np.mean(data[11][1][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][2][2],axis=0)[1],np.mean(data[4][2][2],axis=0)[1],np.mean(data[6][2][2],axis=0)[1],\
-                                 np.mean(data[8][2][2],axis=0)[1],np.mean(data[11][2][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][3][2],axis=0)[1],np.mean(data[4][3][2],axis=0)[1],np.mean(data[6][3][2],axis=0)[1],\
-                                 np.mean(data[8][3][2],axis=0)[1],np.mean(data[11][3][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][4][2],axis=0)[1],np.mean(data[4][4][2],axis=0)[1],np.mean(data[6][4][2],axis=0)[1],\
-                                 np.mean(data[8][4][2],axis=0)[1],np.mean(data[11][4][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][5][2],axis=0)[1],np.mean(data[4][5][2],axis=0)[1],np.mean(data[6][5][2],axis=0)[1],\
-                                 np.mean(data[8][5][2],axis=0)[1],np.mean(data[11][5][2],axis=0)[1]])])
-meanelon4000topp = np.array([np.mean([np.mean(data[5][0][2],axis=0)[1],np.mean(data[9][0][2],axis=0)[1],np.mean(data[12][0][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][1][2],axis=0)[1],np.mean(data[9][1][2],axis=0)[1],np.mean(data[12][1][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][2][2],axis=0)[1],np.mean(data[9][2][2],axis=0)[1],np.mean(data[12][2][2],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][3][2],axis=0)[1],np.mean(data[9][3][2],axis=0)[1],np.mean(data[12][3][2],axis=0)[1]])])
-
-stdelon800topp = np.array([np.std([np.mean(data[0][0][2],axis=0)[1],np.mean(data[3][0][2],axis=0)[1],np.mean(data[10][0][2],axis=0)[1],\
-                                    np.mean(data[13][0][2],axis=0)[1],np.mean(data[14][0][2],axis=0)[1],np.mean(data[15][0][2],axis=0)[1],np.mean(data[16][0][2],axis=0)[1]]),\
-                       np.std([np.mean(data[0][1][2],axis=0)[1],np.mean(data[3][1][2],axis=0)[1],np.mean(data[10][1][2],axis=0)[1],\
-                                    np.mean(data[13][1][2],axis=0)[1],np.mean(data[14][1][2],axis=0)[1],np.mean(data[15][1][2],axis=0)[1],np.mean(data[16][1][2],axis=0)[1]]),\
-                       np.std([np.mean(data[0][2][2],axis=0)[1],np.mean(data[3][2][2],axis=0)[1],np.mean(data[10][2][2],axis=0)[1],\
-                                    np.mean(data[13][2][2],axis=0)[1],np.mean(data[14][2][2],axis=0)[1],np.mean(data[15][2][2],axis=0)[1],np.mean(data[16][2][2],axis=0)[1]]),\
-                       np.std([np.mean(data[0][3][2],axis=0)[1],np.mean(data[3][3][2],axis=0)[1],np.mean(data[10][3][2],axis=0)[1],\
-                                    np.mean(data[13][3][2],axis=0)[1],np.mean(data[14][3][2],axis=0)[1],np.mean(data[15][3][2],axis=0)[1],np.mean(data[16][3][2],axis=0)[1]]),\
-                       np.std([np.mean(data[0][4][2],axis=0)[1],np.mean(data[3][4][2],axis=0)[1],np.mean(data[10][4][2],axis=0)[1],\
-                                    np.mean(data[13][4][2],axis=0)[1],np.mean(data[14][4][2],axis=0)[1],np.mean(data[15][4][2],axis=0)[1],np.mean(data[16][4][2],axis=0)[1]]),\
-                       np.std([np.mean(data[0][5][2],axis=0)[1],np.mean(data[3][5][2],axis=0)[1],np.mean(data[10][5][2],axis=0)[1],\
-                                    np.mean(data[13][5][2],axis=0)[1],np.mean(data[14][5][2],axis=0)[1],np.mean(data[15][5][2],axis=0)[1],np.mean(data[16][5][2],axis=0)[1]])])
-stdelon1600topp = np.array([np.std([np.mean(data[2][0][2],axis=0)[1],np.mean(data[4][0][2],axis=0)[1],np.mean(data[6][0][2],axis=0)[1],\
-                                 np.mean(data[8][0][2],axis=0)[1],np.mean(data[11][0][2],axis=0)[1]]),\
-                       np.std([np.mean(data[2][1][2],axis=0)[1],np.mean(data[4][1][2],axis=0)[1],np.mean(data[6][1][2],axis=0)[1],\
-                                 np.mean(data[8][1][2],axis=0)[1],np.mean(data[11][1][2],axis=0)[1]]),\
-                       np.std([np.mean(data[2][2][2],axis=0)[1],np.mean(data[4][2][2],axis=0)[1],np.mean(data[6][2][2],axis=0)[1],\
-                                 np.mean(data[8][2][2],axis=0)[1],np.mean(data[11][2][2],axis=0)[1]]),\
-                       np.std([np.mean(data[2][3][2],axis=0)[1],np.mean(data[4][3][2],axis=0)[1],np.mean(data[6][3][2],axis=0)[1],\
-                                 np.mean(data[8][3][2],axis=0)[1],np.mean(data[11][3][2],axis=0)[1]]),\
-                       np.std([np.mean(data[2][4][2],axis=0)[1],np.mean(data[4][4][2],axis=0)[1],np.mean(data[6][4][2],axis=0)[1],\
-                                 np.mean(data[8][4][2],axis=0)[1],np.mean(data[11][4][2],axis=0)[1]]),\
-                       np.std([np.mean(data[2][5][2],axis=0)[1],np.mean(data[4][5][2],axis=0)[1],np.mean(data[6][5][2],axis=0)[1],\
-                                 np.mean(data[8][5][2],axis=0)[1],np.mean(data[11][5][2],axis=0)[1]])])
-stdelon4000topp = np.array([np.std([np.mean(data[5][0][2],axis=0)[1],np.mean(data[9][0][2],axis=0)[1],np.mean(data[12][0][2],axis=0)[1]]),\
-                       np.std([np.mean(data[5][1][2],axis=0)[1],np.mean(data[9][1][2],axis=0)[1],np.mean(data[12][1][2],axis=0)[1]]),\
-                       np.std([np.mean(data[5][2][2],axis=0)[1],np.mean(data[9][2][2],axis=0)[1],np.mean(data[12][2][2],axis=0)[1]]),\
-                       np.std([np.mean(data[5][3][2],axis=0)[1],np.mean(data[9][3][2],axis=0)[1],np.mean(data[12][3][2],axis=0)[1]])])
-
-meanelon800topf = np.array([np.mean([np.mean(data[0][0][3],axis=0)[1],np.mean(data[3][0][3],axis=0)[1],np.mean(data[10][0][3],axis=0)[1],\
-                                    np.mean(data[13][0][3],axis=0)[1],np.mean(data[14][0][3],axis=0)[1],np.mean(data[15][0][3],axis=0)[1],np.mean(data[16][0][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][1][3],axis=0)[1],np.mean(data[3][1][3],axis=0)[1],np.mean(data[10][1][3],axis=0)[1],\
-                                    np.mean(data[13][1][3],axis=0)[1],np.mean(data[14][1][3],axis=0)[1],np.mean(data[15][1][3],axis=0)[1],np.mean(data[16][1][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][2][3],axis=0)[1],np.mean(data[3][2][3],axis=0)[1],np.mean(data[10][2][3],axis=0)[1],\
-                                    np.mean(data[13][2][3],axis=0)[1],np.mean(data[14][2][3],axis=0)[1],np.mean(data[15][2][3],axis=0)[1],np.mean(data[16][2][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][3][3],axis=0)[1],np.mean(data[3][3][3],axis=0)[1],np.mean(data[10][3][3],axis=0)[1],\
-                                    np.mean(data[13][3][3],axis=0)[1],np.mean(data[14][3][3],axis=0)[1],np.mean(data[15][3][3],axis=0)[1],np.mean(data[16][3][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][4][3],axis=0)[1],np.mean(data[3][4][3],axis=0)[1],np.mean(data[10][4][3],axis=0)[1],\
-                                    np.mean(data[13][4][3],axis=0)[1],np.mean(data[14][4][3],axis=0)[1],np.mean(data[15][4][3],axis=0)[1],np.mean(data[16][4][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][5][3],axis=0)[1],np.mean(data[3][5][3],axis=0)[1],np.mean(data[10][5][3],axis=0)[1],\
-                                    np.mean(data[13][5][3],axis=0)[1],np.mean(data[14][5][3],axis=0)[1],np.mean(data[15][5][3],axis=0)[1],np.mean(data[16][5][3],axis=0)[1]])])
-meanelon1600topf = np.array([np.mean([np.mean(data[2][0][3],axis=0)[1],np.mean(data[4][0][3],axis=0)[1],np.mean(data[6][0][3],axis=0)[1],\
-                                 np.mean(data[8][0][3],axis=0)[1],np.mean(data[11][0][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][1][3],axis=0)[1],np.mean(data[4][1][3],axis=0)[1],np.mean(data[6][1][3],axis=0)[1],\
-                                 np.mean(data[8][1][3],axis=0)[1],np.mean(data[11][1][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][2][3],axis=0)[1],np.mean(data[4][2][3],axis=0)[1],np.mean(data[6][2][3],axis=0)[1],\
-                                 np.mean(data[8][2][3],axis=0)[1],np.mean(data[11][2][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][3][3],axis=0)[1],np.mean(data[4][3][3],axis=0)[1],np.mean(data[6][3][3],axis=0)[1],\
-                                 np.mean(data[8][3][3],axis=0)[1],np.mean(data[11][3][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][4][3],axis=0)[1],np.mean(data[4][4][3],axis=0)[1],np.mean(data[6][4][3],axis=0)[1],\
-                                 np.mean(data[8][4][3],axis=0)[1],np.mean(data[11][4][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][5][3],axis=0)[1],np.mean(data[4][5][3],axis=0)[1],np.mean(data[6][5][3],axis=0)[1],\
-                                 np.mean(data[8][5][3],axis=0)[1],np.mean(data[11][5][3],axis=0)[1]])])
-meanelon4000topf = np.array([np.mean([np.mean(data[5][0][3],axis=0)[1],np.mean(data[9][0][3],axis=0)[1],np.mean(data[12][0][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][1][3],axis=0)[1],np.mean(data[9][1][3],axis=0)[1],np.mean(data[12][1][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][2][3],axis=0)[1],np.mean(data[9][2][3],axis=0)[1],np.mean(data[12][2][3],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][3][3],axis=0)[1],np.mean(data[9][3][3],axis=0)[1],np.mean(data[12][3][3],axis=0)[1]])])
-
-stdelon800topf = np.array([np.std([np.mean(data[0][0][3],axis=0)[1],np.mean(data[3][0][3],axis=0)[1],np.mean(data[10][0][3],axis=0)[1],\
-                                    np.mean(data[13][0][3],axis=0)[1],np.mean(data[14][0][3],axis=0)[1],np.mean(data[15][0][3],axis=0)[1],np.mean(data[16][0][3],axis=0)[1]]),\
-                       np.std([np.mean(data[0][1][3],axis=0)[1],np.mean(data[3][1][3],axis=0)[1],np.mean(data[10][1][3],axis=0)[1],\
-                                    np.mean(data[13][1][3],axis=0)[1],np.mean(data[14][1][3],axis=0)[1],np.mean(data[15][1][3],axis=0)[1],np.mean(data[16][1][3],axis=0)[1]]),\
-                       np.std([np.mean(data[0][2][3],axis=0)[1],np.mean(data[3][2][3],axis=0)[1],np.mean(data[10][2][3],axis=0)[1],\
-                                    np.mean(data[13][2][3],axis=0)[1],np.mean(data[14][2][3],axis=0)[1],np.mean(data[15][2][3],axis=0)[1],np.mean(data[16][2][3],axis=0)[1]]),\
-                       np.std([np.mean(data[0][3][3],axis=0)[1],np.mean(data[3][3][3],axis=0)[1],np.mean(data[10][3][3],axis=0)[1],\
-                                    np.mean(data[13][3][3],axis=0)[1],np.mean(data[14][3][3],axis=0)[1],np.mean(data[15][3][3],axis=0)[1],np.mean(data[16][3][3],axis=0)[1]]),\
-                       np.std([np.mean(data[0][4][3],axis=0)[1],np.mean(data[3][4][3],axis=0)[1],np.mean(data[10][4][3],axis=0)[1],\
-                                    np.mean(data[13][4][3],axis=0)[1],np.mean(data[14][4][3],axis=0)[1],np.mean(data[15][4][3],axis=0)[1],np.mean(data[16][4][3],axis=0)[1]]),\
-                       np.std([np.mean(data[0][5][3],axis=0)[1],np.mean(data[3][5][3],axis=0)[1],np.mean(data[10][5][3],axis=0)[1],\
-                                    np.mean(data[13][5][3],axis=0)[1],np.mean(data[14][5][3],axis=0)[1],np.mean(data[15][5][3],axis=0)[1],np.mean(data[16][5][3],axis=0)[1]])])
-stdelon1600topf = np.array([np.std([np.mean(data[2][0][3],axis=0)[1],np.mean(data[4][0][3],axis=0)[1],np.mean(data[6][0][3],axis=0)[1],\
-                                 np.mean(data[8][0][3],axis=0)[1],np.mean(data[11][0][3],axis=0)[1]]),\
-                       np.std([np.mean(data[2][1][3],axis=0)[1],np.mean(data[4][1][3],axis=0)[1],np.mean(data[6][1][3],axis=0)[1],\
-                                 np.mean(data[8][1][3],axis=0)[1],np.mean(data[11][1][3],axis=0)[1]]),\
-                       np.std([np.mean(data[2][2][3],axis=0)[1],np.mean(data[4][2][3],axis=0)[1],np.mean(data[6][2][3],axis=0)[1],\
-                                 np.mean(data[8][2][3],axis=0)[1],np.mean(data[11][2][3],axis=0)[1]]),\
-                       np.std([np.mean(data[2][3][3],axis=0)[1],np.mean(data[4][3][3],axis=0)[1],np.mean(data[6][3][3],axis=0)[1],\
-                                 np.mean(data[8][3][3],axis=0)[1],np.mean(data[11][3][3],axis=0)[1]]),\
-                       np.std([np.mean(data[2][4][3],axis=0)[1],np.mean(data[4][4][3],axis=0)[1],np.mean(data[6][4][3],axis=0)[1],\
-                                 np.mean(data[8][4][3],axis=0)[1],np.mean(data[11][4][3],axis=0)[1]]),\
-                       np.std([np.mean(data[2][5][3],axis=0)[1],np.mean(data[4][5][3],axis=0)[1],np.mean(data[6][5][3],axis=0)[1],\
-                                 np.mean(data[8][5][3],axis=0)[1],np.mean(data[11][5][3],axis=0)[1]])])
-stdelon4000topf = np.array([np.std([np.mean(data[5][0][3],axis=0)[1],np.mean(data[9][0][3],axis=0)[1],np.mean(data[12][0][3],axis=0)[1]]),\
-                       np.std([np.mean(data[5][1][3],axis=0)[1],np.mean(data[9][1][3],axis=0)[1],np.mean(data[12][1][3],axis=0)[1]]),\
-                       np.std([np.mean(data[5][2][3],axis=0)[1],np.mean(data[9][2][3],axis=0)[1],np.mean(data[12][2][3],axis=0)[1]]),\
-                       np.std([np.mean(data[5][3][3],axis=0)[1],np.mean(data[9][3][3],axis=0)[1],np.mean(data[12][3][3],axis=0)[1]])])
-
-meanelon800surface = np.array([np.mean([np.mean(data[0][0][1],axis=0)[1],np.mean(data[3][0][1],axis=0)[1],np.mean(data[10][0][1],axis=0)[1],\
-                                    np.mean(data[13][0][1],axis=0)[1],np.mean(data[14][0][1],axis=0)[1],np.mean(data[15][0][1],axis=0)[1],np.mean(data[16][0][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][1][1],axis=0)[1],np.mean(data[3][1][1],axis=0)[1],np.mean(data[10][1][1],axis=0)[1],\
-                                    np.mean(data[13][1][1],axis=0)[1],np.mean(data[14][1][1],axis=0)[1],np.mean(data[15][1][1],axis=0)[1],np.mean(data[16][1][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][2][1],axis=0)[1],np.mean(data[3][2][1],axis=0)[1],np.mean(data[10][2][1],axis=0)[1],\
-                                    np.mean(data[13][2][1],axis=0)[1],np.mean(data[14][2][1],axis=0)[1],np.mean(data[15][2][1],axis=0)[1],np.mean(data[16][2][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][3][1],axis=0)[1],np.mean(data[3][3][1],axis=0)[1],np.mean(data[10][3][1],axis=0)[1],\
-                                    np.mean(data[13][3][1],axis=0)[1],np.mean(data[14][3][1],axis=0)[1],np.mean(data[15][3][1],axis=0)[1],np.mean(data[16][3][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][4][1],axis=0)[1],np.mean(data[3][4][1],axis=0)[1],np.mean(data[10][4][1],axis=0)[1],\
-                                    np.mean(data[13][4][1],axis=0)[1],np.mean(data[14][4][1],axis=0)[1],np.mean(data[15][4][1],axis=0)[1],np.mean(data[16][4][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[0][5][1],axis=0)[1],np.mean(data[3][5][1],axis=0)[1],np.mean(data[10][5][1],axis=0)[1],\
-                                    np.mean(data[13][5][1],axis=0)[1],np.mean(data[14][5][1],axis=0)[1],np.mean(data[15][5][1],axis=0)[1],np.mean(data[16][5][1],axis=0)[1]])])
-meanelon1600surface = np.array([np.mean([np.mean(data[2][0][1],axis=0)[1],np.mean(data[4][0][1],axis=0)[1],np.mean(data[6][0][1],axis=0)[1],\
-                                 np.mean(data[8][0][1],axis=0)[1],np.mean(data[11][0][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][1][1],axis=0)[1],np.mean(data[4][1][1],axis=0)[1],np.mean(data[6][1][1],axis=0)[1],\
-                                 np.mean(data[8][1][1],axis=0)[1],np.mean(data[11][1][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][2][1],axis=0)[1],np.mean(data[4][2][1],axis=0)[1],np.mean(data[6][2][1],axis=0)[1],\
-                                 np.mean(data[8][2][1],axis=0)[1],np.mean(data[11][2][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][3][1],axis=0)[1],np.mean(data[4][3][1],axis=0)[1],np.mean(data[6][3][1],axis=0)[1],\
-                                 np.mean(data[8][3][1],axis=0)[1],np.mean(data[11][3][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][4][1],axis=0)[1],np.mean(data[4][4][1],axis=0)[1],np.mean(data[6][4][1],axis=0)[1],\
-                                 np.mean(data[8][4][1],axis=0)[1],np.mean(data[11][4][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[2][5][1],axis=0)[1],np.mean(data[4][5][1],axis=0)[1],np.mean(data[6][5][1],axis=0)[1],\
-                                 np.mean(data[8][5][1],axis=0)[1],np.mean(data[11][5][1],axis=0)[1]])])
-meanelon4000surface = np.array([np.mean([np.mean(data[5][0][1],axis=0)[1],np.mean(data[9][0][1],axis=0)[1],np.mean(data[12][0][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][1][1],axis=0)[1],np.mean(data[9][1][1],axis=0)[1],np.mean(data[12][1][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][2][1],axis=0)[1],np.mean(data[9][2][1],axis=0)[1],np.mean(data[12][2][1],axis=0)[1]]),\
-                       np.mean([np.mean(data[5][3][1],axis=0)[1],np.mean(data[9][3][1],axis=0)[1],np.mean(data[12][3][1],axis=0)[1]])])
-
-stdelon800surface = np.array([np.std([np.mean(data[0][0][1],axis=0)[1],np.mean(data[3][0][1],axis=0)[1],np.mean(data[10][0][1],axis=0)[1],\
-                                    np.mean(data[13][0][1],axis=0)[1],np.mean(data[14][0][1],axis=0)[1],np.mean(data[15][0][1],axis=0)[1],np.mean(data[16][0][1],axis=0)[1]]),\
-                       np.std([np.mean(data[0][1][1],axis=0)[1],np.mean(data[3][1][1],axis=0)[1],np.mean(data[10][1][1],axis=0)[1],\
-                                    np.mean(data[13][1][1],axis=0)[1],np.mean(data[14][1][1],axis=0)[1],np.mean(data[15][1][1],axis=0)[1],np.mean(data[16][1][1],axis=0)[1]]),\
-                       np.std([np.mean(data[0][2][1],axis=0)[1],np.mean(data[3][2][1],axis=0)[1],np.mean(data[10][2][1],axis=0)[1],\
-                                    np.mean(data[13][2][1],axis=0)[1],np.mean(data[14][2][1],axis=0)[1],np.mean(data[15][2][1],axis=0)[1],np.mean(data[16][2][1],axis=0)[1]]),\
-                       np.std([np.mean(data[0][3][1],axis=0)[1],np.mean(data[3][3][1],axis=0)[1],np.mean(data[10][3][1],axis=0)[1],\
-                                    np.mean(data[13][3][1],axis=0)[1],np.mean(data[14][3][1],axis=0)[1],np.mean(data[15][3][1],axis=0)[1],np.mean(data[16][3][1],axis=0)[1]]),\
-                       np.std([np.mean(data[0][4][1],axis=0)[1],np.mean(data[3][4][1],axis=0)[1],np.mean(data[10][4][1],axis=0)[1],\
-                                    np.mean(data[13][4][1],axis=0)[1],np.mean(data[14][4][1],axis=0)[1],np.mean(data[15][4][1],axis=0)[1],np.mean(data[16][4][1],axis=0)[1]]),\
-                       np.std([np.mean(data[0][5][1],axis=0)[1],np.mean(data[3][5][1],axis=0)[1],np.mean(data[10][5][1],axis=0)[1],\
-                                    np.mean(data[13][5][1],axis=0)[1],np.mean(data[14][5][1],axis=0)[1],np.mean(data[15][5][1],axis=0)[1],np.mean(data[16][5][1],axis=0)[1]])])
-stdelon1600surface = np.array([np.std([np.mean(data[2][0][1],axis=0)[1],np.mean(data[4][0][1],axis=0)[1],np.mean(data[6][0][1],axis=0)[1],\
-                                 np.mean(data[8][0][1],axis=0)[1],np.mean(data[11][0][1],axis=0)[1]]),\
-                       np.std([np.mean(data[2][1][1],axis=0)[1],np.mean(data[4][1][1],axis=0)[1],np.mean(data[6][1][1],axis=0)[1],\
-                                 np.mean(data[8][1][1],axis=0)[1],np.mean(data[11][1][1],axis=0)[1]]),\
-                       np.std([np.mean(data[2][2][1],axis=0)[1],np.mean(data[4][2][1],axis=0)[1],np.mean(data[6][2][1],axis=0)[1],\
-                                 np.mean(data[8][2][1],axis=0)[1],np.mean(data[11][2][1],axis=0)[1]]),\
-                       np.std([np.mean(data[2][3][1],axis=0)[1],np.mean(data[4][3][1],axis=0)[1],np.mean(data[6][3][1],axis=0)[1],\
-                                 np.mean(data[8][3][1],axis=0)[1],np.mean(data[11][3][1],axis=0)[1]]),\
-                       np.std([np.mean(data[2][4][1],axis=0)[1],np.mean(data[4][4][1],axis=0)[1],np.mean(data[6][4][1],axis=0)[1],\
-                                 np.mean(data[8][4][1],axis=0)[1],np.mean(data[11][4][1],axis=0)[1]]),\
-                       np.std([np.mean(data[2][5][1],axis=0)[1],np.mean(data[4][5][1],axis=0)[1],np.mean(data[6][5][1],axis=0)[1],\
-                                 np.mean(data[8][5][1],axis=0)[1],np.mean(data[11][5][1],axis=0)[1]])])
-stdelon4000surface = np.array([np.std([np.mean(data[5][0][1],axis=0)[1],np.mean(data[9][0][1],axis=0)[1],np.mean(data[12][0][1],axis=0)[1]]),\
-                       np.std([np.mean(data[5][1][1],axis=0)[1],np.mean(data[9][1][1],axis=0)[1],np.mean(data[12][1][1],axis=0)[1]]),\
-                       np.std([np.mean(data[5][2][1],axis=0)[1],np.mean(data[9][2][1],axis=0)[1],np.mean(data[12][2][1],axis=0)[1]]),\
-                       np.std([np.mean(data[5][3][1],axis=0)[1],np.mean(data[9][3][1],axis=0)[1],np.mean(data[12][3][1],axis=0)[1]])])
+stdelon800surface = np.array([np.std([np.mean(data[0][0][1],axis=0)[0],np.mean(data[3][0][1],axis=0)[0],np.mean(data[10][0][1],axis=0)[0],\
+                                    np.mean(data[13][0][1],axis=0)[0],np.mean(data[14][0][1],axis=0)[0],np.mean(data[15][0][1],axis=0)[0],np.mean(data[16][0][1],axis=0)[0]]),\
+                       np.std([np.mean(data[0][1][1],axis=0)[0],np.mean(data[3][1][1],axis=0)[0],np.mean(data[10][1][1],axis=0)[0],\
+                                    np.mean(data[13][1][1],axis=0)[0],np.mean(data[14][1][1],axis=0)[0],np.mean(data[15][1][1],axis=0)[0],np.mean(data[16][1][1],axis=0)[0]]),\
+                       np.std([np.mean(data[0][2][1],axis=0)[0],np.mean(data[3][2][1],axis=0)[0],np.mean(data[10][2][1],axis=0)[0],\
+                                    np.mean(data[13][2][1],axis=0)[0],np.mean(data[14][2][1],axis=0)[0],np.mean(data[15][2][1],axis=0)[0],np.mean(data[16][2][1],axis=0)[0]]),\
+                       np.std([np.mean(data[0][3][1],axis=0)[0],np.mean(data[3][3][1],axis=0)[0],np.mean(data[10][3][1],axis=0)[0],\
+                                    np.mean(data[13][3][1],axis=0)[0],np.mean(data[14][3][1],axis=0)[0],np.mean(data[15][3][1],axis=0)[0],np.mean(data[16][3][1],axis=0)[0]]),\
+                       np.std([np.mean(data[0][4][1],axis=0)[0],np.mean(data[3][4][1],axis=0)[0],np.mean(data[10][4][1],axis=0)[0],\
+                                    np.mean(data[13][4][1],axis=0)[0],np.mean(data[14][4][1],axis=0)[0],np.mean(data[15][4][1],axis=0)[0],np.mean(data[16][4][1],axis=0)[0]]),\
+                       np.std([np.mean(data[0][5][1],axis=0)[0],np.mean(data[3][5][1],axis=0)[0],np.mean(data[10][5][1],axis=0)[0],\
+                                    np.mean(data[13][5][1],axis=0)[0],np.mean(data[14][5][1],axis=0)[0],np.mean(data[15][5][1],axis=0)[0],np.mean(data[16][5][1],axis=0)[0]])])
+stdelon1600surface = np.array([np.std([np.mean(data[2][0][1],axis=0)[0],np.mean(data[4][0][1],axis=0)[0],np.mean(data[6][0][1],axis=0)[0],\
+                                 np.mean(data[8][0][1],axis=0)[0],np.mean(data[11][0][1],axis=0)[0]]),\
+                       np.std([np.mean(data[2][1][1],axis=0)[0],np.mean(data[4][1][1],axis=0)[0],np.mean(data[6][1][1],axis=0)[0],\
+                                 np.mean(data[8][1][1],axis=0)[0],np.mean(data[11][1][1],axis=0)[0]]),\
+                       np.std([np.mean(data[2][2][1],axis=0)[0],np.mean(data[4][2][1],axis=0)[0],np.mean(data[6][2][1],axis=0)[0],\
+                                 np.mean(data[8][2][1],axis=0)[0],np.mean(data[11][2][1],axis=0)[0]]),\
+                       np.std([np.mean(data[2][3][1],axis=0)[0],np.mean(data[4][3][1],axis=0)[0],np.mean(data[6][3][1],axis=0)[0],\
+                                 np.mean(data[8][3][1],axis=0)[0],np.mean(data[11][3][1],axis=0)[0]]),\
+                       np.std([np.mean(data[2][4][1],axis=0)[0],np.mean(data[4][4][1],axis=0)[0],np.mean(data[6][4][1],axis=0)[0],\
+                                 np.mean(data[8][4][1],axis=0)[0],np.mean(data[11][4][1],axis=0)[0]]),\
+                       np.std([np.mean(data[2][5][1],axis=0)[0],np.mean(data[4][5][1],axis=0)[0],np.mean(data[6][5][1],axis=0)[0],\
+                                 np.mean(data[8][5][1],axis=0)[0],np.mean(data[11][5][1],axis=0)[0]])])
+stdelon4000surface = np.array([np.std([np.mean(data[5][0][1],axis=0)[0],np.mean(data[9][0][1],axis=0)[0],np.mean(data[12][0][1],axis=0)[0]]),\
+                       np.std([np.mean(data[5][1][1],axis=0)[0],np.mean(data[9][1][1],axis=0)[0],np.mean(data[12][1][1],axis=0)[0]]),\
+                       np.std([np.mean(data[5][2][1],axis=0)[0],np.mean(data[9][2][1],axis=0)[0],np.mean(data[12][2][1],axis=0)[0]]),\
+                       np.std([np.mean(data[5][3][1],axis=0)[0],np.mean(data[9][3][1],axis=0)[0],np.mean(data[12][3][1],axis=0)[0]])])
 
 
 ## Average shear rate
-meanshear800face = np.array([np.mean([np.mean(data[0][0][4],axis=0)[2],np.mean(data[3][0][4],axis=0)[2],np.mean(data[10][0][4],axis=0)[2],\
-                                    np.mean(data[13][0][4],axis=0)[2],np.mean(data[14][0][4],axis=0)[2],np.mean(data[15][0][4],axis=0)[2],np.mean(data[16][0][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][1][4],axis=0)[2],np.mean(data[3][1][4],axis=0)[2],np.mean(data[10][1][4],axis=0)[2],\
-                                    np.mean(data[13][1][4],axis=0)[2],np.mean(data[14][1][4],axis=0)[2],np.mean(data[15][1][4],axis=0)[2],np.mean(data[16][1][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][2][4],axis=0)[2],np.mean(data[3][2][4],axis=0)[2],np.mean(data[10][2][4],axis=0)[2],\
-                                    np.mean(data[13][2][4],axis=0)[2],np.mean(data[14][2][4],axis=0)[2],np.mean(data[15][2][4],axis=0)[2],np.mean(data[16][2][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][3][4],axis=0)[2],np.mean(data[3][3][4],axis=0)[2],np.mean(data[10][3][4],axis=0)[2],\
-                                    np.mean(data[13][3][4],axis=0)[2],np.mean(data[14][3][4],axis=0)[2],np.mean(data[15][3][4],axis=0)[2],np.mean(data[16][3][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][4][4],axis=0)[2],np.mean(data[3][4][4],axis=0)[2],np.mean(data[10][4][4],axis=0)[2],\
-                                    np.mean(data[13][4][4],axis=0)[2],np.mean(data[14][4][4],axis=0)[2],np.mean(data[15][4][4],axis=0)[2],np.mean(data[16][4][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][5][4],axis=0)[2],np.mean(data[3][5][4],axis=0)[2],np.mean(data[10][5][4],axis=0)[2],\
-                                    np.mean(data[13][5][4],axis=0)[2],np.mean(data[14][5][4],axis=0)[2],np.mean(data[15][5][4],axis=0)[2],np.mean(data[16][5][4],axis=0)[2]])])
-meanshear1600face = np.array([np.mean([np.mean(data[2][0][4],axis=0)[2],np.mean(data[4][0][4],axis=0)[2],np.mean(data[6][0][4],axis=0)[2],\
-                                 np.mean(data[8][0][4],axis=0)[2],np.mean(data[11][0][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][1][4],axis=0)[2],np.mean(data[4][1][4],axis=0)[2],np.mean(data[6][1][4],axis=0)[2],\
-                                 np.mean(data[8][1][4],axis=0)[2],np.mean(data[11][1][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][2][4],axis=0)[2],np.mean(data[4][2][4],axis=0)[2],np.mean(data[6][2][4],axis=0)[2],\
-                                 np.mean(data[8][2][4],axis=0)[2],np.mean(data[11][2][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][3][4],axis=0)[2],np.mean(data[4][3][4],axis=0)[2],np.mean(data[6][3][4],axis=0)[2],\
-                                 np.mean(data[8][3][4],axis=0)[2],np.mean(data[11][3][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][4][4],axis=0)[2],np.mean(data[4][4][4],axis=0)[2],np.mean(data[6][4][4],axis=0)[2],\
-                                 np.mean(data[8][4][4],axis=0)[2],np.mean(data[11][4][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][5][4],axis=0)[2],np.mean(data[4][5][4],axis=0)[2],np.mean(data[6][5][4],axis=0)[2],\
-                                 np.mean(data[8][5][4],axis=0)[2],np.mean(data[11][5][4],axis=0)[2]])])
-meanshear4000face = np.array([np.mean([np.mean(data[5][0][4],axis=0)[2],np.mean(data[9][0][4],axis=0)[2],np.mean(data[12][0][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][1][4],axis=0)[2],np.mean(data[9][1][4],axis=0)[2],np.mean(data[12][1][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][2][4],axis=0)[2],np.mean(data[9][2][4],axis=0)[2],np.mean(data[12][2][4],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][3][4],axis=0)[2],np.mean(data[9][3][4],axis=0)[2],np.mean(data[12][3][4],axis=0)[2]])])
-
-stdshear800face = np.array([np.std([np.mean(data[0][0][4],axis=0)[2],np.mean(data[3][0][4],axis=0)[2],np.mean(data[10][0][4],axis=0)[2],\
-                                    np.mean(data[13][0][4],axis=0)[2],np.mean(data[14][0][4],axis=0)[2],np.mean(data[15][0][4],axis=0)[2],np.mean(data[16][0][4],axis=0)[2]]),\
-                       np.std([np.mean(data[0][1][4],axis=0)[2],np.mean(data[3][1][4],axis=0)[2],np.mean(data[10][1][4],axis=0)[2],\
-                                    np.mean(data[13][1][4],axis=0)[2],np.mean(data[14][1][4],axis=0)[2],np.mean(data[15][1][4],axis=0)[2],np.mean(data[16][1][4],axis=0)[2]]),\
-                       np.std([np.mean(data[0][2][4],axis=0)[2],np.mean(data[3][2][4],axis=0)[2],np.mean(data[10][2][4],axis=0)[2],\
-                                    np.mean(data[13][2][4],axis=0)[2],np.mean(data[14][2][4],axis=0)[2],np.mean(data[15][2][4],axis=0)[2],np.mean(data[16][2][4],axis=0)[2]]),\
-                       np.std([np.mean(data[0][3][4],axis=0)[2],np.mean(data[3][3][4],axis=0)[2],np.mean(data[10][3][4],axis=0)[2],\
-                                    np.mean(data[13][3][4],axis=0)[2],np.mean(data[14][3][4],axis=0)[2],np.mean(data[15][3][4],axis=0)[2],np.mean(data[16][3][4],axis=0)[2]]),\
-                       np.std([np.mean(data[0][4][4],axis=0)[2],np.mean(data[3][4][4],axis=0)[2],np.mean(data[10][4][4],axis=0)[2],\
-                                    np.mean(data[13][4][4],axis=0)[2],np.mean(data[14][4][4],axis=0)[2],np.mean(data[15][4][4],axis=0)[2],np.mean(data[16][4][4],axis=0)[2]]),\
-                       np.std([np.mean(data[0][5][4],axis=0)[2],np.mean(data[3][5][4],axis=0)[2],np.mean(data[10][5][4],axis=0)[2],\
-                                    np.mean(data[13][5][4],axis=0)[2],np.mean(data[14][5][4],axis=0)[2],np.mean(data[15][5][4],axis=0)[2],np.mean(data[16][5][4],axis=0)[2]])])
-stdshear1600face = np.array([np.std([np.mean(data[2][0][4],axis=0)[2],np.mean(data[4][0][4],axis=0)[2],np.mean(data[6][0][4],axis=0)[2],\
-                                 np.mean(data[8][0][4],axis=0)[2],np.mean(data[11][0][4],axis=0)[2]]),\
-                       np.std([np.mean(data[2][1][4],axis=0)[2],np.mean(data[4][1][4],axis=0)[2],np.mean(data[6][1][4],axis=0)[2],\
-                                 np.mean(data[8][1][4],axis=0)[2],np.mean(data[11][1][4],axis=0)[2]]),\
-                       np.std([np.mean(data[2][2][4],axis=0)[2],np.mean(data[4][2][4],axis=0)[2],np.mean(data[6][2][4],axis=0)[2],\
-                                 np.mean(data[8][2][4],axis=0)[2],np.mean(data[11][2][4],axis=0)[2]]),\
-                       np.std([np.mean(data[2][3][4],axis=0)[2],np.mean(data[4][3][4],axis=0)[2],np.mean(data[6][3][4],axis=0)[2],\
-                                 np.mean(data[8][3][4],axis=0)[2],np.mean(data[11][3][4],axis=0)[2]]),\
-                       np.std([np.mean(data[2][4][4],axis=0)[2],np.mean(data[4][4][4],axis=0)[2],np.mean(data[6][4][4],axis=0)[2],\
-                                 np.mean(data[8][4][4],axis=0)[2],np.mean(data[11][4][4],axis=0)[2]]),\
-                       np.std([np.mean(data[2][5][4],axis=0)[2],np.mean(data[4][5][4],axis=0)[2],np.mean(data[6][5][4],axis=0)[2],\
-                                 np.mean(data[8][5][4],axis=0)[2],np.mean(data[11][5][4],axis=0)[2]])])
-stdshear4000face = np.array([np.std([np.mean(data[5][0][4],axis=0)[2],np.mean(data[9][0][4],axis=0)[2],np.mean(data[12][0][4],axis=0)[2]]),\
-                       np.std([np.mean(data[5][1][4],axis=0)[2],np.mean(data[9][1][4],axis=0)[2],np.mean(data[12][1][4],axis=0)[2]]),\
-                       np.std([np.mean(data[5][2][4],axis=0)[2],np.mean(data[9][2][4],axis=0)[2],np.mean(data[12][2][4],axis=0)[2]]),\
-                       np.std([np.mean(data[5][3][4],axis=0)[2],np.mean(data[9][3][4],axis=0)[2],np.mean(data[12][3][4],axis=0)[2]])])
-
-meanshear800back = np.array([np.mean([np.mean(data[0][0][5],axis=0)[2],np.mean(data[3][0][5],axis=0)[2],np.mean(data[10][0][5],axis=0)[2],\
-                                    np.mean(data[13][0][5],axis=0)[2],np.mean(data[14][0][5],axis=0)[2],np.mean(data[15][0][5],axis=0)[2],np.mean(data[16][0][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][1][5],axis=0)[2],np.mean(data[3][1][5],axis=0)[2],np.mean(data[10][1][5],axis=0)[2],\
-                                    np.mean(data[13][1][5],axis=0)[2],np.mean(data[14][1][5],axis=0)[2],np.mean(data[15][1][5],axis=0)[2],np.mean(data[16][1][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][2][5],axis=0)[2],np.mean(data[3][2][5],axis=0)[2],np.mean(data[10][2][5],axis=0)[2],\
-                                    np.mean(data[13][2][5],axis=0)[2],np.mean(data[14][2][5],axis=0)[2],np.mean(data[15][2][5],axis=0)[2],np.mean(data[16][2][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][3][5],axis=0)[2],np.mean(data[3][3][5],axis=0)[2],np.mean(data[10][3][5],axis=0)[2],\
-                                    np.mean(data[13][3][5],axis=0)[2],np.mean(data[14][3][5],axis=0)[2],np.mean(data[15][3][5],axis=0)[2],np.mean(data[16][3][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][4][5],axis=0)[2],np.mean(data[3][4][5],axis=0)[2],np.mean(data[10][4][5],axis=0)[2],\
-                                    np.mean(data[13][4][5],axis=0)[2],np.mean(data[14][4][5],axis=0)[2],np.mean(data[15][4][5],axis=0)[2],np.mean(data[16][4][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][5][5],axis=0)[2],np.mean(data[3][5][5],axis=0)[2],np.mean(data[10][5][5],axis=0)[2],\
-                                    np.mean(data[13][5][5],axis=0)[2],np.mean(data[14][5][5],axis=0)[2],np.mean(data[15][5][5],axis=0)[2],np.mean(data[16][5][5],axis=0)[2]])])
-meanshear1600back = np.array([np.mean([np.mean(data[2][0][5],axis=0)[2],np.mean(data[4][0][5],axis=0)[2],np.mean(data[6][0][5],axis=0)[2],\
-                                 np.mean(data[8][0][5],axis=0)[2],np.mean(data[11][0][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][1][5],axis=0)[2],np.mean(data[4][1][5],axis=0)[2],np.mean(data[6][1][5],axis=0)[2],\
-                                 np.mean(data[8][1][5],axis=0)[2],np.mean(data[11][1][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][2][5],axis=0)[2],np.mean(data[4][2][5],axis=0)[2],np.mean(data[6][2][5],axis=0)[2],\
-                                 np.mean(data[8][2][5],axis=0)[2],np.mean(data[11][2][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][3][5],axis=0)[2],np.mean(data[4][3][5],axis=0)[2],np.mean(data[6][3][5],axis=0)[2],\
-                                 np.mean(data[8][3][5],axis=0)[2],np.mean(data[11][3][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][4][5],axis=0)[2],np.mean(data[4][4][5],axis=0)[2],np.mean(data[6][4][5],axis=0)[2],\
-                                 np.mean(data[8][4][5],axis=0)[2],np.mean(data[11][4][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][5][5],axis=0)[2],np.mean(data[4][5][5],axis=0)[2],np.mean(data[6][5][5],axis=0)[2],\
-                                 np.mean(data[8][5][5],axis=0)[2],np.mean(data[11][5][5],axis=0)[2]])])
-meanshear4000back = np.array([np.mean([np.mean(data[5][0][5],axis=0)[2],np.mean(data[9][0][5],axis=0)[2],np.mean(data[12][0][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][1][5],axis=0)[2],np.mean(data[9][1][5],axis=0)[2],np.mean(data[12][1][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][2][5],axis=0)[2],np.mean(data[9][2][5],axis=0)[2],np.mean(data[12][2][5],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][3][5],axis=0)[2],np.mean(data[9][3][5],axis=0)[2],np.mean(data[12][3][5],axis=0)[2]])])
-
-stdshear800back = np.array([np.std([np.mean(data[0][0][5],axis=0)[2],np.mean(data[3][0][5],axis=0)[2],np.mean(data[10][0][5],axis=0)[2],\
-                                    np.mean(data[13][0][5],axis=0)[2],np.mean(data[14][0][5],axis=0)[2],np.mean(data[15][0][5],axis=0)[2],np.mean(data[16][0][5],axis=0)[2]]),\
-                       np.std([np.mean(data[0][1][5],axis=0)[2],np.mean(data[3][1][5],axis=0)[2],np.mean(data[10][1][5],axis=0)[2],\
-                                    np.mean(data[13][1][5],axis=0)[2],np.mean(data[14][1][5],axis=0)[2],np.mean(data[15][1][5],axis=0)[2],np.mean(data[16][1][5],axis=0)[2]]),\
-                       np.std([np.mean(data[0][2][5],axis=0)[2],np.mean(data[3][2][5],axis=0)[2],np.mean(data[10][2][5],axis=0)[2],\
-                                    np.mean(data[13][2][5],axis=0)[2],np.mean(data[14][2][5],axis=0)[2],np.mean(data[15][2][5],axis=0)[2],np.mean(data[16][2][5],axis=0)[2]]),\
-                       np.std([np.mean(data[0][3][5],axis=0)[2],np.mean(data[3][3][5],axis=0)[2],np.mean(data[10][3][5],axis=0)[2],\
-                                    np.mean(data[13][3][5],axis=0)[2],np.mean(data[14][3][5],axis=0)[2],np.mean(data[15][3][5],axis=0)[2],np.mean(data[16][3][5],axis=0)[2]]),\
-                       np.std([np.mean(data[0][4][5],axis=0)[2],np.mean(data[3][4][5],axis=0)[2],np.mean(data[10][4][5],axis=0)[2],\
-                                    np.mean(data[13][4][5],axis=0)[2],np.mean(data[14][4][5],axis=0)[2],np.mean(data[15][4][5],axis=0)[2],np.mean(data[16][4][5],axis=0)[2]]),\
-                       np.std([np.mean(data[0][5][5],axis=0)[2],np.mean(data[3][5][5],axis=0)[2],np.mean(data[10][5][5],axis=0)[2],\
-                                    np.mean(data[13][5][5],axis=0)[2],np.mean(data[14][5][5],axis=0)[2],np.mean(data[15][5][5],axis=0)[2],np.mean(data[16][5][5],axis=0)[2]])])
-stdshear1600back = np.array([np.std([np.mean(data[2][0][5],axis=0)[2],np.mean(data[4][0][5],axis=0)[2],np.mean(data[6][0][5],axis=0)[2],\
-                                 np.mean(data[8][0][5],axis=0)[2],np.mean(data[11][0][5],axis=0)[2]]),\
-                       np.std([np.mean(data[2][1][5],axis=0)[2],np.mean(data[4][1][5],axis=0)[2],np.mean(data[6][1][5],axis=0)[2],\
-                                 np.mean(data[8][1][5],axis=0)[2],np.mean(data[11][1][5],axis=0)[2]]),\
-                       np.std([np.mean(data[2][2][5],axis=0)[2],np.mean(data[4][2][5],axis=0)[2],np.mean(data[6][2][5],axis=0)[2],\
-                                 np.mean(data[8][2][5],axis=0)[2],np.mean(data[11][2][5],axis=0)[2]]),\
-                       np.std([np.mean(data[2][3][5],axis=0)[2],np.mean(data[4][3][5],axis=0)[2],np.mean(data[6][3][5],axis=0)[2],\
-                                 np.mean(data[8][3][5],axis=0)[2],np.mean(data[11][3][5],axis=0)[2]]),\
-                       np.std([np.mean(data[2][4][5],axis=0)[2],np.mean(data[4][4][5],axis=0)[2],np.mean(data[6][4][5],axis=0)[2],\
-                                 np.mean(data[8][4][5],axis=0)[2],np.mean(data[11][4][5],axis=0)[2]]),\
-                       np.std([np.mean(data[2][5][5],axis=0)[2],np.mean(data[4][5][5],axis=0)[2],np.mean(data[6][5][5],axis=0)[2],\
-                                 np.mean(data[8][5][5],axis=0)[2],np.mean(data[11][5][5],axis=0)[2]])])
-stdshear4000back = np.array([np.std([np.mean(data[5][0][5],axis=0)[2],np.mean(data[9][0][5],axis=0)[2],np.mean(data[12][0][5],axis=0)[2]]),\
-                       np.std([np.mean(data[5][1][5],axis=0)[2],np.mean(data[9][1][5],axis=0)[2],np.mean(data[12][1][5],axis=0)[2]]),\
-                       np.std([np.mean(data[5][2][5],axis=0)[2],np.mean(data[9][2][5],axis=0)[2],np.mean(data[12][2][5],axis=0)[2]]),\
-                       np.std([np.mean(data[5][3][5],axis=0)[2],np.mean(data[9][3][5],axis=0)[2],np.mean(data[12][3][5],axis=0)[2]])])
-
-meanshear800topp = np.array([np.mean([np.mean(data[0][0][2],axis=0)[2],np.mean(data[3][0][2],axis=0)[2],np.mean(data[10][0][2],axis=0)[2],\
-                                    np.mean(data[13][0][2],axis=0)[2],np.mean(data[14][0][2],axis=0)[2],np.mean(data[15][0][2],axis=0)[2],np.mean(data[16][0][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][1][2],axis=0)[2],np.mean(data[3][1][2],axis=0)[2],np.mean(data[10][1][2],axis=0)[2],\
-                                    np.mean(data[13][1][2],axis=0)[2],np.mean(data[14][1][2],axis=0)[2],np.mean(data[15][1][2],axis=0)[2],np.mean(data[16][1][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][2][2],axis=0)[2],np.mean(data[3][2][2],axis=0)[2],np.mean(data[10][2][2],axis=0)[2],\
-                                    np.mean(data[13][2][2],axis=0)[2],np.mean(data[14][2][2],axis=0)[2],np.mean(data[15][2][2],axis=0)[2],np.mean(data[16][2][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][3][2],axis=0)[2],np.mean(data[3][3][2],axis=0)[2],np.mean(data[10][3][2],axis=0)[2],\
-                                    np.mean(data[13][3][2],axis=0)[2],np.mean(data[14][3][2],axis=0)[2],np.mean(data[15][3][2],axis=0)[2],np.mean(data[16][3][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][4][2],axis=0)[2],np.mean(data[3][4][2],axis=0)[2],np.mean(data[10][4][2],axis=0)[2],\
-                                    np.mean(data[13][4][2],axis=0)[2],np.mean(data[14][4][2],axis=0)[2],np.mean(data[15][4][2],axis=0)[2],np.mean(data[16][4][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][5][2],axis=0)[2],np.mean(data[3][5][2],axis=0)[2],np.mean(data[10][5][2],axis=0)[2],\
-                                    np.mean(data[13][5][2],axis=0)[2],np.mean(data[14][5][2],axis=0)[2],np.mean(data[15][5][2],axis=0)[2],np.mean(data[16][5][2],axis=0)[2]])])
-meanshear1600topp = np.array([np.mean([np.mean(data[2][0][2],axis=0)[2],np.mean(data[4][0][2],axis=0)[2],np.mean(data[6][0][2],axis=0)[2],\
-                                 np.mean(data[8][0][2],axis=0)[2],np.mean(data[11][0][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][1][2],axis=0)[2],np.mean(data[4][1][2],axis=0)[2],np.mean(data[6][1][2],axis=0)[2],\
-                                 np.mean(data[8][1][2],axis=0)[2],np.mean(data[11][1][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][2][2],axis=0)[2],np.mean(data[4][2][2],axis=0)[2],np.mean(data[6][2][2],axis=0)[2],\
-                                 np.mean(data[8][2][2],axis=0)[2],np.mean(data[11][2][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][3][2],axis=0)[2],np.mean(data[4][3][2],axis=0)[2],np.mean(data[6][3][2],axis=0)[2],\
-                                 np.mean(data[8][3][2],axis=0)[2],np.mean(data[11][3][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][4][2],axis=0)[2],np.mean(data[4][4][2],axis=0)[2],np.mean(data[6][4][2],axis=0)[2],\
-                                 np.mean(data[8][4][2],axis=0)[2],np.mean(data[11][4][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][5][2],axis=0)[2],np.mean(data[4][5][2],axis=0)[2],np.mean(data[6][5][2],axis=0)[2],\
-                                 np.mean(data[8][5][2],axis=0)[2],np.mean(data[11][5][2],axis=0)[2]])])
-meanshear4000topp = np.array([np.mean([np.mean(data[5][0][2],axis=0)[2],np.mean(data[9][0][2],axis=0)[2],np.mean(data[12][0][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][1][2],axis=0)[2],np.mean(data[9][1][2],axis=0)[2],np.mean(data[12][1][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][2][2],axis=0)[2],np.mean(data[9][2][2],axis=0)[2],np.mean(data[12][2][2],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][3][2],axis=0)[2],np.mean(data[9][3][2],axis=0)[2],np.mean(data[12][3][2],axis=0)[2]])])
-
-stdshear800topp = np.array([np.std([np.mean(data[0][0][2],axis=0)[2],np.mean(data[3][0][2],axis=0)[2],np.mean(data[10][0][2],axis=0)[2],\
-                                    np.mean(data[13][0][2],axis=0)[2],np.mean(data[14][0][2],axis=0)[2],np.mean(data[15][0][2],axis=0)[2],np.mean(data[16][0][2],axis=0)[2]]),\
-                       np.std([np.mean(data[0][1][2],axis=0)[2],np.mean(data[3][1][2],axis=0)[2],np.mean(data[10][1][2],axis=0)[2],\
-                                    np.mean(data[13][1][2],axis=0)[2],np.mean(data[14][1][2],axis=0)[2],np.mean(data[15][1][2],axis=0)[2],np.mean(data[16][1][2],axis=0)[2]]),\
-                       np.std([np.mean(data[0][2][2],axis=0)[2],np.mean(data[3][2][2],axis=0)[2],np.mean(data[10][2][2],axis=0)[2],\
-                                    np.mean(data[13][2][2],axis=0)[2],np.mean(data[14][2][2],axis=0)[2],np.mean(data[15][2][2],axis=0)[2],np.mean(data[16][2][2],axis=0)[2]]),\
-                       np.std([np.mean(data[0][3][2],axis=0)[2],np.mean(data[3][3][2],axis=0)[2],np.mean(data[10][3][2],axis=0)[2],\
-                                    np.mean(data[13][3][2],axis=0)[2],np.mean(data[14][3][2],axis=0)[2],np.mean(data[15][3][2],axis=0)[2],np.mean(data[16][3][2],axis=0)[2]]),\
-                       np.std([np.mean(data[0][4][2],axis=0)[2],np.mean(data[3][4][2],axis=0)[2],np.mean(data[10][4][2],axis=0)[2],\
-                                    np.mean(data[13][4][2],axis=0)[2],np.mean(data[14][4][2],axis=0)[2],np.mean(data[15][4][2],axis=0)[2],np.mean(data[16][4][2],axis=0)[2]]),\
-                       np.std([np.mean(data[0][5][2],axis=0)[2],np.mean(data[3][5][2],axis=0)[2],np.mean(data[10][5][2],axis=0)[2],\
-                                    np.mean(data[13][5][2],axis=0)[2],np.mean(data[14][5][2],axis=0)[2],np.mean(data[15][5][2],axis=0)[2],np.mean(data[16][5][2],axis=0)[2]])])
-stdshear1600topp = np.array([np.std([np.mean(data[2][0][2],axis=0)[2],np.mean(data[4][0][2],axis=0)[2],np.mean(data[6][0][2],axis=0)[2],\
-                                 np.mean(data[8][0][2],axis=0)[2],np.mean(data[11][0][2],axis=0)[2]]),\
-                       np.std([np.mean(data[2][1][2],axis=0)[2],np.mean(data[4][1][2],axis=0)[2],np.mean(data[6][1][2],axis=0)[2],\
-                                 np.mean(data[8][1][2],axis=0)[2],np.mean(data[11][1][2],axis=0)[2]]),\
-                       np.std([np.mean(data[2][2][2],axis=0)[2],np.mean(data[4][2][2],axis=0)[2],np.mean(data[6][2][2],axis=0)[2],\
-                                 np.mean(data[8][2][2],axis=0)[2],np.mean(data[11][2][2],axis=0)[2]]),\
-                       np.std([np.mean(data[2][3][2],axis=0)[2],np.mean(data[4][3][2],axis=0)[2],np.mean(data[6][3][2],axis=0)[2],\
-                                 np.mean(data[8][3][2],axis=0)[2],np.mean(data[11][3][2],axis=0)[2]]),\
-                       np.std([np.mean(data[2][4][2],axis=0)[2],np.mean(data[4][4][2],axis=0)[2],np.mean(data[6][4][2],axis=0)[2],\
-                                 np.mean(data[8][4][2],axis=0)[2],np.mean(data[11][4][2],axis=0)[2]]),\
-                       np.std([np.mean(data[2][5][2],axis=0)[2],np.mean(data[4][5][2],axis=0)[2],np.mean(data[6][5][2],axis=0)[2],\
-                                 np.mean(data[8][5][2],axis=0)[2],np.mean(data[11][5][2],axis=0)[2]])])
-stdshear4000topp = np.array([np.std([np.mean(data[5][0][2],axis=0)[2],np.mean(data[9][0][2],axis=0)[2],np.mean(data[12][0][2],axis=0)[2]]),\
-                       np.std([np.mean(data[5][1][2],axis=0)[2],np.mean(data[9][1][2],axis=0)[2],np.mean(data[12][1][2],axis=0)[2]]),\
-                       np.std([np.mean(data[5][2][2],axis=0)[2],np.mean(data[9][2][2],axis=0)[2],np.mean(data[12][2][2],axis=0)[2]]),\
-                       np.std([np.mean(data[5][3][2],axis=0)[2],np.mean(data[9][3][2],axis=0)[2],np.mean(data[12][3][2],axis=0)[2]])])
-
-meanshear800topf = np.array([np.mean([np.mean(data[0][0][3],axis=0)[2],np.mean(data[3][0][3],axis=0)[2],np.mean(data[10][0][3],axis=0)[2],\
-                                    np.mean(data[13][0][3],axis=0)[2],np.mean(data[14][0][3],axis=0)[2],np.mean(data[15][0][3],axis=0)[2],np.mean(data[16][0][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][1][3],axis=0)[2],np.mean(data[3][1][3],axis=0)[2],np.mean(data[10][1][3],axis=0)[2],\
-                                    np.mean(data[13][1][3],axis=0)[2],np.mean(data[14][1][3],axis=0)[2],np.mean(data[15][1][3],axis=0)[2],np.mean(data[16][1][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][2][3],axis=0)[2],np.mean(data[3][2][3],axis=0)[2],np.mean(data[10][2][3],axis=0)[2],\
-                                    np.mean(data[13][2][3],axis=0)[2],np.mean(data[14][2][3],axis=0)[2],np.mean(data[15][2][3],axis=0)[2],np.mean(data[16][2][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][3][3],axis=0)[2],np.mean(data[3][3][3],axis=0)[2],np.mean(data[10][3][3],axis=0)[2],\
-                                    np.mean(data[13][3][3],axis=0)[2],np.mean(data[14][3][3],axis=0)[2],np.mean(data[15][3][3],axis=0)[2],np.mean(data[16][3][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][4][3],axis=0)[2],np.mean(data[3][4][3],axis=0)[2],np.mean(data[10][4][3],axis=0)[2],\
-                                    np.mean(data[13][4][3],axis=0)[2],np.mean(data[14][4][3],axis=0)[2],np.mean(data[15][4][3],axis=0)[2],np.mean(data[16][4][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[0][5][3],axis=0)[2],np.mean(data[3][5][3],axis=0)[2],np.mean(data[10][5][3],axis=0)[2],\
-                                    np.mean(data[13][5][3],axis=0)[2],np.mean(data[14][5][3],axis=0)[2],np.mean(data[15][5][3],axis=0)[2],np.mean(data[16][5][3],axis=0)[2]])])
-meanshear1600topf = np.array([np.mean([np.mean(data[2][0][3],axis=0)[2],np.mean(data[4][0][3],axis=0)[2],np.mean(data[6][0][3],axis=0)[2],\
-                                 np.mean(data[8][0][3],axis=0)[2],np.mean(data[11][0][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][1][3],axis=0)[2],np.mean(data[4][1][3],axis=0)[2],np.mean(data[6][1][3],axis=0)[2],\
-                                 np.mean(data[8][1][3],axis=0)[2],np.mean(data[11][1][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][2][3],axis=0)[2],np.mean(data[4][2][3],axis=0)[2],np.mean(data[6][2][3],axis=0)[2],\
-                                 np.mean(data[8][2][3],axis=0)[2],np.mean(data[11][2][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][3][3],axis=0)[2],np.mean(data[4][3][3],axis=0)[2],np.mean(data[6][3][3],axis=0)[2],\
-                                 np.mean(data[8][3][3],axis=0)[2],np.mean(data[11][3][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][4][3],axis=0)[2],np.mean(data[4][4][3],axis=0)[2],np.mean(data[6][4][3],axis=0)[2],\
-                                 np.mean(data[8][4][3],axis=0)[2],np.mean(data[11][4][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[2][5][3],axis=0)[2],np.mean(data[4][5][3],axis=0)[2],np.mean(data[6][5][3],axis=0)[2],\
-                                 np.mean(data[8][5][3],axis=0)[2],np.mean(data[11][5][3],axis=0)[2]])])
-meanshear4000topf = np.array([np.mean([np.mean(data[5][0][3],axis=0)[2],np.mean(data[9][0][3],axis=0)[2],np.mean(data[12][0][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][1][3],axis=0)[2],np.mean(data[9][1][3],axis=0)[2],np.mean(data[12][1][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][2][3],axis=0)[2],np.mean(data[9][2][3],axis=0)[2],np.mean(data[12][2][3],axis=0)[2]]),\
-                       np.mean([np.mean(data[5][3][3],axis=0)[2],np.mean(data[9][3][3],axis=0)[2],np.mean(data[12][3][3],axis=0)[2]])])
-
-stdshear800topf = np.array([np.std([np.mean(data[0][0][3],axis=0)[2],np.mean(data[3][0][3],axis=0)[2],np.mean(data[10][0][3],axis=0)[2],\
-                                    np.mean(data[13][0][3],axis=0)[2],np.mean(data[14][0][3],axis=0)[2],np.mean(data[15][0][3],axis=0)[2],np.mean(data[16][0][3],axis=0)[2]]),\
-                       np.std([np.mean(data[0][1][3],axis=0)[2],np.mean(data[3][1][3],axis=0)[2],np.mean(data[10][1][3],axis=0)[2],\
-                                    np.mean(data[13][1][3],axis=0)[2],np.mean(data[14][1][3],axis=0)[2],np.mean(data[15][1][3],axis=0)[2],np.mean(data[16][1][3],axis=0)[2]]),\
-                       np.std([np.mean(data[0][2][3],axis=0)[2],np.mean(data[3][2][3],axis=0)[2],np.mean(data[10][2][3],axis=0)[2],\
-                                    np.mean(data[13][2][3],axis=0)[2],np.mean(data[14][2][3],axis=0)[2],np.mean(data[15][2][3],axis=0)[2],np.mean(data[16][2][3],axis=0)[2]]),\
-                       np.std([np.mean(data[0][3][3],axis=0)[2],np.mean(data[3][3][3],axis=0)[2],np.mean(data[10][3][3],axis=0)[2],\
-                                    np.mean(data[13][3][3],axis=0)[2],np.mean(data[14][3][3],axis=0)[2],np.mean(data[15][3][3],axis=0)[2],np.mean(data[16][3][3],axis=0)[2]]),\
-                       np.std([np.mean(data[0][4][3],axis=0)[2],np.mean(data[3][4][3],axis=0)[2],np.mean(data[10][4][3],axis=0)[2],\
-                                    np.mean(data[13][4][3],axis=0)[2],np.mean(data[14][4][3],axis=0)[2],np.mean(data[15][4][3],axis=0)[2],np.mean(data[16][4][3],axis=0)[2]]),\
-                       np.std([np.mean(data[0][5][3],axis=0)[2],np.mean(data[3][5][3],axis=0)[2],np.mean(data[10][5][3],axis=0)[2],\
-                                    np.mean(data[13][5][3],axis=0)[2],np.mean(data[14][5][3],axis=0)[2],np.mean(data[15][5][3],axis=0)[2],np.mean(data[16][5][3],axis=0)[2]])])
-stdshear1600topf = np.array([np.std([np.mean(data[2][0][3],axis=0)[2],np.mean(data[4][0][3],axis=0)[2],np.mean(data[6][0][3],axis=0)[2],\
-                                 np.mean(data[8][0][3],axis=0)[2],np.mean(data[11][0][3],axis=0)[2]]),\
-                       np.std([np.mean(data[2][1][3],axis=0)[2],np.mean(data[4][1][3],axis=0)[2],np.mean(data[6][1][3],axis=0)[2],\
-                                 np.mean(data[8][1][3],axis=0)[2],np.mean(data[11][1][3],axis=0)[2]]),\
-                       np.std([np.mean(data[2][2][3],axis=0)[2],np.mean(data[4][2][3],axis=0)[2],np.mean(data[6][2][3],axis=0)[2],\
-                                 np.mean(data[8][2][3],axis=0)[2],np.mean(data[11][2][3],axis=0)[2]]),\
-                       np.std([np.mean(data[2][3][3],axis=0)[2],np.mean(data[4][3][3],axis=0)[2],np.mean(data[6][3][3],axis=0)[2],\
-                                 np.mean(data[8][3][3],axis=0)[2],np.mean(data[11][3][3],axis=0)[2]]),\
-                       np.std([np.mean(data[2][4][3],axis=0)[2],np.mean(data[4][4][3],axis=0)[2],np.mean(data[6][4][3],axis=0)[2],\
-                                 np.mean(data[8][4][3],axis=0)[2],np.mean(data[11][4][3],axis=0)[2]]),\
-                       np.std([np.mean(data[2][5][3],axis=0)[2],np.mean(data[4][5][3],axis=0)[2],np.mean(data[6][5][3],axis=0)[2],\
-                                 np.mean(data[8][5][3],axis=0)[2],np.mean(data[11][5][3],axis=0)[2]])])
-stdshear4000topf = np.array([np.std([np.mean(data[5][0][3],axis=0)[2],np.mean(data[9][0][3],axis=0)[2],np.mean(data[12][0][3],axis=0)[2]]),\
-                       np.std([np.mean(data[5][1][3],axis=0)[2],np.mean(data[9][1][3],axis=0)[2],np.mean(data[12][1][3],axis=0)[2]]),\
-                       np.std([np.mean(data[5][2][3],axis=0)[2],np.mean(data[9][2][3],axis=0)[2],np.mean(data[12][2][3],axis=0)[2]]),\
-                       np.std([np.mean(data[5][3][3],axis=0)[2],np.mean(data[9][3][3],axis=0)[2],np.mean(data[12][3][3],axis=0)[2]])])
-
 meanshear800surface = np.array([np.mean([np.mean(data[0][0][1],axis=0)[2],np.mean(data[3][0][1],axis=0)[2],np.mean(data[10][0][1],axis=0)[2],\
                                     np.mean(data[13][0][1],axis=0)[2],np.mean(data[14][0][1],axis=0)[2],np.mean(data[15][0][1],axis=0)[2],np.mean(data[16][0][1],axis=0)[2]]),\
                        np.mean([np.mean(data[0][1][1],axis=0)[2],np.mean(data[3][1][1],axis=0)[2],np.mean(data[10][1][1],axis=0)[2],\
@@ -677,296 +213,64 @@ stdshear4000surface = np.array([np.std([np.mean(data[5][0][1],axis=0)[2],np.mean
                        np.std([np.mean(data[5][3][1],axis=0)[2],np.mean(data[9][3][1],axis=0)[2],np.mean(data[12][3][1],axis=0)[2]])])
 
 
-## Average velocity
-meanvel800face = np.array([np.mean([np.mean(data[0][0][4],axis=0)[4],np.mean(data[3][0][4],axis=0)[4],np.mean(data[10][0][4],axis=0)[4],\
-                                    np.mean(data[13][0][4],axis=0)[4],np.mean(data[14][0][4],axis=0)[4],np.mean(data[15][0][4],axis=0)[4],np.mean(data[16][0][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][1][4],axis=0)[4],np.mean(data[3][1][4],axis=0)[4],np.mean(data[10][1][4],axis=0)[4],\
-                                    np.mean(data[13][1][4],axis=0)[4],np.mean(data[14][1][4],axis=0)[4],np.mean(data[15][1][4],axis=0)[4],np.mean(data[16][1][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][2][4],axis=0)[4],np.mean(data[3][2][4],axis=0)[4],np.mean(data[10][2][4],axis=0)[4],\
-                                    np.mean(data[13][2][4],axis=0)[4],np.mean(data[14][2][4],axis=0)[4],np.mean(data[15][2][4],axis=0)[4],np.mean(data[16][2][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][3][4],axis=0)[4],np.mean(data[3][3][4],axis=0)[4],np.mean(data[10][3][4],axis=0)[4],\
-                                    np.mean(data[13][3][4],axis=0)[4],np.mean(data[14][3][4],axis=0)[4],np.mean(data[15][3][4],axis=0)[4],np.mean(data[16][3][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][4][4],axis=0)[4],np.mean(data[3][4][4],axis=0)[4],np.mean(data[10][4][4],axis=0)[4],\
-                                    np.mean(data[13][4][4],axis=0)[4],np.mean(data[14][4][4],axis=0)[4],np.mean(data[15][4][4],axis=0)[4],np.mean(data[16][4][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][5][4],axis=0)[4],np.mean(data[3][5][4],axis=0)[4],np.mean(data[10][5][4],axis=0)[4],\
-                                    np.mean(data[13][5][4],axis=0)[4],np.mean(data[14][5][4],axis=0)[4],np.mean(data[15][5][4],axis=0)[4],np.mean(data[16][5][4],axis=0)[4]])])
-meanvel1600face = np.array([np.mean([np.mean(data[2][0][4],axis=0)[4],np.mean(data[4][0][4],axis=0)[4],np.mean(data[6][0][4],axis=0)[4],\
-                                 np.mean(data[8][0][4],axis=0)[4],np.mean(data[11][0][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][1][4],axis=0)[4],np.mean(data[4][1][4],axis=0)[4],np.mean(data[6][1][4],axis=0)[4],\
-                                 np.mean(data[8][1][4],axis=0)[4],np.mean(data[11][1][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][2][4],axis=0)[4],np.mean(data[4][2][4],axis=0)[4],np.mean(data[6][2][4],axis=0)[4],\
-                                 np.mean(data[8][2][4],axis=0)[4],np.mean(data[11][2][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][3][4],axis=0)[4],np.mean(data[4][3][4],axis=0)[4],np.mean(data[6][3][4],axis=0)[4],\
-                                 np.mean(data[8][3][4],axis=0)[4],np.mean(data[11][3][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][4][4],axis=0)[4],np.mean(data[4][4][4],axis=0)[4],np.mean(data[6][4][4],axis=0)[4],\
-                                 np.mean(data[8][4][4],axis=0)[4],np.mean(data[11][4][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][5][4],axis=0)[4],np.mean(data[4][5][4],axis=0)[4],np.mean(data[6][5][4],axis=0)[4],\
-                                 np.mean(data[8][5][4],axis=0)[4],np.mean(data[11][5][4],axis=0)[4]])])
-meanvel4000face = np.array([np.mean([np.mean(data[5][0][4],axis=0)[4],np.mean(data[9][0][4],axis=0)[4],np.mean(data[12][0][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][1][4],axis=0)[4],np.mean(data[9][1][4],axis=0)[4],np.mean(data[12][1][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][2][4],axis=0)[4],np.mean(data[9][2][4],axis=0)[4],np.mean(data[12][2][4],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][3][4],axis=0)[4],np.mean(data[9][3][4],axis=0)[4],np.mean(data[12][3][4],axis=0)[4]])])
+## Average local binding available time
+meanrt800surface = np.array([np.mean([1/np.mean(data[0][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][0][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][0][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[0][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][1][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][1][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[0][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][2][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][2][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[0][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][3][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][3][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[0][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][4][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][4][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[0][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][5][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][5][1],axis=0)[4]*45*1e-6*1e3])])
+meanrt1600surface = np.array([np.mean([1/np.mean(data[2][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][0][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][0][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[2][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][1][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][1][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[2][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][2][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][2][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[2][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][3][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][3][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[2][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][4][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][4][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[2][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][5][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][5][1],axis=0)[4]*45*1e-6*1e3])])
+meanrt4000surface = np.array([np.mean([1/np.mean(data[5][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[9][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[12][0][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[5][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[9][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[12][1][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[5][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[9][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[12][2][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.mean([1/np.mean(data[5][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[9][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[12][3][1],axis=0)[4]*45*1e-6*1e3])])
 
-stdvel800face = np.array([np.std([np.mean(data[0][0][4],axis=0)[4],np.mean(data[3][0][4],axis=0)[4],np.mean(data[10][0][4],axis=0)[4],\
-                                    np.mean(data[13][0][4],axis=0)[4],np.mean(data[14][0][4],axis=0)[4],np.mean(data[15][0][4],axis=0)[4],np.mean(data[16][0][4],axis=0)[4]]),\
-                       np.std([np.mean(data[0][1][4],axis=0)[4],np.mean(data[3][1][4],axis=0)[4],np.mean(data[10][1][4],axis=0)[4],\
-                                    np.mean(data[13][1][4],axis=0)[4],np.mean(data[14][1][4],axis=0)[4],np.mean(data[15][1][4],axis=0)[4],np.mean(data[16][1][4],axis=0)[4]]),\
-                       np.std([np.mean(data[0][2][4],axis=0)[4],np.mean(data[3][2][4],axis=0)[4],np.mean(data[10][2][4],axis=0)[4],\
-                                    np.mean(data[13][2][4],axis=0)[4],np.mean(data[14][2][4],axis=0)[4],np.mean(data[15][2][4],axis=0)[4],np.mean(data[16][2][4],axis=0)[4]]),\
-                       np.std([np.mean(data[0][3][4],axis=0)[4],np.mean(data[3][3][4],axis=0)[4],np.mean(data[10][3][4],axis=0)[4],\
-                                    np.mean(data[13][3][4],axis=0)[4],np.mean(data[14][3][4],axis=0)[4],np.mean(data[15][3][4],axis=0)[4],np.mean(data[16][3][4],axis=0)[4]]),\
-                       np.std([np.mean(data[0][4][4],axis=0)[4],np.mean(data[3][4][4],axis=0)[4],np.mean(data[10][4][4],axis=0)[4],\
-                                    np.mean(data[13][4][4],axis=0)[4],np.mean(data[14][4][4],axis=0)[4],np.mean(data[15][4][4],axis=0)[4],np.mean(data[16][4][4],axis=0)[4]]),\
-                       np.std([np.mean(data[0][5][4],axis=0)[4],np.mean(data[3][5][4],axis=0)[4],np.mean(data[10][5][4],axis=0)[4],\
-                                    np.mean(data[13][5][4],axis=0)[4],np.mean(data[14][5][4],axis=0)[4],np.mean(data[15][5][4],axis=0)[4],np.mean(data[16][5][4],axis=0)[4]])])
-stdvel1600face = np.array([np.std([np.mean(data[2][0][4],axis=0)[4],np.mean(data[4][0][4],axis=0)[4],np.mean(data[6][0][4],axis=0)[4],\
-                                 np.mean(data[8][0][4],axis=0)[4],np.mean(data[11][0][4],axis=0)[4]]),\
-                       np.std([np.mean(data[2][1][4],axis=0)[4],np.mean(data[4][1][4],axis=0)[4],np.mean(data[6][1][4],axis=0)[4],\
-                                 np.mean(data[8][1][4],axis=0)[4],np.mean(data[11][1][4],axis=0)[4]]),\
-                       np.std([np.mean(data[2][2][4],axis=0)[4],np.mean(data[4][2][4],axis=0)[4],np.mean(data[6][2][4],axis=0)[4],\
-                                 np.mean(data[8][2][4],axis=0)[4],np.mean(data[11][2][4],axis=0)[4]]),\
-                       np.std([np.mean(data[2][3][4],axis=0)[4],np.mean(data[4][3][4],axis=0)[4],np.mean(data[6][3][4],axis=0)[4],\
-                                 np.mean(data[8][3][4],axis=0)[4],np.mean(data[11][3][4],axis=0)[4]]),\
-                       np.std([np.mean(data[2][4][4],axis=0)[4],np.mean(data[4][4][4],axis=0)[4],np.mean(data[6][4][4],axis=0)[4],\
-                                 np.mean(data[8][4][4],axis=0)[4],np.mean(data[11][4][4],axis=0)[4]]),\
-                       np.std([np.mean(data[2][5][4],axis=0)[4],np.mean(data[4][5][4],axis=0)[4],np.mean(data[6][5][4],axis=0)[4],\
-                                 np.mean(data[8][5][4],axis=0)[4],np.mean(data[11][5][4],axis=0)[4]])])
-stdvel4000face = np.array([np.std([np.mean(data[5][0][4],axis=0)[4],np.mean(data[9][0][4],axis=0)[4],np.mean(data[12][0][4],axis=0)[4]]),\
-                       np.std([np.mean(data[5][1][4],axis=0)[4],np.mean(data[9][1][4],axis=0)[4],np.mean(data[12][1][4],axis=0)[4]]),\
-                       np.std([np.mean(data[5][2][4],axis=0)[4],np.mean(data[9][2][4],axis=0)[4],np.mean(data[12][2][4],axis=0)[4]]),\
-                       np.std([np.mean(data[5][3][4],axis=0)[4],np.mean(data[9][3][4],axis=0)[4],np.mean(data[12][3][4],axis=0)[4]])])
-
-meanvel800back = np.array([np.mean([np.mean(data[0][0][5],axis=0)[4],np.mean(data[3][0][5],axis=0)[4],np.mean(data[10][0][5],axis=0)[4],\
-                                    np.mean(data[13][0][5],axis=0)[4],np.mean(data[14][0][5],axis=0)[4],np.mean(data[15][0][5],axis=0)[4],np.mean(data[16][0][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][1][5],axis=0)[4],np.mean(data[3][1][5],axis=0)[4],np.mean(data[10][1][5],axis=0)[4],\
-                                    np.mean(data[13][1][5],axis=0)[4],np.mean(data[14][1][5],axis=0)[4],np.mean(data[15][1][5],axis=0)[4],np.mean(data[16][1][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][2][5],axis=0)[4],np.mean(data[3][2][5],axis=0)[4],np.mean(data[10][2][5],axis=0)[4],\
-                                    np.mean(data[13][2][5],axis=0)[4],np.mean(data[14][2][5],axis=0)[4],np.mean(data[15][2][5],axis=0)[4],np.mean(data[16][2][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][3][5],axis=0)[4],np.mean(data[3][3][5],axis=0)[4],np.mean(data[10][3][5],axis=0)[4],\
-                                    np.mean(data[13][3][5],axis=0)[4],np.mean(data[14][3][5],axis=0)[4],np.mean(data[15][3][5],axis=0)[4],np.mean(data[16][3][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][4][5],axis=0)[4],np.mean(data[3][4][5],axis=0)[4],np.mean(data[10][4][5],axis=0)[4],\
-                                    np.mean(data[13][4][5],axis=0)[4],np.mean(data[14][4][5],axis=0)[4],np.mean(data[15][4][5],axis=0)[4],np.mean(data[16][4][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][5][5],axis=0)[4],np.mean(data[3][5][5],axis=0)[4],np.mean(data[10][5][5],axis=0)[4],\
-                                    np.mean(data[13][5][5],axis=0)[4],np.mean(data[14][5][5],axis=0)[4],np.mean(data[15][5][5],axis=0)[4],np.mean(data[16][5][5],axis=0)[4]])])
-meanvel1600back = np.array([np.mean([np.mean(data[2][0][5],axis=0)[4],np.mean(data[4][0][5],axis=0)[4],np.mean(data[6][0][5],axis=0)[4],\
-                                 np.mean(data[8][0][5],axis=0)[4],np.mean(data[11][0][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][1][5],axis=0)[4],np.mean(data[4][1][5],axis=0)[4],np.mean(data[6][1][5],axis=0)[4],\
-                                 np.mean(data[8][1][5],axis=0)[4],np.mean(data[11][1][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][2][5],axis=0)[4],np.mean(data[4][2][5],axis=0)[4],np.mean(data[6][2][5],axis=0)[4],\
-                                 np.mean(data[8][2][5],axis=0)[4],np.mean(data[11][2][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][3][5],axis=0)[4],np.mean(data[4][3][5],axis=0)[4],np.mean(data[6][3][5],axis=0)[4],\
-                                 np.mean(data[8][3][5],axis=0)[4],np.mean(data[11][3][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][4][5],axis=0)[4],np.mean(data[4][4][5],axis=0)[4],np.mean(data[6][4][5],axis=0)[4],\
-                                 np.mean(data[8][4][5],axis=0)[4],np.mean(data[11][4][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][5][5],axis=0)[4],np.mean(data[4][5][5],axis=0)[4],np.mean(data[6][5][5],axis=0)[4],\
-                                 np.mean(data[8][5][5],axis=0)[4],np.mean(data[11][5][5],axis=0)[4]])])
-meanvel4000back = np.array([np.mean([np.mean(data[5][0][5],axis=0)[4],np.mean(data[9][0][5],axis=0)[4],np.mean(data[12][0][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][1][5],axis=0)[4],np.mean(data[9][1][5],axis=0)[4],np.mean(data[12][1][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][2][5],axis=0)[4],np.mean(data[9][2][5],axis=0)[4],np.mean(data[12][2][5],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][3][5],axis=0)[4],np.mean(data[9][3][5],axis=0)[4],np.mean(data[12][3][5],axis=0)[4]])])
-
-stdvel800back = np.array([np.std([np.mean(data[0][0][5],axis=0)[4],np.mean(data[3][0][5],axis=0)[4],np.mean(data[10][0][5],axis=0)[4],\
-                                    np.mean(data[13][0][5],axis=0)[4],np.mean(data[14][0][5],axis=0)[4],np.mean(data[15][0][5],axis=0)[4],np.mean(data[16][0][5],axis=0)[4]]),\
-                       np.std([np.mean(data[0][1][5],axis=0)[4],np.mean(data[3][1][5],axis=0)[4],np.mean(data[10][1][5],axis=0)[4],\
-                                    np.mean(data[13][1][5],axis=0)[4],np.mean(data[14][1][5],axis=0)[4],np.mean(data[15][1][5],axis=0)[4],np.mean(data[16][1][5],axis=0)[4]]),\
-                       np.std([np.mean(data[0][2][5],axis=0)[4],np.mean(data[3][2][5],axis=0)[4],np.mean(data[10][2][5],axis=0)[4],\
-                                    np.mean(data[13][2][5],axis=0)[4],np.mean(data[14][2][5],axis=0)[4],np.mean(data[15][2][5],axis=0)[4],np.mean(data[16][2][5],axis=0)[4]]),\
-                       np.std([np.mean(data[0][3][5],axis=0)[4],np.mean(data[3][3][5],axis=0)[4],np.mean(data[10][3][5],axis=0)[4],\
-                                    np.mean(data[13][3][5],axis=0)[4],np.mean(data[14][3][5],axis=0)[4],np.mean(data[15][3][5],axis=0)[4],np.mean(data[16][3][5],axis=0)[4]]),\
-                       np.std([np.mean(data[0][4][5],axis=0)[4],np.mean(data[3][4][5],axis=0)[4],np.mean(data[10][4][5],axis=0)[4],\
-                                    np.mean(data[13][4][5],axis=0)[4],np.mean(data[14][4][5],axis=0)[4],np.mean(data[15][4][5],axis=0)[4],np.mean(data[16][4][5],axis=0)[4]]),\
-                       np.std([np.mean(data[0][5][5],axis=0)[4],np.mean(data[3][5][5],axis=0)[4],np.mean(data[10][5][5],axis=0)[4],\
-                                    np.mean(data[13][5][5],axis=0)[4],np.mean(data[14][5][5],axis=0)[4],np.mean(data[15][5][5],axis=0)[4],np.mean(data[16][5][5],axis=0)[4]])])
-stdvel1600back = np.array([np.std([np.mean(data[2][0][5],axis=0)[4],np.mean(data[4][0][5],axis=0)[4],np.mean(data[6][0][5],axis=0)[4],\
-                                 np.mean(data[8][0][5],axis=0)[4],np.mean(data[11][0][5],axis=0)[4]]),\
-                       np.std([np.mean(data[2][1][5],axis=0)[4],np.mean(data[4][1][5],axis=0)[4],np.mean(data[6][1][5],axis=0)[4],\
-                                 np.mean(data[8][1][5],axis=0)[4],np.mean(data[11][1][5],axis=0)[4]]),\
-                       np.std([np.mean(data[2][2][5],axis=0)[4],np.mean(data[4][2][5],axis=0)[4],np.mean(data[6][2][5],axis=0)[4],\
-                                 np.mean(data[8][2][5],axis=0)[4],np.mean(data[11][2][5],axis=0)[4]]),\
-                       np.std([np.mean(data[2][3][5],axis=0)[4],np.mean(data[4][3][5],axis=0)[4],np.mean(data[6][3][5],axis=0)[4],\
-                                 np.mean(data[8][3][5],axis=0)[4],np.mean(data[11][3][5],axis=0)[4]]),\
-                       np.std([np.mean(data[2][4][5],axis=0)[4],np.mean(data[4][4][5],axis=0)[4],np.mean(data[6][4][5],axis=0)[4],\
-                                 np.mean(data[8][4][5],axis=0)[4],np.mean(data[11][4][5],axis=0)[4]]),\
-                       np.std([np.mean(data[2][5][5],axis=0)[4],np.mean(data[4][5][5],axis=0)[4],np.mean(data[6][5][5],axis=0)[4],\
-                                 np.mean(data[8][5][5],axis=0)[4],np.mean(data[11][5][5],axis=0)[4]])])
-stdvel4000back = np.array([np.std([np.mean(data[5][0][5],axis=0)[4],np.mean(data[9][0][5],axis=0)[4],np.mean(data[12][0][5],axis=0)[4]]),\
-                       np.std([np.mean(data[5][1][5],axis=0)[4],np.mean(data[9][1][5],axis=0)[4],np.mean(data[12][1][5],axis=0)[4]]),\
-                       np.std([np.mean(data[5][2][5],axis=0)[4],np.mean(data[9][2][5],axis=0)[4],np.mean(data[12][2][5],axis=0)[4]]),\
-                       np.std([np.mean(data[5][3][5],axis=0)[4],np.mean(data[9][3][5],axis=0)[4],np.mean(data[12][3][5],axis=0)[4]])])
-
-meanvel800topp = np.array([np.mean([np.mean(data[0][0][2],axis=0)[4],np.mean(data[3][0][2],axis=0)[4],np.mean(data[10][0][2],axis=0)[4],\
-                                    np.mean(data[13][0][2],axis=0)[4],np.mean(data[14][0][2],axis=0)[4],np.mean(data[15][0][2],axis=0)[4],np.mean(data[16][0][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][1][2],axis=0)[4],np.mean(data[3][1][2],axis=0)[4],np.mean(data[10][1][2],axis=0)[4],\
-                                    np.mean(data[13][1][2],axis=0)[4],np.mean(data[14][1][2],axis=0)[4],np.mean(data[15][1][2],axis=0)[4],np.mean(data[16][1][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][2][2],axis=0)[4],np.mean(data[3][2][2],axis=0)[4],np.mean(data[10][2][2],axis=0)[4],\
-                                    np.mean(data[13][2][2],axis=0)[4],np.mean(data[14][2][2],axis=0)[4],np.mean(data[15][2][2],axis=0)[4],np.mean(data[16][2][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][3][2],axis=0)[4],np.mean(data[3][3][2],axis=0)[4],np.mean(data[10][3][2],axis=0)[4],\
-                                    np.mean(data[13][3][2],axis=0)[4],np.mean(data[14][3][2],axis=0)[4],np.mean(data[15][3][2],axis=0)[4],np.mean(data[16][3][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][4][2],axis=0)[4],np.mean(data[3][4][2],axis=0)[4],np.mean(data[10][4][2],axis=0)[4],\
-                                    np.mean(data[13][4][2],axis=0)[4],np.mean(data[14][4][2],axis=0)[4],np.mean(data[15][4][2],axis=0)[4],np.mean(data[16][4][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][5][2],axis=0)[4],np.mean(data[3][5][2],axis=0)[4],np.mean(data[10][5][2],axis=0)[4],\
-                                    np.mean(data[13][5][2],axis=0)[4],np.mean(data[14][5][2],axis=0)[4],np.mean(data[15][5][2],axis=0)[4],np.mean(data[16][5][2],axis=0)[4]])])
-meanvel1600topp = np.array([np.mean([np.mean(data[2][0][2],axis=0)[4],np.mean(data[4][0][2],axis=0)[4],np.mean(data[6][0][2],axis=0)[4],\
-                                 np.mean(data[8][0][2],axis=0)[4],np.mean(data[11][0][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][1][2],axis=0)[4],np.mean(data[4][1][2],axis=0)[4],np.mean(data[6][1][2],axis=0)[4],\
-                                 np.mean(data[8][1][2],axis=0)[4],np.mean(data[11][1][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][2][2],axis=0)[4],np.mean(data[4][2][2],axis=0)[4],np.mean(data[6][2][2],axis=0)[4],\
-                                 np.mean(data[8][2][2],axis=0)[4],np.mean(data[11][2][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][3][2],axis=0)[4],np.mean(data[4][3][2],axis=0)[4],np.mean(data[6][3][2],axis=0)[4],\
-                                 np.mean(data[8][3][2],axis=0)[4],np.mean(data[11][3][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][4][2],axis=0)[4],np.mean(data[4][4][2],axis=0)[4],np.mean(data[6][4][2],axis=0)[4],\
-                                 np.mean(data[8][4][2],axis=0)[4],np.mean(data[11][4][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][5][2],axis=0)[4],np.mean(data[4][5][2],axis=0)[4],np.mean(data[6][5][2],axis=0)[4],\
-                                 np.mean(data[8][5][2],axis=0)[4],np.mean(data[11][5][2],axis=0)[4]])])
-meanvel4000topp = np.array([np.mean([np.mean(data[5][0][2],axis=0)[4],np.mean(data[9][0][2],axis=0)[4],np.mean(data[12][0][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][1][2],axis=0)[4],np.mean(data[9][1][2],axis=0)[4],np.mean(data[12][1][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][2][2],axis=0)[4],np.mean(data[9][2][2],axis=0)[4],np.mean(data[12][2][2],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][3][2],axis=0)[4],np.mean(data[9][3][2],axis=0)[4],np.mean(data[12][3][2],axis=0)[4]])])
-
-stdvel800topp = np.array([np.std([np.mean(data[0][0][2],axis=0)[4],np.mean(data[3][0][2],axis=0)[4],np.mean(data[10][0][2],axis=0)[4],\
-                                    np.mean(data[13][0][2],axis=0)[4],np.mean(data[14][0][2],axis=0)[4],np.mean(data[15][0][2],axis=0)[4],np.mean(data[16][0][2],axis=0)[4]]),\
-                       np.std([np.mean(data[0][1][2],axis=0)[4],np.mean(data[3][1][2],axis=0)[4],np.mean(data[10][1][2],axis=0)[4],\
-                                    np.mean(data[13][1][2],axis=0)[4],np.mean(data[14][1][2],axis=0)[4],np.mean(data[15][1][2],axis=0)[4],np.mean(data[16][1][2],axis=0)[4]]),\
-                       np.std([np.mean(data[0][2][2],axis=0)[4],np.mean(data[3][2][2],axis=0)[4],np.mean(data[10][2][2],axis=0)[4],\
-                                    np.mean(data[13][2][2],axis=0)[4],np.mean(data[14][2][2],axis=0)[4],np.mean(data[15][2][2],axis=0)[4],np.mean(data[16][2][2],axis=0)[4]]),\
-                       np.std([np.mean(data[0][3][2],axis=0)[4],np.mean(data[3][3][2],axis=0)[4],np.mean(data[10][3][2],axis=0)[4],\
-                                    np.mean(data[13][3][2],axis=0)[4],np.mean(data[14][3][2],axis=0)[4],np.mean(data[15][3][2],axis=0)[4],np.mean(data[16][3][2],axis=0)[4]]),\
-                       np.std([np.mean(data[0][4][2],axis=0)[4],np.mean(data[3][4][2],axis=0)[4],np.mean(data[10][4][2],axis=0)[4],\
-                                    np.mean(data[13][4][2],axis=0)[4],np.mean(data[14][4][2],axis=0)[4],np.mean(data[15][4][2],axis=0)[4],np.mean(data[16][4][2],axis=0)[4]]),\
-                       np.std([np.mean(data[0][5][2],axis=0)[4],np.mean(data[3][5][2],axis=0)[4],np.mean(data[10][5][2],axis=0)[4],\
-                                    np.mean(data[13][5][2],axis=0)[4],np.mean(data[14][5][2],axis=0)[4],np.mean(data[15][5][2],axis=0)[4],np.mean(data[16][5][2],axis=0)[4]])])
-stdvel1600topp = np.array([np.std([np.mean(data[2][0][2],axis=0)[4],np.mean(data[4][0][2],axis=0)[4],np.mean(data[6][0][2],axis=0)[4],\
-                                 np.mean(data[8][0][2],axis=0)[4],np.mean(data[11][0][2],axis=0)[4]]),\
-                       np.std([np.mean(data[2][1][2],axis=0)[4],np.mean(data[4][1][2],axis=0)[4],np.mean(data[6][1][2],axis=0)[4],\
-                                 np.mean(data[8][1][2],axis=0)[4],np.mean(data[11][1][2],axis=0)[4]]),\
-                       np.std([np.mean(data[2][2][2],axis=0)[4],np.mean(data[4][2][2],axis=0)[4],np.mean(data[6][2][2],axis=0)[4],\
-                                 np.mean(data[8][2][2],axis=0)[4],np.mean(data[11][2][2],axis=0)[4]]),\
-                       np.std([np.mean(data[2][3][2],axis=0)[4],np.mean(data[4][3][2],axis=0)[4],np.mean(data[6][3][2],axis=0)[4],\
-                                 np.mean(data[8][3][2],axis=0)[4],np.mean(data[11][3][2],axis=0)[4]]),\
-                       np.std([np.mean(data[2][4][2],axis=0)[4],np.mean(data[4][4][2],axis=0)[4],np.mean(data[6][4][2],axis=0)[4],\
-                                 np.mean(data[8][4][2],axis=0)[4],np.mean(data[11][4][2],axis=0)[4]]),\
-                       np.std([np.mean(data[2][5][2],axis=0)[4],np.mean(data[4][5][2],axis=0)[4],np.mean(data[6][5][2],axis=0)[4],\
-                                 np.mean(data[8][5][2],axis=0)[4],np.mean(data[11][5][2],axis=0)[4]])])
-stdvel4000topp = np.array([np.std([np.mean(data[5][0][2],axis=0)[4],np.mean(data[9][0][2],axis=0)[4],np.mean(data[12][0][2],axis=0)[4]]),\
-                       np.std([np.mean(data[5][1][2],axis=0)[4],np.mean(data[9][1][2],axis=0)[4],np.mean(data[12][1][2],axis=0)[4]]),\
-                       np.std([np.mean(data[5][2][2],axis=0)[4],np.mean(data[9][2][2],axis=0)[4],np.mean(data[12][2][2],axis=0)[4]]),\
-                       np.std([np.mean(data[5][3][2],axis=0)[4],np.mean(data[9][3][2],axis=0)[4],np.mean(data[12][3][2],axis=0)[4]])])
-
-meanvel800topf = np.array([np.mean([np.mean(data[0][0][3],axis=0)[4],np.mean(data[3][0][3],axis=0)[4],np.mean(data[10][0][3],axis=0)[4],\
-                                    np.mean(data[13][0][3],axis=0)[4],np.mean(data[14][0][3],axis=0)[4],np.mean(data[15][0][3],axis=0)[4],np.mean(data[16][0][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][1][3],axis=0)[4],np.mean(data[3][1][3],axis=0)[4],np.mean(data[10][1][3],axis=0)[4],\
-                                    np.mean(data[13][1][3],axis=0)[4],np.mean(data[14][1][3],axis=0)[4],np.mean(data[15][1][3],axis=0)[4],np.mean(data[16][1][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][2][3],axis=0)[4],np.mean(data[3][2][3],axis=0)[4],np.mean(data[10][2][3],axis=0)[4],\
-                                    np.mean(data[13][2][3],axis=0)[4],np.mean(data[14][2][3],axis=0)[4],np.mean(data[15][2][3],axis=0)[4],np.mean(data[16][2][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][3][3],axis=0)[4],np.mean(data[3][3][3],axis=0)[4],np.mean(data[10][3][3],axis=0)[4],\
-                                    np.mean(data[13][3][3],axis=0)[4],np.mean(data[14][3][3],axis=0)[4],np.mean(data[15][3][3],axis=0)[4],np.mean(data[16][3][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][4][3],axis=0)[4],np.mean(data[3][4][3],axis=0)[4],np.mean(data[10][4][3],axis=0)[4],\
-                                    np.mean(data[13][4][3],axis=0)[4],np.mean(data[14][4][3],axis=0)[4],np.mean(data[15][4][3],axis=0)[4],np.mean(data[16][4][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][5][3],axis=0)[4],np.mean(data[3][5][3],axis=0)[4],np.mean(data[10][5][3],axis=0)[4],\
-                                    np.mean(data[13][5][3],axis=0)[4],np.mean(data[14][5][3],axis=0)[4],np.mean(data[15][5][3],axis=0)[4],np.mean(data[16][5][3],axis=0)[4]])])
-meanvel1600topf = np.array([np.mean([np.mean(data[2][0][3],axis=0)[4],np.mean(data[4][0][3],axis=0)[4],np.mean(data[6][0][3],axis=0)[4],\
-                                 np.mean(data[8][0][3],axis=0)[4],np.mean(data[11][0][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][1][3],axis=0)[4],np.mean(data[4][1][3],axis=0)[4],np.mean(data[6][1][3],axis=0)[4],\
-                                 np.mean(data[8][1][3],axis=0)[4],np.mean(data[11][1][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][2][3],axis=0)[4],np.mean(data[4][2][3],axis=0)[4],np.mean(data[6][2][3],axis=0)[4],\
-                                 np.mean(data[8][2][3],axis=0)[4],np.mean(data[11][2][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][3][3],axis=0)[4],np.mean(data[4][3][3],axis=0)[4],np.mean(data[6][3][3],axis=0)[4],\
-                                 np.mean(data[8][3][3],axis=0)[4],np.mean(data[11][3][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][4][3],axis=0)[4],np.mean(data[4][4][3],axis=0)[4],np.mean(data[6][4][3],axis=0)[4],\
-                                 np.mean(data[8][4][3],axis=0)[4],np.mean(data[11][4][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][5][3],axis=0)[4],np.mean(data[4][5][3],axis=0)[4],np.mean(data[6][5][3],axis=0)[4],\
-                                 np.mean(data[8][5][3],axis=0)[4],np.mean(data[11][5][3],axis=0)[4]])])
-meanvel4000topf = np.array([np.mean([np.mean(data[5][0][3],axis=0)[4],np.mean(data[9][0][3],axis=0)[4],np.mean(data[12][0][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][1][3],axis=0)[4],np.mean(data[9][1][3],axis=0)[4],np.mean(data[12][1][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][2][3],axis=0)[4],np.mean(data[9][2][3],axis=0)[4],np.mean(data[12][2][3],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][3][3],axis=0)[4],np.mean(data[9][3][3],axis=0)[4],np.mean(data[12][3][3],axis=0)[4]])])
-
-stdvel800topf = np.array([np.std([np.mean(data[0][0][3],axis=0)[4],np.mean(data[3][0][3],axis=0)[4],np.mean(data[10][0][3],axis=0)[4],\
-                                    np.mean(data[13][0][3],axis=0)[4],np.mean(data[14][0][3],axis=0)[4],np.mean(data[15][0][3],axis=0)[4],np.mean(data[16][0][3],axis=0)[4]]),\
-                       np.std([np.mean(data[0][1][3],axis=0)[4],np.mean(data[3][1][3],axis=0)[4],np.mean(data[10][1][3],axis=0)[4],\
-                                    np.mean(data[13][1][3],axis=0)[4],np.mean(data[14][1][3],axis=0)[4],np.mean(data[15][1][3],axis=0)[4],np.mean(data[16][1][3],axis=0)[4]]),\
-                       np.std([np.mean(data[0][2][3],axis=0)[4],np.mean(data[3][2][3],axis=0)[4],np.mean(data[10][2][3],axis=0)[4],\
-                                    np.mean(data[13][2][3],axis=0)[4],np.mean(data[14][2][3],axis=0)[4],np.mean(data[15][2][3],axis=0)[4],np.mean(data[16][2][3],axis=0)[4]]),\
-                       np.std([np.mean(data[0][3][3],axis=0)[4],np.mean(data[3][3][3],axis=0)[4],np.mean(data[10][3][3],axis=0)[4],\
-                                    np.mean(data[13][3][3],axis=0)[4],np.mean(data[14][3][3],axis=0)[4],np.mean(data[15][3][3],axis=0)[4],np.mean(data[16][3][3],axis=0)[4]]),\
-                       np.std([np.mean(data[0][4][3],axis=0)[4],np.mean(data[3][4][3],axis=0)[4],np.mean(data[10][4][3],axis=0)[4],\
-                                    np.mean(data[13][4][3],axis=0)[4],np.mean(data[14][4][3],axis=0)[4],np.mean(data[15][4][3],axis=0)[4],np.mean(data[16][4][3],axis=0)[4]]),\
-                       np.std([np.mean(data[0][5][3],axis=0)[4],np.mean(data[3][5][3],axis=0)[4],np.mean(data[10][5][3],axis=0)[4],\
-                                    np.mean(data[13][5][3],axis=0)[4],np.mean(data[14][5][3],axis=0)[4],np.mean(data[15][5][3],axis=0)[4],np.mean(data[16][5][3],axis=0)[4]])])
-stdvel1600topf = np.array([np.std([np.mean(data[2][0][3],axis=0)[4],np.mean(data[4][0][3],axis=0)[4],np.mean(data[6][0][3],axis=0)[4],\
-                                 np.mean(data[8][0][3],axis=0)[4],np.mean(data[11][0][3],axis=0)[4]]),\
-                       np.std([np.mean(data[2][1][3],axis=0)[4],np.mean(data[4][1][3],axis=0)[4],np.mean(data[6][1][3],axis=0)[4],\
-                                 np.mean(data[8][1][3],axis=0)[4],np.mean(data[11][1][3],axis=0)[4]]),\
-                       np.std([np.mean(data[2][2][3],axis=0)[4],np.mean(data[4][2][3],axis=0)[4],np.mean(data[6][2][3],axis=0)[4],\
-                                 np.mean(data[8][2][3],axis=0)[4],np.mean(data[11][2][3],axis=0)[4]]),\
-                       np.std([np.mean(data[2][3][3],axis=0)[4],np.mean(data[4][3][3],axis=0)[4],np.mean(data[6][3][3],axis=0)[4],\
-                                 np.mean(data[8][3][3],axis=0)[4],np.mean(data[11][3][3],axis=0)[4]]),\
-                       np.std([np.mean(data[2][4][3],axis=0)[4],np.mean(data[4][4][3],axis=0)[4],np.mean(data[6][4][3],axis=0)[4],\
-                                 np.mean(data[8][4][3],axis=0)[4],np.mean(data[11][4][3],axis=0)[4]]),\
-                       np.std([np.mean(data[2][5][3],axis=0)[4],np.mean(data[4][5][3],axis=0)[4],np.mean(data[6][5][3],axis=0)[4],\
-                                 np.mean(data[8][5][3],axis=0)[4],np.mean(data[11][5][3],axis=0)[4]])])
-stdvel4000topf = np.array([np.std([np.mean(data[5][0][3],axis=0)[4],np.mean(data[9][0][3],axis=0)[4],np.mean(data[12][0][3],axis=0)[4]]),\
-                       np.std([np.mean(data[5][1][3],axis=0)[4],np.mean(data[9][1][3],axis=0)[4],np.mean(data[12][1][3],axis=0)[4]]),\
-                       np.std([np.mean(data[5][2][3],axis=0)[4],np.mean(data[9][2][3],axis=0)[4],np.mean(data[12][2][3],axis=0)[4]]),\
-                       np.std([np.mean(data[5][3][3],axis=0)[4],np.mean(data[9][3][3],axis=0)[4],np.mean(data[12][3][3],axis=0)[4]])])
-
-meanvel800surface = np.array([np.mean([np.mean(data[0][0][1],axis=0)[4],np.mean(data[3][0][1],axis=0)[4],np.mean(data[10][0][1],axis=0)[4],\
-                                    np.mean(data[13][0][1],axis=0)[4],np.mean(data[14][0][1],axis=0)[4],np.mean(data[15][0][1],axis=0)[4],np.mean(data[16][0][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][1][1],axis=0)[4],np.mean(data[3][1][1],axis=0)[4],np.mean(data[10][1][1],axis=0)[4],\
-                                    np.mean(data[13][1][1],axis=0)[4],np.mean(data[14][1][1],axis=0)[4],np.mean(data[15][1][1],axis=0)[4],np.mean(data[16][1][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][2][1],axis=0)[4],np.mean(data[3][2][1],axis=0)[4],np.mean(data[10][2][1],axis=0)[4],\
-                                    np.mean(data[13][2][1],axis=0)[4],np.mean(data[14][2][1],axis=0)[4],np.mean(data[15][2][1],axis=0)[4],np.mean(data[16][2][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][3][1],axis=0)[4],np.mean(data[3][3][1],axis=0)[4],np.mean(data[10][3][1],axis=0)[4],\
-                                    np.mean(data[13][3][1],axis=0)[4],np.mean(data[14][3][1],axis=0)[4],np.mean(data[15][3][1],axis=0)[4],np.mean(data[16][3][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][4][1],axis=0)[4],np.mean(data[3][4][1],axis=0)[4],np.mean(data[10][4][1],axis=0)[4],\
-                                    np.mean(data[13][4][1],axis=0)[4],np.mean(data[14][4][1],axis=0)[4],np.mean(data[15][4][1],axis=0)[4],np.mean(data[16][4][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[0][5][1],axis=0)[4],np.mean(data[3][5][1],axis=0)[4],np.mean(data[10][5][1],axis=0)[4],\
-                                    np.mean(data[13][5][1],axis=0)[4],np.mean(data[14][5][1],axis=0)[4],np.mean(data[15][5][1],axis=0)[4],np.mean(data[16][5][1],axis=0)[4]])])
-meanvel1600surface = np.array([np.mean([np.mean(data[2][0][1],axis=0)[4],np.mean(data[4][0][1],axis=0)[4],np.mean(data[6][0][1],axis=0)[4],\
-                                 np.mean(data[8][0][1],axis=0)[4],np.mean(data[11][0][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][1][1],axis=0)[4],np.mean(data[4][1][1],axis=0)[4],np.mean(data[6][1][1],axis=0)[4],\
-                                 np.mean(data[8][1][1],axis=0)[4],np.mean(data[11][1][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][2][1],axis=0)[4],np.mean(data[4][2][1],axis=0)[4],np.mean(data[6][2][1],axis=0)[4],\
-                                 np.mean(data[8][2][1],axis=0)[4],np.mean(data[11][2][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][3][1],axis=0)[4],np.mean(data[4][3][1],axis=0)[4],np.mean(data[6][3][1],axis=0)[4],\
-                                 np.mean(data[8][3][1],axis=0)[4],np.mean(data[11][3][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][4][1],axis=0)[4],np.mean(data[4][4][1],axis=0)[4],np.mean(data[6][4][1],axis=0)[4],\
-                                 np.mean(data[8][4][1],axis=0)[4],np.mean(data[11][4][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[2][5][1],axis=0)[4],np.mean(data[4][5][1],axis=0)[4],np.mean(data[6][5][1],axis=0)[4],\
-                                 np.mean(data[8][5][1],axis=0)[4],np.mean(data[11][5][1],axis=0)[4]])])
-meanvel4000surface = np.array([np.mean([np.mean(data[5][0][1],axis=0)[4],np.mean(data[9][0][1],axis=0)[4],np.mean(data[12][0][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][1][1],axis=0)[4],np.mean(data[9][1][1],axis=0)[4],np.mean(data[12][1][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][2][1],axis=0)[4],np.mean(data[9][2][1],axis=0)[4],np.mean(data[12][2][1],axis=0)[4]]),\
-                       np.mean([np.mean(data[5][3][1],axis=0)[4],np.mean(data[9][3][1],axis=0)[4],np.mean(data[12][3][1],axis=0)[4]])])
-
-stdvel800surface = np.array([np.std([np.mean(data[0][0][1],axis=0)[4],np.mean(data[3][0][1],axis=0)[4],np.mean(data[10][0][1],axis=0)[4],\
-                                    np.mean(data[13][0][1],axis=0)[4],np.mean(data[14][0][1],axis=0)[4],np.mean(data[15][0][1],axis=0)[4],np.mean(data[16][0][1],axis=0)[4]]),\
-                       np.std([np.mean(data[0][1][1],axis=0)[4],np.mean(data[3][1][1],axis=0)[4],np.mean(data[10][1][1],axis=0)[4],\
-                                    np.mean(data[13][1][1],axis=0)[4],np.mean(data[14][1][1],axis=0)[4],np.mean(data[15][1][1],axis=0)[4],np.mean(data[16][1][1],axis=0)[4]]),\
-                       np.std([np.mean(data[0][2][1],axis=0)[4],np.mean(data[3][2][1],axis=0)[4],np.mean(data[10][2][1],axis=0)[4],\
-                                    np.mean(data[13][2][1],axis=0)[4],np.mean(data[14][2][1],axis=0)[4],np.mean(data[15][2][1],axis=0)[4],np.mean(data[16][2][1],axis=0)[4]]),\
-                       np.std([np.mean(data[0][3][1],axis=0)[4],np.mean(data[3][3][1],axis=0)[4],np.mean(data[10][3][1],axis=0)[4],\
-                                    np.mean(data[13][3][1],axis=0)[4],np.mean(data[14][3][1],axis=0)[4],np.mean(data[15][3][1],axis=0)[4],np.mean(data[16][3][1],axis=0)[4]]),\
-                       np.std([np.mean(data[0][4][1],axis=0)[4],np.mean(data[3][4][1],axis=0)[4],np.mean(data[10][4][1],axis=0)[4],\
-                                    np.mean(data[13][4][1],axis=0)[4],np.mean(data[14][4][1],axis=0)[4],np.mean(data[15][4][1],axis=0)[4],np.mean(data[16][4][1],axis=0)[4]]),\
-                       np.std([np.mean(data[0][5][1],axis=0)[4],np.mean(data[3][5][1],axis=0)[4],np.mean(data[10][5][1],axis=0)[4],\
-                                    np.mean(data[13][5][1],axis=0)[4],np.mean(data[14][5][1],axis=0)[4],np.mean(data[15][5][1],axis=0)[4],np.mean(data[16][5][1],axis=0)[4]])])
-stdvel1600surface = np.array([np.std([np.mean(data[2][0][1],axis=0)[4],np.mean(data[4][0][1],axis=0)[4],np.mean(data[6][0][1],axis=0)[4],\
-                                 np.mean(data[8][0][1],axis=0)[4],np.mean(data[11][0][1],axis=0)[4]]),\
-                       np.std([np.mean(data[2][1][1],axis=0)[4],np.mean(data[4][1][1],axis=0)[4],np.mean(data[6][1][1],axis=0)[4],\
-                                 np.mean(data[8][1][1],axis=0)[4],np.mean(data[11][1][1],axis=0)[4]]),\
-                       np.std([np.mean(data[2][2][1],axis=0)[4],np.mean(data[4][2][1],axis=0)[4],np.mean(data[6][2][1],axis=0)[4],\
-                                 np.mean(data[8][2][1],axis=0)[4],np.mean(data[11][2][1],axis=0)[4]]),\
-                       np.std([np.mean(data[2][3][1],axis=0)[4],np.mean(data[4][3][1],axis=0)[4],np.mean(data[6][3][1],axis=0)[4],\
-                                 np.mean(data[8][3][1],axis=0)[4],np.mean(data[11][3][1],axis=0)[4]]),\
-                       np.std([np.mean(data[2][4][1],axis=0)[4],np.mean(data[4][4][1],axis=0)[4],np.mean(data[6][4][1],axis=0)[4],\
-                                 np.mean(data[8][4][1],axis=0)[4],np.mean(data[11][4][1],axis=0)[4]]),\
-                       np.std([np.mean(data[2][5][1],axis=0)[4],np.mean(data[4][5][1],axis=0)[4],np.mean(data[6][5][1],axis=0)[4],\
-                                 np.mean(data[8][5][1],axis=0)[4],np.mean(data[11][5][1],axis=0)[4]])])
-stdvel4000surface = np.array([np.std([np.mean(data[5][0][1],axis=0)[4],np.mean(data[9][0][1],axis=0)[4],np.mean(data[12][0][1],axis=0)[4]]),\
-                       np.std([np.mean(data[5][1][1],axis=0)[4],np.mean(data[9][1][1],axis=0)[4],np.mean(data[12][1][1],axis=0)[4]]),\
-                       np.std([np.mean(data[5][2][1],axis=0)[4],np.mean(data[9][2][1],axis=0)[4],np.mean(data[12][2][1],axis=0)[4]]),\
-                       np.std([np.mean(data[5][3][1],axis=0)[4],np.mean(data[9][3][1],axis=0)[4],np.mean(data[12][3][1],axis=0)[4]])])
+stdrt800surface = np.array([np.std([1/np.mean(data[0][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][0][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][0][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[0][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][1][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][1][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[0][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][2][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][2][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[0][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][3][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][3][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[0][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][4][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][4][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[0][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[3][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[10][5][1],axis=0)[4]*45*1e-6*1e3,\
+                                    np.mean(data[13][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[14][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[15][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[16][5][1],axis=0)[4]*45*1e-6*1e3])])
+stdrt1600surface = np.array([np.std([1/np.mean(data[2][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][0][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][0][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[2][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][1][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][1][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[2][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][2][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][2][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[2][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][3][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][3][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[2][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][4][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][4][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][4][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[2][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[4][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[6][5][1],axis=0)[4]*45*1e-6*1e3,\
+                                 np.mean(data[8][5][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[11][5][1],axis=0)[4]*45*1e-6*1e3])])
+stdrt4000surface = np.array([np.std([1/np.mean(data[5][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[9][0][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[12][0][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[5][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[9][1][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[12][1][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[5][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[9][2][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[12][2][1],axis=0)[4]*45*1e-6*1e3]),\
+                       np.std([1/np.mean(data[5][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[9][3][1],axis=0)[4]*45*1e-6*1e3,1/np.mean(data[12][3][1],axis=0)[4]*45*1e-6*1e3])])
 
 meanvel800volume = np.array([np.mean([np.mean(data[0][0][0],axis=0)[3],np.mean(data[3][0][0],axis=0)[3],np.mean(data[10][0][0],axis=0)[3],\
                                     np.mean(data[13][0][0],axis=0)[3],np.mean(data[14][0][0],axis=0)[3],np.mean(data[15][0][0],axis=0)[3],np.mean(data[16][0][0],axis=0)[3]]),\
@@ -1052,25 +356,823 @@ color6 = 'darkorange'
 color7 = 'green'
 
 width12 = 0.7
-width34 = 0.6
+width34 = 0.4
 
-# ### Legend
+
+## Residence time
+fig, ax = plt.subplots()
+ax.bar(time3-width34, meanrt800surface, yerr=stdrt800surface, alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width34)
+ax.bar(time3, meanrt1600surface, yerr=stdrt1600surface, alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width34)
+ax.bar(time4+width34, meanrt4000surface, yerr=stdrt4000surface, alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width34)
+
+rtThreshold = 1
+plt.axhline(rtThreshold, color='red', ls='--', linewidth=3)
+
+ax.set_ylabel('local binding available time $[ms]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Average local binding available time on surface', fontsize=fontsize)
+
+plt.xticks(time3, labels=labels)
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
+
+plt.legend(loc=2,fontsize=12)
+plt.grid(alpha=0.3)
+
+plt.savefig('rtS.png',bbox_inches='tight')
+plt.show()
+
+
+
+## Shear rate
+fig, ax = plt.subplots()
+ax.bar(time3-width34, meanshear800surface, yerr=stdshear800surface, alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width34)
+ax.bar(time3, meanshear1600surface, yerr=stdshear1600surface, alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width34)
+ax.bar(time4+width34, meanshear4000surface, yerr=stdshear4000surface, alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width34)
+
+srThreshold = 2500
+plt.axhline(srThreshold, color='red', ls='--', linewidth=3)
+
+ax.set_ylabel('shear rate $[1/s]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Average shear rate on surface', fontsize=fontsize)
+
+plt.xticks(time3, labels=labels)
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
+
+plt.legend(loc=1,fontsize=12)
+plt.grid(alpha=0.3)
+
+plt.savefig('shearS.png',bbox_inches='tight')
+plt.show()
+
+
+## rate of elongation surface
+fig, ax = plt.subplots()
+ax.bar(time3-width34, meanelon800surface, yerr=stdelon800surface, alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width34)
+ax.bar(time3, meanelon1600surface, yerr=stdelon1600surface, alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width34)
+ax.bar(time4+width34, meanelon4000surface, yerr=stdelon4000surface, alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width34)
+
+erThreshold = 450
+plt.axhline(erThreshold, color='red', ls='--', linewidth=3)
+
+ax.set_ylabel('rate of elongation $[1/s]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Average rate of elongation on surface', fontsize=fontsize)
+
+plt.xticks(time3, labels=labels)
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
+
+plt.legend(loc=1,fontsize=12)
+plt.grid(alpha=0.3)
+
+plt.savefig('elonS.png',bbox_inches='tight')
+plt.show()
+
+
+
+####-----------------------------not used---------------------------------####
+# ### velocity
 # fig, ax = plt.subplots()
-# marker800 = mlines.Line2D([], [], color='k', marker='^', linestyle='None', markersize=12, label='800 $1/s$')
-# marker1600 = mlines.Line2D([], [], color='k', marker='o', linestyle='None', markersize=12, label='1600 $1/s$')
-# marker4000 = mlines.Line2D([], [], color='k', marker='s', linestyle='None', markersize=12, label='4000 $1/s$')
-# linetop13 = mlines.Line2D([], [], color=color5, marker='None', linestyle='-', linewidth=3, label='top 1/3')
-# linetop2 = mlines.Line2D([], [], color=color4, marker='None', linestyle='--', linewidth=3, label='top 2 $\mu m$')
-# ax.legend(
-#     handles=[marker800, marker1600, marker4000, linetop13, linetop2],
-#     loc="lower center", # "upper center" puts it below the line
-#     ncol=5,
-#     bbox_to_anchor=(0.5, 0.88),
-#     bbox_transform=fig.transFigure,
-#     fontsize=20
-# );
-# plt.savefig('legend.png',bbox_inches='tight')
+# ax.plot(time[0:6],meanvel800volume,'--^', color=color1, markersize=8, label='800 1/s')
+# ax.fill_between(time[0:6],meanvel800volume-stdvel800volume, meanvel800volume+stdvel800volume, color=color1, alpha=0.3)
+# ax.plot(time[0:6],meanvel1600volume,'--o', color=color2, markersize=8, label='1600 1/s')
+# ax.fill_between(time[0:6],meanvel1600volume-stdvel1600volume, meanvel1600volume+stdvel1600volume, color=color2, alpha=0.3)
+# ax.plot(time[0:4],meanvel4000volume,'--s', color=color3, markersize=8, label='4000 1/s')
+# ax.fill_between(time[0:4],meanvel4000volume-stdvel4000volume, meanvel4000volume+stdvel4000volume, color=color3, alpha=0.3)
+
+# ax.set_ylabel('velocity $[mm/s]$',fontsize=fontsize)
+# ax.set_xlabel('time $[min]$',fontsize=fontsize)
+# plt.title('Average velocity', fontsize=fontsize)
+
+# # ax.set_ylim(0,5)
+
+# ax.tick_params(axis='x', labelsize= ticksize)
+# ax.tick_params(axis='y', labelsize= ticksize)
+
+# plt.legend(loc=1,fontsize=12)
+# plt.grid(alpha=0.3)
+
+# plt.savefig('vel.png',bbox_inches='tight')
 # plt.show()
+
+# ## velocity
+# fig, ax = plt.subplots()
+# ax.bar(time3-width34, meanvel800volume, yerr=stdvel800volume, alpha=0.9, color=color1, ecolor='black', capsize=2, label='800 1/s', width=width34)
+# ax.bar(time3, meanvel1600volume, yerr=stdvel1600volume, alpha=0.9, color=color2, ecolor='black', capsize=2, label='1600 1/s', width=width34)
+# ax.bar(time4+width34, meanvel4000volume, yerr=stdvel4000volume, alpha=0.9, color=color3, ecolor='black', capsize=2, label='4000 1/s', width=width34)
+
+# ax.set_ylabel('velocity $[mm/s]$',fontsize=fontsize)
+# ax.set_xlabel('time $[min]$',fontsize=fontsize)
+# plt.title('Average velocity', fontsize=fontsize)
+
+# ax.tick_params(axis='x', labelsize= ticksize)
+# ax.tick_params(axis='y', labelsize= ticksize)
+
+# plt.xticks(time3, labels=labels)
+# plt.legend(loc=1,fontsize=12)
+# plt.grid(alpha=0.3)
+
+# plt.savefig('velD.png',bbox_inches='tight')
+# plt.show()
+
+# meanvel800face = np.array([np.mean([np.mean(data[0][0][4],axis=0)[4],np.mean(data[3][0][4],axis=0)[4],np.mean(data[10][0][4],axis=0)[4],\
+#                                     np.mean(data[13][0][4],axis=0)[4],np.mean(data[14][0][4],axis=0)[4],np.mean(data[15][0][4],axis=0)[4],np.mean(data[16][0][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][1][4],axis=0)[4],np.mean(data[3][1][4],axis=0)[4],np.mean(data[10][1][4],axis=0)[4],\
+#                                     np.mean(data[13][1][4],axis=0)[4],np.mean(data[14][1][4],axis=0)[4],np.mean(data[15][1][4],axis=0)[4],np.mean(data[16][1][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][2][4],axis=0)[4],np.mean(data[3][2][4],axis=0)[4],np.mean(data[10][2][4],axis=0)[4],\
+#                                     np.mean(data[13][2][4],axis=0)[4],np.mean(data[14][2][4],axis=0)[4],np.mean(data[15][2][4],axis=0)[4],np.mean(data[16][2][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][3][4],axis=0)[4],np.mean(data[3][3][4],axis=0)[4],np.mean(data[10][3][4],axis=0)[4],\
+#                                     np.mean(data[13][3][4],axis=0)[4],np.mean(data[14][3][4],axis=0)[4],np.mean(data[15][3][4],axis=0)[4],np.mean(data[16][3][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][4][4],axis=0)[4],np.mean(data[3][4][4],axis=0)[4],np.mean(data[10][4][4],axis=0)[4],\
+#                                     np.mean(data[13][4][4],axis=0)[4],np.mean(data[14][4][4],axis=0)[4],np.mean(data[15][4][4],axis=0)[4],np.mean(data[16][4][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][5][4],axis=0)[4],np.mean(data[3][5][4],axis=0)[4],np.mean(data[10][5][4],axis=0)[4],\
+#                                     np.mean(data[13][5][4],axis=0)[4],np.mean(data[14][5][4],axis=0)[4],np.mean(data[15][5][4],axis=0)[4],np.mean(data[16][5][4],axis=0)[4]])])
+# meanvel1600face = np.array([np.mean([np.mean(data[2][0][4],axis=0)[4],np.mean(data[4][0][4],axis=0)[4],np.mean(data[6][0][4],axis=0)[4],\
+#                                  np.mean(data[8][0][4],axis=0)[4],np.mean(data[11][0][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][1][4],axis=0)[4],np.mean(data[4][1][4],axis=0)[4],np.mean(data[6][1][4],axis=0)[4],\
+#                                  np.mean(data[8][1][4],axis=0)[4],np.mean(data[11][1][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][2][4],axis=0)[4],np.mean(data[4][2][4],axis=0)[4],np.mean(data[6][2][4],axis=0)[4],\
+#                                  np.mean(data[8][2][4],axis=0)[4],np.mean(data[11][2][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][3][4],axis=0)[4],np.mean(data[4][3][4],axis=0)[4],np.mean(data[6][3][4],axis=0)[4],\
+#                                  np.mean(data[8][3][4],axis=0)[4],np.mean(data[11][3][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][4][4],axis=0)[4],np.mean(data[4][4][4],axis=0)[4],np.mean(data[6][4][4],axis=0)[4],\
+#                                  np.mean(data[8][4][4],axis=0)[4],np.mean(data[11][4][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][5][4],axis=0)[4],np.mean(data[4][5][4],axis=0)[4],np.mean(data[6][5][4],axis=0)[4],\
+#                                  np.mean(data[8][5][4],axis=0)[4],np.mean(data[11][5][4],axis=0)[4]])])
+# meanvel4000face = np.array([np.mean([np.mean(data[5][0][4],axis=0)[4],np.mean(data[9][0][4],axis=0)[4],np.mean(data[12][0][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][1][4],axis=0)[4],np.mean(data[9][1][4],axis=0)[4],np.mean(data[12][1][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][2][4],axis=0)[4],np.mean(data[9][2][4],axis=0)[4],np.mean(data[12][2][4],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][3][4],axis=0)[4],np.mean(data[9][3][4],axis=0)[4],np.mean(data[12][3][4],axis=0)[4]])])
+
+# stdvel800face = np.array([np.std([np.mean(data[0][0][4],axis=0)[4],np.mean(data[3][0][4],axis=0)[4],np.mean(data[10][0][4],axis=0)[4],\
+#                                     np.mean(data[13][0][4],axis=0)[4],np.mean(data[14][0][4],axis=0)[4],np.mean(data[15][0][4],axis=0)[4],np.mean(data[16][0][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][1][4],axis=0)[4],np.mean(data[3][1][4],axis=0)[4],np.mean(data[10][1][4],axis=0)[4],\
+#                                     np.mean(data[13][1][4],axis=0)[4],np.mean(data[14][1][4],axis=0)[4],np.mean(data[15][1][4],axis=0)[4],np.mean(data[16][1][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][2][4],axis=0)[4],np.mean(data[3][2][4],axis=0)[4],np.mean(data[10][2][4],axis=0)[4],\
+#                                     np.mean(data[13][2][4],axis=0)[4],np.mean(data[14][2][4],axis=0)[4],np.mean(data[15][2][4],axis=0)[4],np.mean(data[16][2][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][3][4],axis=0)[4],np.mean(data[3][3][4],axis=0)[4],np.mean(data[10][3][4],axis=0)[4],\
+#                                     np.mean(data[13][3][4],axis=0)[4],np.mean(data[14][3][4],axis=0)[4],np.mean(data[15][3][4],axis=0)[4],np.mean(data[16][3][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][4][4],axis=0)[4],np.mean(data[3][4][4],axis=0)[4],np.mean(data[10][4][4],axis=0)[4],\
+#                                     np.mean(data[13][4][4],axis=0)[4],np.mean(data[14][4][4],axis=0)[4],np.mean(data[15][4][4],axis=0)[4],np.mean(data[16][4][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][5][4],axis=0)[4],np.mean(data[3][5][4],axis=0)[4],np.mean(data[10][5][4],axis=0)[4],\
+#                                     np.mean(data[13][5][4],axis=0)[4],np.mean(data[14][5][4],axis=0)[4],np.mean(data[15][5][4],axis=0)[4],np.mean(data[16][5][4],axis=0)[4]])])
+# stdvel1600face = np.array([np.std([np.mean(data[2][0][4],axis=0)[4],np.mean(data[4][0][4],axis=0)[4],np.mean(data[6][0][4],axis=0)[4],\
+#                                  np.mean(data[8][0][4],axis=0)[4],np.mean(data[11][0][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][1][4],axis=0)[4],np.mean(data[4][1][4],axis=0)[4],np.mean(data[6][1][4],axis=0)[4],\
+#                                  np.mean(data[8][1][4],axis=0)[4],np.mean(data[11][1][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][2][4],axis=0)[4],np.mean(data[4][2][4],axis=0)[4],np.mean(data[6][2][4],axis=0)[4],\
+#                                  np.mean(data[8][2][4],axis=0)[4],np.mean(data[11][2][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][3][4],axis=0)[4],np.mean(data[4][3][4],axis=0)[4],np.mean(data[6][3][4],axis=0)[4],\
+#                                  np.mean(data[8][3][4],axis=0)[4],np.mean(data[11][3][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][4][4],axis=0)[4],np.mean(data[4][4][4],axis=0)[4],np.mean(data[6][4][4],axis=0)[4],\
+#                                  np.mean(data[8][4][4],axis=0)[4],np.mean(data[11][4][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][5][4],axis=0)[4],np.mean(data[4][5][4],axis=0)[4],np.mean(data[6][5][4],axis=0)[4],\
+#                                  np.mean(data[8][5][4],axis=0)[4],np.mean(data[11][5][4],axis=0)[4]])])
+# stdvel4000face = np.array([np.std([np.mean(data[5][0][4],axis=0)[4],np.mean(data[9][0][4],axis=0)[4],np.mean(data[12][0][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][1][4],axis=0)[4],np.mean(data[9][1][4],axis=0)[4],np.mean(data[12][1][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][2][4],axis=0)[4],np.mean(data[9][2][4],axis=0)[4],np.mean(data[12][2][4],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][3][4],axis=0)[4],np.mean(data[9][3][4],axis=0)[4],np.mean(data[12][3][4],axis=0)[4]])])
+
+# meanvel800back = np.array([np.mean([np.mean(data[0][0][5],axis=0)[4],np.mean(data[3][0][5],axis=0)[4],np.mean(data[10][0][5],axis=0)[4],\
+#                                     np.mean(data[13][0][5],axis=0)[4],np.mean(data[14][0][5],axis=0)[4],np.mean(data[15][0][5],axis=0)[4],np.mean(data[16][0][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][1][5],axis=0)[4],np.mean(data[3][1][5],axis=0)[4],np.mean(data[10][1][5],axis=0)[4],\
+#                                     np.mean(data[13][1][5],axis=0)[4],np.mean(data[14][1][5],axis=0)[4],np.mean(data[15][1][5],axis=0)[4],np.mean(data[16][1][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][2][5],axis=0)[4],np.mean(data[3][2][5],axis=0)[4],np.mean(data[10][2][5],axis=0)[4],\
+#                                     np.mean(data[13][2][5],axis=0)[4],np.mean(data[14][2][5],axis=0)[4],np.mean(data[15][2][5],axis=0)[4],np.mean(data[16][2][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][3][5],axis=0)[4],np.mean(data[3][3][5],axis=0)[4],np.mean(data[10][3][5],axis=0)[4],\
+#                                     np.mean(data[13][3][5],axis=0)[4],np.mean(data[14][3][5],axis=0)[4],np.mean(data[15][3][5],axis=0)[4],np.mean(data[16][3][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][4][5],axis=0)[4],np.mean(data[3][4][5],axis=0)[4],np.mean(data[10][4][5],axis=0)[4],\
+#                                     np.mean(data[13][4][5],axis=0)[4],np.mean(data[14][4][5],axis=0)[4],np.mean(data[15][4][5],axis=0)[4],np.mean(data[16][4][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][5][5],axis=0)[4],np.mean(data[3][5][5],axis=0)[4],np.mean(data[10][5][5],axis=0)[4],\
+#                                     np.mean(data[13][5][5],axis=0)[4],np.mean(data[14][5][5],axis=0)[4],np.mean(data[15][5][5],axis=0)[4],np.mean(data[16][5][5],axis=0)[4]])])
+# meanvel1600back = np.array([np.mean([np.mean(data[2][0][5],axis=0)[4],np.mean(data[4][0][5],axis=0)[4],np.mean(data[6][0][5],axis=0)[4],\
+#                                  np.mean(data[8][0][5],axis=0)[4],np.mean(data[11][0][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][1][5],axis=0)[4],np.mean(data[4][1][5],axis=0)[4],np.mean(data[6][1][5],axis=0)[4],\
+#                                  np.mean(data[8][1][5],axis=0)[4],np.mean(data[11][1][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][2][5],axis=0)[4],np.mean(data[4][2][5],axis=0)[4],np.mean(data[6][2][5],axis=0)[4],\
+#                                  np.mean(data[8][2][5],axis=0)[4],np.mean(data[11][2][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][3][5],axis=0)[4],np.mean(data[4][3][5],axis=0)[4],np.mean(data[6][3][5],axis=0)[4],\
+#                                  np.mean(data[8][3][5],axis=0)[4],np.mean(data[11][3][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][4][5],axis=0)[4],np.mean(data[4][4][5],axis=0)[4],np.mean(data[6][4][5],axis=0)[4],\
+#                                  np.mean(data[8][4][5],axis=0)[4],np.mean(data[11][4][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][5][5],axis=0)[4],np.mean(data[4][5][5],axis=0)[4],np.mean(data[6][5][5],axis=0)[4],\
+#                                  np.mean(data[8][5][5],axis=0)[4],np.mean(data[11][5][5],axis=0)[4]])])
+# meanvel4000back = np.array([np.mean([np.mean(data[5][0][5],axis=0)[4],np.mean(data[9][0][5],axis=0)[4],np.mean(data[12][0][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][1][5],axis=0)[4],np.mean(data[9][1][5],axis=0)[4],np.mean(data[12][1][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][2][5],axis=0)[4],np.mean(data[9][2][5],axis=0)[4],np.mean(data[12][2][5],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][3][5],axis=0)[4],np.mean(data[9][3][5],axis=0)[4],np.mean(data[12][3][5],axis=0)[4]])])
+
+# stdvel800back = np.array([np.std([np.mean(data[0][0][5],axis=0)[4],np.mean(data[3][0][5],axis=0)[4],np.mean(data[10][0][5],axis=0)[4],\
+#                                     np.mean(data[13][0][5],axis=0)[4],np.mean(data[14][0][5],axis=0)[4],np.mean(data[15][0][5],axis=0)[4],np.mean(data[16][0][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][1][5],axis=0)[4],np.mean(data[3][1][5],axis=0)[4],np.mean(data[10][1][5],axis=0)[4],\
+#                                     np.mean(data[13][1][5],axis=0)[4],np.mean(data[14][1][5],axis=0)[4],np.mean(data[15][1][5],axis=0)[4],np.mean(data[16][1][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][2][5],axis=0)[4],np.mean(data[3][2][5],axis=0)[4],np.mean(data[10][2][5],axis=0)[4],\
+#                                     np.mean(data[13][2][5],axis=0)[4],np.mean(data[14][2][5],axis=0)[4],np.mean(data[15][2][5],axis=0)[4],np.mean(data[16][2][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][3][5],axis=0)[4],np.mean(data[3][3][5],axis=0)[4],np.mean(data[10][3][5],axis=0)[4],\
+#                                     np.mean(data[13][3][5],axis=0)[4],np.mean(data[14][3][5],axis=0)[4],np.mean(data[15][3][5],axis=0)[4],np.mean(data[16][3][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][4][5],axis=0)[4],np.mean(data[3][4][5],axis=0)[4],np.mean(data[10][4][5],axis=0)[4],\
+#                                     np.mean(data[13][4][5],axis=0)[4],np.mean(data[14][4][5],axis=0)[4],np.mean(data[15][4][5],axis=0)[4],np.mean(data[16][4][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][5][5],axis=0)[4],np.mean(data[3][5][5],axis=0)[4],np.mean(data[10][5][5],axis=0)[4],\
+#                                     np.mean(data[13][5][5],axis=0)[4],np.mean(data[14][5][5],axis=0)[4],np.mean(data[15][5][5],axis=0)[4],np.mean(data[16][5][5],axis=0)[4]])])
+# stdvel1600back = np.array([np.std([np.mean(data[2][0][5],axis=0)[4],np.mean(data[4][0][5],axis=0)[4],np.mean(data[6][0][5],axis=0)[4],\
+#                                  np.mean(data[8][0][5],axis=0)[4],np.mean(data[11][0][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][1][5],axis=0)[4],np.mean(data[4][1][5],axis=0)[4],np.mean(data[6][1][5],axis=0)[4],\
+#                                  np.mean(data[8][1][5],axis=0)[4],np.mean(data[11][1][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][2][5],axis=0)[4],np.mean(data[4][2][5],axis=0)[4],np.mean(data[6][2][5],axis=0)[4],\
+#                                  np.mean(data[8][2][5],axis=0)[4],np.mean(data[11][2][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][3][5],axis=0)[4],np.mean(data[4][3][5],axis=0)[4],np.mean(data[6][3][5],axis=0)[4],\
+#                                  np.mean(data[8][3][5],axis=0)[4],np.mean(data[11][3][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][4][5],axis=0)[4],np.mean(data[4][4][5],axis=0)[4],np.mean(data[6][4][5],axis=0)[4],\
+#                                  np.mean(data[8][4][5],axis=0)[4],np.mean(data[11][4][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][5][5],axis=0)[4],np.mean(data[4][5][5],axis=0)[4],np.mean(data[6][5][5],axis=0)[4],\
+#                                  np.mean(data[8][5][5],axis=0)[4],np.mean(data[11][5][5],axis=0)[4]])])
+# stdvel4000back = np.array([np.std([np.mean(data[5][0][5],axis=0)[4],np.mean(data[9][0][5],axis=0)[4],np.mean(data[12][0][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][1][5],axis=0)[4],np.mean(data[9][1][5],axis=0)[4],np.mean(data[12][1][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][2][5],axis=0)[4],np.mean(data[9][2][5],axis=0)[4],np.mean(data[12][2][5],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][3][5],axis=0)[4],np.mean(data[9][3][5],axis=0)[4],np.mean(data[12][3][5],axis=0)[4]])])
+
+# meanvel800topp = np.array([np.mean([np.mean(data[0][0][2],axis=0)[4],np.mean(data[3][0][2],axis=0)[4],np.mean(data[10][0][2],axis=0)[4],\
+#                                     np.mean(data[13][0][2],axis=0)[4],np.mean(data[14][0][2],axis=0)[4],np.mean(data[15][0][2],axis=0)[4],np.mean(data[16][0][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][1][2],axis=0)[4],np.mean(data[3][1][2],axis=0)[4],np.mean(data[10][1][2],axis=0)[4],\
+#                                     np.mean(data[13][1][2],axis=0)[4],np.mean(data[14][1][2],axis=0)[4],np.mean(data[15][1][2],axis=0)[4],np.mean(data[16][1][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][2][2],axis=0)[4],np.mean(data[3][2][2],axis=0)[4],np.mean(data[10][2][2],axis=0)[4],\
+#                                     np.mean(data[13][2][2],axis=0)[4],np.mean(data[14][2][2],axis=0)[4],np.mean(data[15][2][2],axis=0)[4],np.mean(data[16][2][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][3][2],axis=0)[4],np.mean(data[3][3][2],axis=0)[4],np.mean(data[10][3][2],axis=0)[4],\
+#                                     np.mean(data[13][3][2],axis=0)[4],np.mean(data[14][3][2],axis=0)[4],np.mean(data[15][3][2],axis=0)[4],np.mean(data[16][3][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][4][2],axis=0)[4],np.mean(data[3][4][2],axis=0)[4],np.mean(data[10][4][2],axis=0)[4],\
+#                                     np.mean(data[13][4][2],axis=0)[4],np.mean(data[14][4][2],axis=0)[4],np.mean(data[15][4][2],axis=0)[4],np.mean(data[16][4][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][5][2],axis=0)[4],np.mean(data[3][5][2],axis=0)[4],np.mean(data[10][5][2],axis=0)[4],\
+#                                     np.mean(data[13][5][2],axis=0)[4],np.mean(data[14][5][2],axis=0)[4],np.mean(data[15][5][2],axis=0)[4],np.mean(data[16][5][2],axis=0)[4]])])
+# meanvel1600topp = np.array([np.mean([np.mean(data[2][0][2],axis=0)[4],np.mean(data[4][0][2],axis=0)[4],np.mean(data[6][0][2],axis=0)[4],\
+#                                  np.mean(data[8][0][2],axis=0)[4],np.mean(data[11][0][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][1][2],axis=0)[4],np.mean(data[4][1][2],axis=0)[4],np.mean(data[6][1][2],axis=0)[4],\
+#                                  np.mean(data[8][1][2],axis=0)[4],np.mean(data[11][1][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][2][2],axis=0)[4],np.mean(data[4][2][2],axis=0)[4],np.mean(data[6][2][2],axis=0)[4],\
+#                                  np.mean(data[8][2][2],axis=0)[4],np.mean(data[11][2][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][3][2],axis=0)[4],np.mean(data[4][3][2],axis=0)[4],np.mean(data[6][3][2],axis=0)[4],\
+#                                  np.mean(data[8][3][2],axis=0)[4],np.mean(data[11][3][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][4][2],axis=0)[4],np.mean(data[4][4][2],axis=0)[4],np.mean(data[6][4][2],axis=0)[4],\
+#                                  np.mean(data[8][4][2],axis=0)[4],np.mean(data[11][4][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][5][2],axis=0)[4],np.mean(data[4][5][2],axis=0)[4],np.mean(data[6][5][2],axis=0)[4],\
+#                                  np.mean(data[8][5][2],axis=0)[4],np.mean(data[11][5][2],axis=0)[4]])])
+# meanvel4000topp = np.array([np.mean([np.mean(data[5][0][2],axis=0)[4],np.mean(data[9][0][2],axis=0)[4],np.mean(data[12][0][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][1][2],axis=0)[4],np.mean(data[9][1][2],axis=0)[4],np.mean(data[12][1][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][2][2],axis=0)[4],np.mean(data[9][2][2],axis=0)[4],np.mean(data[12][2][2],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][3][2],axis=0)[4],np.mean(data[9][3][2],axis=0)[4],np.mean(data[12][3][2],axis=0)[4]])])
+
+# stdvel800topp = np.array([np.std([np.mean(data[0][0][2],axis=0)[4],np.mean(data[3][0][2],axis=0)[4],np.mean(data[10][0][2],axis=0)[4],\
+#                                     np.mean(data[13][0][2],axis=0)[4],np.mean(data[14][0][2],axis=0)[4],np.mean(data[15][0][2],axis=0)[4],np.mean(data[16][0][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][1][2],axis=0)[4],np.mean(data[3][1][2],axis=0)[4],np.mean(data[10][1][2],axis=0)[4],\
+#                                     np.mean(data[13][1][2],axis=0)[4],np.mean(data[14][1][2],axis=0)[4],np.mean(data[15][1][2],axis=0)[4],np.mean(data[16][1][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][2][2],axis=0)[4],np.mean(data[3][2][2],axis=0)[4],np.mean(data[10][2][2],axis=0)[4],\
+#                                     np.mean(data[13][2][2],axis=0)[4],np.mean(data[14][2][2],axis=0)[4],np.mean(data[15][2][2],axis=0)[4],np.mean(data[16][2][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][3][2],axis=0)[4],np.mean(data[3][3][2],axis=0)[4],np.mean(data[10][3][2],axis=0)[4],\
+#                                     np.mean(data[13][3][2],axis=0)[4],np.mean(data[14][3][2],axis=0)[4],np.mean(data[15][3][2],axis=0)[4],np.mean(data[16][3][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][4][2],axis=0)[4],np.mean(data[3][4][2],axis=0)[4],np.mean(data[10][4][2],axis=0)[4],\
+#                                     np.mean(data[13][4][2],axis=0)[4],np.mean(data[14][4][2],axis=0)[4],np.mean(data[15][4][2],axis=0)[4],np.mean(data[16][4][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][5][2],axis=0)[4],np.mean(data[3][5][2],axis=0)[4],np.mean(data[10][5][2],axis=0)[4],\
+#                                     np.mean(data[13][5][2],axis=0)[4],np.mean(data[14][5][2],axis=0)[4],np.mean(data[15][5][2],axis=0)[4],np.mean(data[16][5][2],axis=0)[4]])])
+# stdvel1600topp = np.array([np.std([np.mean(data[2][0][2],axis=0)[4],np.mean(data[4][0][2],axis=0)[4],np.mean(data[6][0][2],axis=0)[4],\
+#                                  np.mean(data[8][0][2],axis=0)[4],np.mean(data[11][0][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][1][2],axis=0)[4],np.mean(data[4][1][2],axis=0)[4],np.mean(data[6][1][2],axis=0)[4],\
+#                                  np.mean(data[8][1][2],axis=0)[4],np.mean(data[11][1][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][2][2],axis=0)[4],np.mean(data[4][2][2],axis=0)[4],np.mean(data[6][2][2],axis=0)[4],\
+#                                  np.mean(data[8][2][2],axis=0)[4],np.mean(data[11][2][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][3][2],axis=0)[4],np.mean(data[4][3][2],axis=0)[4],np.mean(data[6][3][2],axis=0)[4],\
+#                                  np.mean(data[8][3][2],axis=0)[4],np.mean(data[11][3][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][4][2],axis=0)[4],np.mean(data[4][4][2],axis=0)[4],np.mean(data[6][4][2],axis=0)[4],\
+#                                  np.mean(data[8][4][2],axis=0)[4],np.mean(data[11][4][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][5][2],axis=0)[4],np.mean(data[4][5][2],axis=0)[4],np.mean(data[6][5][2],axis=0)[4],\
+#                                  np.mean(data[8][5][2],axis=0)[4],np.mean(data[11][5][2],axis=0)[4]])])
+# stdvel4000topp = np.array([np.std([np.mean(data[5][0][2],axis=0)[4],np.mean(data[9][0][2],axis=0)[4],np.mean(data[12][0][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][1][2],axis=0)[4],np.mean(data[9][1][2],axis=0)[4],np.mean(data[12][1][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][2][2],axis=0)[4],np.mean(data[9][2][2],axis=0)[4],np.mean(data[12][2][2],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][3][2],axis=0)[4],np.mean(data[9][3][2],axis=0)[4],np.mean(data[12][3][2],axis=0)[4]])])
+
+# meanvel800topf = np.array([np.mean([np.mean(data[0][0][3],axis=0)[4],np.mean(data[3][0][3],axis=0)[4],np.mean(data[10][0][3],axis=0)[4],\
+#                                     np.mean(data[13][0][3],axis=0)[4],np.mean(data[14][0][3],axis=0)[4],np.mean(data[15][0][3],axis=0)[4],np.mean(data[16][0][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][1][3],axis=0)[4],np.mean(data[3][1][3],axis=0)[4],np.mean(data[10][1][3],axis=0)[4],\
+#                                     np.mean(data[13][1][3],axis=0)[4],np.mean(data[14][1][3],axis=0)[4],np.mean(data[15][1][3],axis=0)[4],np.mean(data[16][1][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][2][3],axis=0)[4],np.mean(data[3][2][3],axis=0)[4],np.mean(data[10][2][3],axis=0)[4],\
+#                                     np.mean(data[13][2][3],axis=0)[4],np.mean(data[14][2][3],axis=0)[4],np.mean(data[15][2][3],axis=0)[4],np.mean(data[16][2][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][3][3],axis=0)[4],np.mean(data[3][3][3],axis=0)[4],np.mean(data[10][3][3],axis=0)[4],\
+#                                     np.mean(data[13][3][3],axis=0)[4],np.mean(data[14][3][3],axis=0)[4],np.mean(data[15][3][3],axis=0)[4],np.mean(data[16][3][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][4][3],axis=0)[4],np.mean(data[3][4][3],axis=0)[4],np.mean(data[10][4][3],axis=0)[4],\
+#                                     np.mean(data[13][4][3],axis=0)[4],np.mean(data[14][4][3],axis=0)[4],np.mean(data[15][4][3],axis=0)[4],np.mean(data[16][4][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[0][5][3],axis=0)[4],np.mean(data[3][5][3],axis=0)[4],np.mean(data[10][5][3],axis=0)[4],\
+#                                     np.mean(data[13][5][3],axis=0)[4],np.mean(data[14][5][3],axis=0)[4],np.mean(data[15][5][3],axis=0)[4],np.mean(data[16][5][3],axis=0)[4]])])
+# meanvel1600topf = np.array([np.mean([np.mean(data[2][0][3],axis=0)[4],np.mean(data[4][0][3],axis=0)[4],np.mean(data[6][0][3],axis=0)[4],\
+#                                  np.mean(data[8][0][3],axis=0)[4],np.mean(data[11][0][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][1][3],axis=0)[4],np.mean(data[4][1][3],axis=0)[4],np.mean(data[6][1][3],axis=0)[4],\
+#                                  np.mean(data[8][1][3],axis=0)[4],np.mean(data[11][1][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][2][3],axis=0)[4],np.mean(data[4][2][3],axis=0)[4],np.mean(data[6][2][3],axis=0)[4],\
+#                                  np.mean(data[8][2][3],axis=0)[4],np.mean(data[11][2][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][3][3],axis=0)[4],np.mean(data[4][3][3],axis=0)[4],np.mean(data[6][3][3],axis=0)[4],\
+#                                  np.mean(data[8][3][3],axis=0)[4],np.mean(data[11][3][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][4][3],axis=0)[4],np.mean(data[4][4][3],axis=0)[4],np.mean(data[6][4][3],axis=0)[4],\
+#                                  np.mean(data[8][4][3],axis=0)[4],np.mean(data[11][4][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[2][5][3],axis=0)[4],np.mean(data[4][5][3],axis=0)[4],np.mean(data[6][5][3],axis=0)[4],\
+#                                  np.mean(data[8][5][3],axis=0)[4],np.mean(data[11][5][3],axis=0)[4]])])
+# meanvel4000topf = np.array([np.mean([np.mean(data[5][0][3],axis=0)[4],np.mean(data[9][0][3],axis=0)[4],np.mean(data[12][0][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][1][3],axis=0)[4],np.mean(data[9][1][3],axis=0)[4],np.mean(data[12][1][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][2][3],axis=0)[4],np.mean(data[9][2][3],axis=0)[4],np.mean(data[12][2][3],axis=0)[4]]),\
+#                        np.mean([np.mean(data[5][3][3],axis=0)[4],np.mean(data[9][3][3],axis=0)[4],np.mean(data[12][3][3],axis=0)[4]])])
+
+# stdvel800topf = np.array([np.std([np.mean(data[0][0][3],axis=0)[4],np.mean(data[3][0][3],axis=0)[4],np.mean(data[10][0][3],axis=0)[4],\
+#                                     np.mean(data[13][0][3],axis=0)[4],np.mean(data[14][0][3],axis=0)[4],np.mean(data[15][0][3],axis=0)[4],np.mean(data[16][0][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][1][3],axis=0)[4],np.mean(data[3][1][3],axis=0)[4],np.mean(data[10][1][3],axis=0)[4],\
+#                                     np.mean(data[13][1][3],axis=0)[4],np.mean(data[14][1][3],axis=0)[4],np.mean(data[15][1][3],axis=0)[4],np.mean(data[16][1][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][2][3],axis=0)[4],np.mean(data[3][2][3],axis=0)[4],np.mean(data[10][2][3],axis=0)[4],\
+#                                     np.mean(data[13][2][3],axis=0)[4],np.mean(data[14][2][3],axis=0)[4],np.mean(data[15][2][3],axis=0)[4],np.mean(data[16][2][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][3][3],axis=0)[4],np.mean(data[3][3][3],axis=0)[4],np.mean(data[10][3][3],axis=0)[4],\
+#                                     np.mean(data[13][3][3],axis=0)[4],np.mean(data[14][3][3],axis=0)[4],np.mean(data[15][3][3],axis=0)[4],np.mean(data[16][3][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][4][3],axis=0)[4],np.mean(data[3][4][3],axis=0)[4],np.mean(data[10][4][3],axis=0)[4],\
+#                                     np.mean(data[13][4][3],axis=0)[4],np.mean(data[14][4][3],axis=0)[4],np.mean(data[15][4][3],axis=0)[4],np.mean(data[16][4][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[0][5][3],axis=0)[4],np.mean(data[3][5][3],axis=0)[4],np.mean(data[10][5][3],axis=0)[4],\
+#                                     np.mean(data[13][5][3],axis=0)[4],np.mean(data[14][5][3],axis=0)[4],np.mean(data[15][5][3],axis=0)[4],np.mean(data[16][5][3],axis=0)[4]])])
+# stdvel1600topf = np.array([np.std([np.mean(data[2][0][3],axis=0)[4],np.mean(data[4][0][3],axis=0)[4],np.mean(data[6][0][3],axis=0)[4],\
+#                                  np.mean(data[8][0][3],axis=0)[4],np.mean(data[11][0][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][1][3],axis=0)[4],np.mean(data[4][1][3],axis=0)[4],np.mean(data[6][1][3],axis=0)[4],\
+#                                  np.mean(data[8][1][3],axis=0)[4],np.mean(data[11][1][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][2][3],axis=0)[4],np.mean(data[4][2][3],axis=0)[4],np.mean(data[6][2][3],axis=0)[4],\
+#                                  np.mean(data[8][2][3],axis=0)[4],np.mean(data[11][2][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][3][3],axis=0)[4],np.mean(data[4][3][3],axis=0)[4],np.mean(data[6][3][3],axis=0)[4],\
+#                                  np.mean(data[8][3][3],axis=0)[4],np.mean(data[11][3][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][4][3],axis=0)[4],np.mean(data[4][4][3],axis=0)[4],np.mean(data[6][4][3],axis=0)[4],\
+#                                  np.mean(data[8][4][3],axis=0)[4],np.mean(data[11][4][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[2][5][3],axis=0)[4],np.mean(data[4][5][3],axis=0)[4],np.mean(data[6][5][3],axis=0)[4],\
+#                                  np.mean(data[8][5][3],axis=0)[4],np.mean(data[11][5][3],axis=0)[4]])])
+# stdvel4000topf = np.array([np.std([np.mean(data[5][0][3],axis=0)[4],np.mean(data[9][0][3],axis=0)[4],np.mean(data[12][0][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][1][3],axis=0)[4],np.mean(data[9][1][3],axis=0)[4],np.mean(data[12][1][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][2][3],axis=0)[4],np.mean(data[9][2][3],axis=0)[4],np.mean(data[12][2][3],axis=0)[4]]),\
+#                        np.std([np.mean(data[5][3][3],axis=0)[4],np.mean(data[9][3][3],axis=0)[4],np.mean(data[12][3][3],axis=0)[4]])])
+
+# meanshear800face = np.array([np.mean([np.mean(data[0][0][4],axis=0)[2],np.mean(data[3][0][4],axis=0)[2],np.mean(data[10][0][4],axis=0)[2],\
+#                                     np.mean(data[13][0][4],axis=0)[2],np.mean(data[14][0][4],axis=0)[2],np.mean(data[15][0][4],axis=0)[2],np.mean(data[16][0][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][1][4],axis=0)[2],np.mean(data[3][1][4],axis=0)[2],np.mean(data[10][1][4],axis=0)[2],\
+#                                     np.mean(data[13][1][4],axis=0)[2],np.mean(data[14][1][4],axis=0)[2],np.mean(data[15][1][4],axis=0)[2],np.mean(data[16][1][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][2][4],axis=0)[2],np.mean(data[3][2][4],axis=0)[2],np.mean(data[10][2][4],axis=0)[2],\
+#                                     np.mean(data[13][2][4],axis=0)[2],np.mean(data[14][2][4],axis=0)[2],np.mean(data[15][2][4],axis=0)[2],np.mean(data[16][2][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][3][4],axis=0)[2],np.mean(data[3][3][4],axis=0)[2],np.mean(data[10][3][4],axis=0)[2],\
+#                                     np.mean(data[13][3][4],axis=0)[2],np.mean(data[14][3][4],axis=0)[2],np.mean(data[15][3][4],axis=0)[2],np.mean(data[16][3][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][4][4],axis=0)[2],np.mean(data[3][4][4],axis=0)[2],np.mean(data[10][4][4],axis=0)[2],\
+#                                     np.mean(data[13][4][4],axis=0)[2],np.mean(data[14][4][4],axis=0)[2],np.mean(data[15][4][4],axis=0)[2],np.mean(data[16][4][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][5][4],axis=0)[2],np.mean(data[3][5][4],axis=0)[2],np.mean(data[10][5][4],axis=0)[2],\
+#                                     np.mean(data[13][5][4],axis=0)[2],np.mean(data[14][5][4],axis=0)[2],np.mean(data[15][5][4],axis=0)[2],np.mean(data[16][5][4],axis=0)[2]])])
+# meanshear1600face = np.array([np.mean([np.mean(data[2][0][4],axis=0)[2],np.mean(data[4][0][4],axis=0)[2],np.mean(data[6][0][4],axis=0)[2],\
+#                                  np.mean(data[8][0][4],axis=0)[2],np.mean(data[11][0][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][1][4],axis=0)[2],np.mean(data[4][1][4],axis=0)[2],np.mean(data[6][1][4],axis=0)[2],\
+#                                  np.mean(data[8][1][4],axis=0)[2],np.mean(data[11][1][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][2][4],axis=0)[2],np.mean(data[4][2][4],axis=0)[2],np.mean(data[6][2][4],axis=0)[2],\
+#                                  np.mean(data[8][2][4],axis=0)[2],np.mean(data[11][2][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][3][4],axis=0)[2],np.mean(data[4][3][4],axis=0)[2],np.mean(data[6][3][4],axis=0)[2],\
+#                                  np.mean(data[8][3][4],axis=0)[2],np.mean(data[11][3][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][4][4],axis=0)[2],np.mean(data[4][4][4],axis=0)[2],np.mean(data[6][4][4],axis=0)[2],\
+#                                  np.mean(data[8][4][4],axis=0)[2],np.mean(data[11][4][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][5][4],axis=0)[2],np.mean(data[4][5][4],axis=0)[2],np.mean(data[6][5][4],axis=0)[2],\
+#                                  np.mean(data[8][5][4],axis=0)[2],np.mean(data[11][5][4],axis=0)[2]])])
+# meanshear4000face = np.array([np.mean([np.mean(data[5][0][4],axis=0)[2],np.mean(data[9][0][4],axis=0)[2],np.mean(data[12][0][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][1][4],axis=0)[2],np.mean(data[9][1][4],axis=0)[2],np.mean(data[12][1][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][2][4],axis=0)[2],np.mean(data[9][2][4],axis=0)[2],np.mean(data[12][2][4],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][3][4],axis=0)[2],np.mean(data[9][3][4],axis=0)[2],np.mean(data[12][3][4],axis=0)[2]])])
+
+# stdshear800face = np.array([np.std([np.mean(data[0][0][4],axis=0)[2],np.mean(data[3][0][4],axis=0)[2],np.mean(data[10][0][4],axis=0)[2],\
+#                                     np.mean(data[13][0][4],axis=0)[2],np.mean(data[14][0][4],axis=0)[2],np.mean(data[15][0][4],axis=0)[2],np.mean(data[16][0][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][1][4],axis=0)[2],np.mean(data[3][1][4],axis=0)[2],np.mean(data[10][1][4],axis=0)[2],\
+#                                     np.mean(data[13][1][4],axis=0)[2],np.mean(data[14][1][4],axis=0)[2],np.mean(data[15][1][4],axis=0)[2],np.mean(data[16][1][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][2][4],axis=0)[2],np.mean(data[3][2][4],axis=0)[2],np.mean(data[10][2][4],axis=0)[2],\
+#                                     np.mean(data[13][2][4],axis=0)[2],np.mean(data[14][2][4],axis=0)[2],np.mean(data[15][2][4],axis=0)[2],np.mean(data[16][2][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][3][4],axis=0)[2],np.mean(data[3][3][4],axis=0)[2],np.mean(data[10][3][4],axis=0)[2],\
+#                                     np.mean(data[13][3][4],axis=0)[2],np.mean(data[14][3][4],axis=0)[2],np.mean(data[15][3][4],axis=0)[2],np.mean(data[16][3][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][4][4],axis=0)[2],np.mean(data[3][4][4],axis=0)[2],np.mean(data[10][4][4],axis=0)[2],\
+#                                     np.mean(data[13][4][4],axis=0)[2],np.mean(data[14][4][4],axis=0)[2],np.mean(data[15][4][4],axis=0)[2],np.mean(data[16][4][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][5][4],axis=0)[2],np.mean(data[3][5][4],axis=0)[2],np.mean(data[10][5][4],axis=0)[2],\
+#                                     np.mean(data[13][5][4],axis=0)[2],np.mean(data[14][5][4],axis=0)[2],np.mean(data[15][5][4],axis=0)[2],np.mean(data[16][5][4],axis=0)[2]])])
+# stdshear1600face = np.array([np.std([np.mean(data[2][0][4],axis=0)[2],np.mean(data[4][0][4],axis=0)[2],np.mean(data[6][0][4],axis=0)[2],\
+#                                  np.mean(data[8][0][4],axis=0)[2],np.mean(data[11][0][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][1][4],axis=0)[2],np.mean(data[4][1][4],axis=0)[2],np.mean(data[6][1][4],axis=0)[2],\
+#                                  np.mean(data[8][1][4],axis=0)[2],np.mean(data[11][1][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][2][4],axis=0)[2],np.mean(data[4][2][4],axis=0)[2],np.mean(data[6][2][4],axis=0)[2],\
+#                                  np.mean(data[8][2][4],axis=0)[2],np.mean(data[11][2][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][3][4],axis=0)[2],np.mean(data[4][3][4],axis=0)[2],np.mean(data[6][3][4],axis=0)[2],\
+#                                  np.mean(data[8][3][4],axis=0)[2],np.mean(data[11][3][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][4][4],axis=0)[2],np.mean(data[4][4][4],axis=0)[2],np.mean(data[6][4][4],axis=0)[2],\
+#                                  np.mean(data[8][4][4],axis=0)[2],np.mean(data[11][4][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][5][4],axis=0)[2],np.mean(data[4][5][4],axis=0)[2],np.mean(data[6][5][4],axis=0)[2],\
+#                                  np.mean(data[8][5][4],axis=0)[2],np.mean(data[11][5][4],axis=0)[2]])])
+# stdshear4000face = np.array([np.std([np.mean(data[5][0][4],axis=0)[2],np.mean(data[9][0][4],axis=0)[2],np.mean(data[12][0][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][1][4],axis=0)[2],np.mean(data[9][1][4],axis=0)[2],np.mean(data[12][1][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][2][4],axis=0)[2],np.mean(data[9][2][4],axis=0)[2],np.mean(data[12][2][4],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][3][4],axis=0)[2],np.mean(data[9][3][4],axis=0)[2],np.mean(data[12][3][4],axis=0)[2]])])
+
+# meanshear800back = np.array([np.mean([np.mean(data[0][0][5],axis=0)[2],np.mean(data[3][0][5],axis=0)[2],np.mean(data[10][0][5],axis=0)[2],\
+#                                     np.mean(data[13][0][5],axis=0)[2],np.mean(data[14][0][5],axis=0)[2],np.mean(data[15][0][5],axis=0)[2],np.mean(data[16][0][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][1][5],axis=0)[2],np.mean(data[3][1][5],axis=0)[2],np.mean(data[10][1][5],axis=0)[2],\
+#                                     np.mean(data[13][1][5],axis=0)[2],np.mean(data[14][1][5],axis=0)[2],np.mean(data[15][1][5],axis=0)[2],np.mean(data[16][1][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][2][5],axis=0)[2],np.mean(data[3][2][5],axis=0)[2],np.mean(data[10][2][5],axis=0)[2],\
+#                                     np.mean(data[13][2][5],axis=0)[2],np.mean(data[14][2][5],axis=0)[2],np.mean(data[15][2][5],axis=0)[2],np.mean(data[16][2][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][3][5],axis=0)[2],np.mean(data[3][3][5],axis=0)[2],np.mean(data[10][3][5],axis=0)[2],\
+#                                     np.mean(data[13][3][5],axis=0)[2],np.mean(data[14][3][5],axis=0)[2],np.mean(data[15][3][5],axis=0)[2],np.mean(data[16][3][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][4][5],axis=0)[2],np.mean(data[3][4][5],axis=0)[2],np.mean(data[10][4][5],axis=0)[2],\
+#                                     np.mean(data[13][4][5],axis=0)[2],np.mean(data[14][4][5],axis=0)[2],np.mean(data[15][4][5],axis=0)[2],np.mean(data[16][4][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][5][5],axis=0)[2],np.mean(data[3][5][5],axis=0)[2],np.mean(data[10][5][5],axis=0)[2],\
+#                                     np.mean(data[13][5][5],axis=0)[2],np.mean(data[14][5][5],axis=0)[2],np.mean(data[15][5][5],axis=0)[2],np.mean(data[16][5][5],axis=0)[2]])])
+# meanshear1600back = np.array([np.mean([np.mean(data[2][0][5],axis=0)[2],np.mean(data[4][0][5],axis=0)[2],np.mean(data[6][0][5],axis=0)[2],\
+#                                  np.mean(data[8][0][5],axis=0)[2],np.mean(data[11][0][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][1][5],axis=0)[2],np.mean(data[4][1][5],axis=0)[2],np.mean(data[6][1][5],axis=0)[2],\
+#                                  np.mean(data[8][1][5],axis=0)[2],np.mean(data[11][1][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][2][5],axis=0)[2],np.mean(data[4][2][5],axis=0)[2],np.mean(data[6][2][5],axis=0)[2],\
+#                                  np.mean(data[8][2][5],axis=0)[2],np.mean(data[11][2][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][3][5],axis=0)[2],np.mean(data[4][3][5],axis=0)[2],np.mean(data[6][3][5],axis=0)[2],\
+#                                  np.mean(data[8][3][5],axis=0)[2],np.mean(data[11][3][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][4][5],axis=0)[2],np.mean(data[4][4][5],axis=0)[2],np.mean(data[6][4][5],axis=0)[2],\
+#                                  np.mean(data[8][4][5],axis=0)[2],np.mean(data[11][4][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][5][5],axis=0)[2],np.mean(data[4][5][5],axis=0)[2],np.mean(data[6][5][5],axis=0)[2],\
+#                                  np.mean(data[8][5][5],axis=0)[2],np.mean(data[11][5][5],axis=0)[2]])])
+# meanshear4000back = np.array([np.mean([np.mean(data[5][0][5],axis=0)[2],np.mean(data[9][0][5],axis=0)[2],np.mean(data[12][0][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][1][5],axis=0)[2],np.mean(data[9][1][5],axis=0)[2],np.mean(data[12][1][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][2][5],axis=0)[2],np.mean(data[9][2][5],axis=0)[2],np.mean(data[12][2][5],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][3][5],axis=0)[2],np.mean(data[9][3][5],axis=0)[2],np.mean(data[12][3][5],axis=0)[2]])])
+
+# stdshear800back = np.array([np.std([np.mean(data[0][0][5],axis=0)[2],np.mean(data[3][0][5],axis=0)[2],np.mean(data[10][0][5],axis=0)[2],\
+#                                     np.mean(data[13][0][5],axis=0)[2],np.mean(data[14][0][5],axis=0)[2],np.mean(data[15][0][5],axis=0)[2],np.mean(data[16][0][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][1][5],axis=0)[2],np.mean(data[3][1][5],axis=0)[2],np.mean(data[10][1][5],axis=0)[2],\
+#                                     np.mean(data[13][1][5],axis=0)[2],np.mean(data[14][1][5],axis=0)[2],np.mean(data[15][1][5],axis=0)[2],np.mean(data[16][1][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][2][5],axis=0)[2],np.mean(data[3][2][5],axis=0)[2],np.mean(data[10][2][5],axis=0)[2],\
+#                                     np.mean(data[13][2][5],axis=0)[2],np.mean(data[14][2][5],axis=0)[2],np.mean(data[15][2][5],axis=0)[2],np.mean(data[16][2][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][3][5],axis=0)[2],np.mean(data[3][3][5],axis=0)[2],np.mean(data[10][3][5],axis=0)[2],\
+#                                     np.mean(data[13][3][5],axis=0)[2],np.mean(data[14][3][5],axis=0)[2],np.mean(data[15][3][5],axis=0)[2],np.mean(data[16][3][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][4][5],axis=0)[2],np.mean(data[3][4][5],axis=0)[2],np.mean(data[10][4][5],axis=0)[2],\
+#                                     np.mean(data[13][4][5],axis=0)[2],np.mean(data[14][4][5],axis=0)[2],np.mean(data[15][4][5],axis=0)[2],np.mean(data[16][4][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][5][5],axis=0)[2],np.mean(data[3][5][5],axis=0)[2],np.mean(data[10][5][5],axis=0)[2],\
+#                                     np.mean(data[13][5][5],axis=0)[2],np.mean(data[14][5][5],axis=0)[2],np.mean(data[15][5][5],axis=0)[2],np.mean(data[16][5][5],axis=0)[2]])])
+# stdshear1600back = np.array([np.std([np.mean(data[2][0][5],axis=0)[2],np.mean(data[4][0][5],axis=0)[2],np.mean(data[6][0][5],axis=0)[2],\
+#                                  np.mean(data[8][0][5],axis=0)[2],np.mean(data[11][0][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][1][5],axis=0)[2],np.mean(data[4][1][5],axis=0)[2],np.mean(data[6][1][5],axis=0)[2],\
+#                                  np.mean(data[8][1][5],axis=0)[2],np.mean(data[11][1][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][2][5],axis=0)[2],np.mean(data[4][2][5],axis=0)[2],np.mean(data[6][2][5],axis=0)[2],\
+#                                  np.mean(data[8][2][5],axis=0)[2],np.mean(data[11][2][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][3][5],axis=0)[2],np.mean(data[4][3][5],axis=0)[2],np.mean(data[6][3][5],axis=0)[2],\
+#                                  np.mean(data[8][3][5],axis=0)[2],np.mean(data[11][3][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][4][5],axis=0)[2],np.mean(data[4][4][5],axis=0)[2],np.mean(data[6][4][5],axis=0)[2],\
+#                                  np.mean(data[8][4][5],axis=0)[2],np.mean(data[11][4][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][5][5],axis=0)[2],np.mean(data[4][5][5],axis=0)[2],np.mean(data[6][5][5],axis=0)[2],\
+#                                  np.mean(data[8][5][5],axis=0)[2],np.mean(data[11][5][5],axis=0)[2]])])
+# stdshear4000back = np.array([np.std([np.mean(data[5][0][5],axis=0)[2],np.mean(data[9][0][5],axis=0)[2],np.mean(data[12][0][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][1][5],axis=0)[2],np.mean(data[9][1][5],axis=0)[2],np.mean(data[12][1][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][2][5],axis=0)[2],np.mean(data[9][2][5],axis=0)[2],np.mean(data[12][2][5],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][3][5],axis=0)[2],np.mean(data[9][3][5],axis=0)[2],np.mean(data[12][3][5],axis=0)[2]])])
+
+# meanshear800topp = np.array([np.mean([np.mean(data[0][0][2],axis=0)[2],np.mean(data[3][0][2],axis=0)[2],np.mean(data[10][0][2],axis=0)[2],\
+#                                     np.mean(data[13][0][2],axis=0)[2],np.mean(data[14][0][2],axis=0)[2],np.mean(data[15][0][2],axis=0)[2],np.mean(data[16][0][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][1][2],axis=0)[2],np.mean(data[3][1][2],axis=0)[2],np.mean(data[10][1][2],axis=0)[2],\
+#                                     np.mean(data[13][1][2],axis=0)[2],np.mean(data[14][1][2],axis=0)[2],np.mean(data[15][1][2],axis=0)[2],np.mean(data[16][1][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][2][2],axis=0)[2],np.mean(data[3][2][2],axis=0)[2],np.mean(data[10][2][2],axis=0)[2],\
+#                                     np.mean(data[13][2][2],axis=0)[2],np.mean(data[14][2][2],axis=0)[2],np.mean(data[15][2][2],axis=0)[2],np.mean(data[16][2][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][3][2],axis=0)[2],np.mean(data[3][3][2],axis=0)[2],np.mean(data[10][3][2],axis=0)[2],\
+#                                     np.mean(data[13][3][2],axis=0)[2],np.mean(data[14][3][2],axis=0)[2],np.mean(data[15][3][2],axis=0)[2],np.mean(data[16][3][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][4][2],axis=0)[2],np.mean(data[3][4][2],axis=0)[2],np.mean(data[10][4][2],axis=0)[2],\
+#                                     np.mean(data[13][4][2],axis=0)[2],np.mean(data[14][4][2],axis=0)[2],np.mean(data[15][4][2],axis=0)[2],np.mean(data[16][4][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][5][2],axis=0)[2],np.mean(data[3][5][2],axis=0)[2],np.mean(data[10][5][2],axis=0)[2],\
+#                                     np.mean(data[13][5][2],axis=0)[2],np.mean(data[14][5][2],axis=0)[2],np.mean(data[15][5][2],axis=0)[2],np.mean(data[16][5][2],axis=0)[2]])])
+# meanshear1600topp = np.array([np.mean([np.mean(data[2][0][2],axis=0)[2],np.mean(data[4][0][2],axis=0)[2],np.mean(data[6][0][2],axis=0)[2],\
+#                                  np.mean(data[8][0][2],axis=0)[2],np.mean(data[11][0][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][1][2],axis=0)[2],np.mean(data[4][1][2],axis=0)[2],np.mean(data[6][1][2],axis=0)[2],\
+#                                  np.mean(data[8][1][2],axis=0)[2],np.mean(data[11][1][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][2][2],axis=0)[2],np.mean(data[4][2][2],axis=0)[2],np.mean(data[6][2][2],axis=0)[2],\
+#                                  np.mean(data[8][2][2],axis=0)[2],np.mean(data[11][2][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][3][2],axis=0)[2],np.mean(data[4][3][2],axis=0)[2],np.mean(data[6][3][2],axis=0)[2],\
+#                                  np.mean(data[8][3][2],axis=0)[2],np.mean(data[11][3][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][4][2],axis=0)[2],np.mean(data[4][4][2],axis=0)[2],np.mean(data[6][4][2],axis=0)[2],\
+#                                  np.mean(data[8][4][2],axis=0)[2],np.mean(data[11][4][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][5][2],axis=0)[2],np.mean(data[4][5][2],axis=0)[2],np.mean(data[6][5][2],axis=0)[2],\
+#                                  np.mean(data[8][5][2],axis=0)[2],np.mean(data[11][5][2],axis=0)[2]])])
+# meanshear4000topp = np.array([np.mean([np.mean(data[5][0][2],axis=0)[2],np.mean(data[9][0][2],axis=0)[2],np.mean(data[12][0][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][1][2],axis=0)[2],np.mean(data[9][1][2],axis=0)[2],np.mean(data[12][1][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][2][2],axis=0)[2],np.mean(data[9][2][2],axis=0)[2],np.mean(data[12][2][2],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][3][2],axis=0)[2],np.mean(data[9][3][2],axis=0)[2],np.mean(data[12][3][2],axis=0)[2]])])
+
+# stdshear800topp = np.array([np.std([np.mean(data[0][0][2],axis=0)[2],np.mean(data[3][0][2],axis=0)[2],np.mean(data[10][0][2],axis=0)[2],\
+#                                     np.mean(data[13][0][2],axis=0)[2],np.mean(data[14][0][2],axis=0)[2],np.mean(data[15][0][2],axis=0)[2],np.mean(data[16][0][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][1][2],axis=0)[2],np.mean(data[3][1][2],axis=0)[2],np.mean(data[10][1][2],axis=0)[2],\
+#                                     np.mean(data[13][1][2],axis=0)[2],np.mean(data[14][1][2],axis=0)[2],np.mean(data[15][1][2],axis=0)[2],np.mean(data[16][1][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][2][2],axis=0)[2],np.mean(data[3][2][2],axis=0)[2],np.mean(data[10][2][2],axis=0)[2],\
+#                                     np.mean(data[13][2][2],axis=0)[2],np.mean(data[14][2][2],axis=0)[2],np.mean(data[15][2][2],axis=0)[2],np.mean(data[16][2][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][3][2],axis=0)[2],np.mean(data[3][3][2],axis=0)[2],np.mean(data[10][3][2],axis=0)[2],\
+#                                     np.mean(data[13][3][2],axis=0)[2],np.mean(data[14][3][2],axis=0)[2],np.mean(data[15][3][2],axis=0)[2],np.mean(data[16][3][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][4][2],axis=0)[2],np.mean(data[3][4][2],axis=0)[2],np.mean(data[10][4][2],axis=0)[2],\
+#                                     np.mean(data[13][4][2],axis=0)[2],np.mean(data[14][4][2],axis=0)[2],np.mean(data[15][4][2],axis=0)[2],np.mean(data[16][4][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][5][2],axis=0)[2],np.mean(data[3][5][2],axis=0)[2],np.mean(data[10][5][2],axis=0)[2],\
+#                                     np.mean(data[13][5][2],axis=0)[2],np.mean(data[14][5][2],axis=0)[2],np.mean(data[15][5][2],axis=0)[2],np.mean(data[16][5][2],axis=0)[2]])])
+# stdshear1600topp = np.array([np.std([np.mean(data[2][0][2],axis=0)[2],np.mean(data[4][0][2],axis=0)[2],np.mean(data[6][0][2],axis=0)[2],\
+#                                  np.mean(data[8][0][2],axis=0)[2],np.mean(data[11][0][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][1][2],axis=0)[2],np.mean(data[4][1][2],axis=0)[2],np.mean(data[6][1][2],axis=0)[2],\
+#                                  np.mean(data[8][1][2],axis=0)[2],np.mean(data[11][1][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][2][2],axis=0)[2],np.mean(data[4][2][2],axis=0)[2],np.mean(data[6][2][2],axis=0)[2],\
+#                                  np.mean(data[8][2][2],axis=0)[2],np.mean(data[11][2][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][3][2],axis=0)[2],np.mean(data[4][3][2],axis=0)[2],np.mean(data[6][3][2],axis=0)[2],\
+#                                  np.mean(data[8][3][2],axis=0)[2],np.mean(data[11][3][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][4][2],axis=0)[2],np.mean(data[4][4][2],axis=0)[2],np.mean(data[6][4][2],axis=0)[2],\
+#                                  np.mean(data[8][4][2],axis=0)[2],np.mean(data[11][4][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][5][2],axis=0)[2],np.mean(data[4][5][2],axis=0)[2],np.mean(data[6][5][2],axis=0)[2],\
+#                                  np.mean(data[8][5][2],axis=0)[2],np.mean(data[11][5][2],axis=0)[2]])])
+# stdshear4000topp = np.array([np.std([np.mean(data[5][0][2],axis=0)[2],np.mean(data[9][0][2],axis=0)[2],np.mean(data[12][0][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][1][2],axis=0)[2],np.mean(data[9][1][2],axis=0)[2],np.mean(data[12][1][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][2][2],axis=0)[2],np.mean(data[9][2][2],axis=0)[2],np.mean(data[12][2][2],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][3][2],axis=0)[2],np.mean(data[9][3][2],axis=0)[2],np.mean(data[12][3][2],axis=0)[2]])])
+
+# meanshear800topf = np.array([np.mean([np.mean(data[0][0][3],axis=0)[2],np.mean(data[3][0][3],axis=0)[2],np.mean(data[10][0][3],axis=0)[2],\
+#                                     np.mean(data[13][0][3],axis=0)[2],np.mean(data[14][0][3],axis=0)[2],np.mean(data[15][0][3],axis=0)[2],np.mean(data[16][0][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][1][3],axis=0)[2],np.mean(data[3][1][3],axis=0)[2],np.mean(data[10][1][3],axis=0)[2],\
+#                                     np.mean(data[13][1][3],axis=0)[2],np.mean(data[14][1][3],axis=0)[2],np.mean(data[15][1][3],axis=0)[2],np.mean(data[16][1][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][2][3],axis=0)[2],np.mean(data[3][2][3],axis=0)[2],np.mean(data[10][2][3],axis=0)[2],\
+#                                     np.mean(data[13][2][3],axis=0)[2],np.mean(data[14][2][3],axis=0)[2],np.mean(data[15][2][3],axis=0)[2],np.mean(data[16][2][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][3][3],axis=0)[2],np.mean(data[3][3][3],axis=0)[2],np.mean(data[10][3][3],axis=0)[2],\
+#                                     np.mean(data[13][3][3],axis=0)[2],np.mean(data[14][3][3],axis=0)[2],np.mean(data[15][3][3],axis=0)[2],np.mean(data[16][3][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][4][3],axis=0)[2],np.mean(data[3][4][3],axis=0)[2],np.mean(data[10][4][3],axis=0)[2],\
+#                                     np.mean(data[13][4][3],axis=0)[2],np.mean(data[14][4][3],axis=0)[2],np.mean(data[15][4][3],axis=0)[2],np.mean(data[16][4][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[0][5][3],axis=0)[2],np.mean(data[3][5][3],axis=0)[2],np.mean(data[10][5][3],axis=0)[2],\
+#                                     np.mean(data[13][5][3],axis=0)[2],np.mean(data[14][5][3],axis=0)[2],np.mean(data[15][5][3],axis=0)[2],np.mean(data[16][5][3],axis=0)[2]])])
+# meanshear1600topf = np.array([np.mean([np.mean(data[2][0][3],axis=0)[2],np.mean(data[4][0][3],axis=0)[2],np.mean(data[6][0][3],axis=0)[2],\
+#                                  np.mean(data[8][0][3],axis=0)[2],np.mean(data[11][0][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][1][3],axis=0)[2],np.mean(data[4][1][3],axis=0)[2],np.mean(data[6][1][3],axis=0)[2],\
+#                                  np.mean(data[8][1][3],axis=0)[2],np.mean(data[11][1][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][2][3],axis=0)[2],np.mean(data[4][2][3],axis=0)[2],np.mean(data[6][2][3],axis=0)[2],\
+#                                  np.mean(data[8][2][3],axis=0)[2],np.mean(data[11][2][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][3][3],axis=0)[2],np.mean(data[4][3][3],axis=0)[2],np.mean(data[6][3][3],axis=0)[2],\
+#                                  np.mean(data[8][3][3],axis=0)[2],np.mean(data[11][3][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][4][3],axis=0)[2],np.mean(data[4][4][3],axis=0)[2],np.mean(data[6][4][3],axis=0)[2],\
+#                                  np.mean(data[8][4][3],axis=0)[2],np.mean(data[11][4][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[2][5][3],axis=0)[2],np.mean(data[4][5][3],axis=0)[2],np.mean(data[6][5][3],axis=0)[2],\
+#                                  np.mean(data[8][5][3],axis=0)[2],np.mean(data[11][5][3],axis=0)[2]])])
+# meanshear4000topf = np.array([np.mean([np.mean(data[5][0][3],axis=0)[2],np.mean(data[9][0][3],axis=0)[2],np.mean(data[12][0][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][1][3],axis=0)[2],np.mean(data[9][1][3],axis=0)[2],np.mean(data[12][1][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][2][3],axis=0)[2],np.mean(data[9][2][3],axis=0)[2],np.mean(data[12][2][3],axis=0)[2]]),\
+#                        np.mean([np.mean(data[5][3][3],axis=0)[2],np.mean(data[9][3][3],axis=0)[2],np.mean(data[12][3][3],axis=0)[2]])])
+
+# stdshear800topf = np.array([np.std([np.mean(data[0][0][3],axis=0)[2],np.mean(data[3][0][3],axis=0)[2],np.mean(data[10][0][3],axis=0)[2],\
+#                                     np.mean(data[13][0][3],axis=0)[2],np.mean(data[14][0][3],axis=0)[2],np.mean(data[15][0][3],axis=0)[2],np.mean(data[16][0][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][1][3],axis=0)[2],np.mean(data[3][1][3],axis=0)[2],np.mean(data[10][1][3],axis=0)[2],\
+#                                     np.mean(data[13][1][3],axis=0)[2],np.mean(data[14][1][3],axis=0)[2],np.mean(data[15][1][3],axis=0)[2],np.mean(data[16][1][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][2][3],axis=0)[2],np.mean(data[3][2][3],axis=0)[2],np.mean(data[10][2][3],axis=0)[2],\
+#                                     np.mean(data[13][2][3],axis=0)[2],np.mean(data[14][2][3],axis=0)[2],np.mean(data[15][2][3],axis=0)[2],np.mean(data[16][2][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][3][3],axis=0)[2],np.mean(data[3][3][3],axis=0)[2],np.mean(data[10][3][3],axis=0)[2],\
+#                                     np.mean(data[13][3][3],axis=0)[2],np.mean(data[14][3][3],axis=0)[2],np.mean(data[15][3][3],axis=0)[2],np.mean(data[16][3][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][4][3],axis=0)[2],np.mean(data[3][4][3],axis=0)[2],np.mean(data[10][4][3],axis=0)[2],\
+#                                     np.mean(data[13][4][3],axis=0)[2],np.mean(data[14][4][3],axis=0)[2],np.mean(data[15][4][3],axis=0)[2],np.mean(data[16][4][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[0][5][3],axis=0)[2],np.mean(data[3][5][3],axis=0)[2],np.mean(data[10][5][3],axis=0)[2],\
+#                                     np.mean(data[13][5][3],axis=0)[2],np.mean(data[14][5][3],axis=0)[2],np.mean(data[15][5][3],axis=0)[2],np.mean(data[16][5][3],axis=0)[2]])])
+# stdshear1600topf = np.array([np.std([np.mean(data[2][0][3],axis=0)[2],np.mean(data[4][0][3],axis=0)[2],np.mean(data[6][0][3],axis=0)[2],\
+#                                  np.mean(data[8][0][3],axis=0)[2],np.mean(data[11][0][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][1][3],axis=0)[2],np.mean(data[4][1][3],axis=0)[2],np.mean(data[6][1][3],axis=0)[2],\
+#                                  np.mean(data[8][1][3],axis=0)[2],np.mean(data[11][1][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][2][3],axis=0)[2],np.mean(data[4][2][3],axis=0)[2],np.mean(data[6][2][3],axis=0)[2],\
+#                                  np.mean(data[8][2][3],axis=0)[2],np.mean(data[11][2][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][3][3],axis=0)[2],np.mean(data[4][3][3],axis=0)[2],np.mean(data[6][3][3],axis=0)[2],\
+#                                  np.mean(data[8][3][3],axis=0)[2],np.mean(data[11][3][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][4][3],axis=0)[2],np.mean(data[4][4][3],axis=0)[2],np.mean(data[6][4][3],axis=0)[2],\
+#                                  np.mean(data[8][4][3],axis=0)[2],np.mean(data[11][4][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[2][5][3],axis=0)[2],np.mean(data[4][5][3],axis=0)[2],np.mean(data[6][5][3],axis=0)[2],\
+#                                  np.mean(data[8][5][3],axis=0)[2],np.mean(data[11][5][3],axis=0)[2]])])
+# stdshear4000topf = np.array([np.std([np.mean(data[5][0][3],axis=0)[2],np.mean(data[9][0][3],axis=0)[2],np.mean(data[12][0][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][1][3],axis=0)[2],np.mean(data[9][1][3],axis=0)[2],np.mean(data[12][1][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][2][3],axis=0)[2],np.mean(data[9][2][3],axis=0)[2],np.mean(data[12][2][3],axis=0)[2]]),\
+#                        np.std([np.mean(data[5][3][3],axis=0)[2],np.mean(data[9][3][3],axis=0)[2],np.mean(data[12][3][3],axis=0)[2]])])
+
+# meanelon800face = np.array([np.mean([np.mean(data[0][0][4],axis=0)[0],np.mean(data[3][0][4],axis=0)[0],np.mean(data[10][0][4],axis=0)[0],\
+#                                     np.mean(data[13][0][4],axis=0)[0],np.mean(data[14][0][4],axis=0)[0],np.mean(data[15][0][4],axis=0)[0],np.mean(data[16][0][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][1][4],axis=0)[0],np.mean(data[3][1][4],axis=0)[0],np.mean(data[10][1][4],axis=0)[0],\
+#                                     np.mean(data[13][1][4],axis=0)[0],np.mean(data[14][1][4],axis=0)[0],np.mean(data[15][1][4],axis=0)[0],np.mean(data[16][1][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][2][4],axis=0)[0],np.mean(data[3][2][4],axis=0)[0],np.mean(data[10][2][4],axis=0)[0],\
+#                                     np.mean(data[13][2][4],axis=0)[0],np.mean(data[14][2][4],axis=0)[0],np.mean(data[15][2][4],axis=0)[0],np.mean(data[16][2][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][3][4],axis=0)[0],np.mean(data[3][3][4],axis=0)[0],np.mean(data[10][3][4],axis=0)[0],\
+#                                     np.mean(data[13][3][4],axis=0)[0],np.mean(data[14][3][4],axis=0)[0],np.mean(data[15][3][4],axis=0)[0],np.mean(data[16][3][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][4][4],axis=0)[0],np.mean(data[3][4][4],axis=0)[0],np.mean(data[10][4][4],axis=0)[0],\
+#                                     np.mean(data[13][4][4],axis=0)[0],np.mean(data[14][4][4],axis=0)[0],np.mean(data[15][4][4],axis=0)[0],np.mean(data[16][4][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][5][4],axis=0)[0],np.mean(data[3][5][4],axis=0)[0],np.mean(data[10][5][4],axis=0)[0],\
+#                                     np.mean(data[13][5][4],axis=0)[0],np.mean(data[14][5][4],axis=0)[0],np.mean(data[15][5][4],axis=0)[0],np.mean(data[16][5][4],axis=0)[0]])])
+# meanelon1600face = np.array([np.mean([np.mean(data[2][0][4],axis=0)[0],np.mean(data[4][0][4],axis=0)[0],np.mean(data[6][0][4],axis=0)[0],\
+#                                  np.mean(data[8][0][4],axis=0)[0],np.mean(data[11][0][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][1][4],axis=0)[0],np.mean(data[4][1][4],axis=0)[0],np.mean(data[6][1][4],axis=0)[0],\
+#                                  np.mean(data[8][1][4],axis=0)[0],np.mean(data[11][1][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][2][4],axis=0)[0],np.mean(data[4][2][4],axis=0)[0],np.mean(data[6][2][4],axis=0)[0],\
+#                                  np.mean(data[8][2][4],axis=0)[0],np.mean(data[11][2][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][3][4],axis=0)[0],np.mean(data[4][3][4],axis=0)[0],np.mean(data[6][3][4],axis=0)[0],\
+#                                  np.mean(data[8][3][4],axis=0)[0],np.mean(data[11][3][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][4][4],axis=0)[0],np.mean(data[4][4][4],axis=0)[0],np.mean(data[6][4][4],axis=0)[0],\
+#                                  np.mean(data[8][4][4],axis=0)[0],np.mean(data[11][4][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][5][4],axis=0)[0],np.mean(data[4][5][4],axis=0)[0],np.mean(data[6][5][4],axis=0)[0],\
+#                                  np.mean(data[8][5][4],axis=0)[0],np.mean(data[11][5][4],axis=0)[0]])])
+# meanelon4000face = np.array([np.mean([np.mean(data[5][0][4],axis=0)[0],np.mean(data[9][0][4],axis=0)[0],np.mean(data[12][0][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][1][4],axis=0)[0],np.mean(data[9][1][4],axis=0)[0],np.mean(data[12][1][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][2][4],axis=0)[0],np.mean(data[9][2][4],axis=0)[0],np.mean(data[12][2][4],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][3][4],axis=0)[0],np.mean(data[9][3][4],axis=0)[0],np.mean(data[12][3][4],axis=0)[0]])])
+
+# stdelon800face = np.array([np.std([np.mean(data[0][0][4],axis=0)[0],np.mean(data[3][0][4],axis=0)[0],np.mean(data[10][0][4],axis=0)[0],\
+#                                     np.mean(data[13][0][4],axis=0)[0],np.mean(data[14][0][4],axis=0)[0],np.mean(data[15][0][4],axis=0)[0],np.mean(data[16][0][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][1][4],axis=0)[0],np.mean(data[3][1][4],axis=0)[0],np.mean(data[10][1][4],axis=0)[0],\
+#                                     np.mean(data[13][1][4],axis=0)[0],np.mean(data[14][1][4],axis=0)[0],np.mean(data[15][1][4],axis=0)[0],np.mean(data[16][1][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][2][4],axis=0)[0],np.mean(data[3][2][4],axis=0)[0],np.mean(data[10][2][4],axis=0)[0],\
+#                                     np.mean(data[13][2][4],axis=0)[0],np.mean(data[14][2][4],axis=0)[0],np.mean(data[15][2][4],axis=0)[0],np.mean(data[16][2][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][3][4],axis=0)[0],np.mean(data[3][3][4],axis=0)[0],np.mean(data[10][3][4],axis=0)[0],\
+#                                     np.mean(data[13][3][4],axis=0)[0],np.mean(data[14][3][4],axis=0)[0],np.mean(data[15][3][4],axis=0)[0],np.mean(data[16][3][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][4][4],axis=0)[0],np.mean(data[3][4][4],axis=0)[0],np.mean(data[10][4][4],axis=0)[0],\
+#                                     np.mean(data[13][4][4],axis=0)[0],np.mean(data[14][4][4],axis=0)[0],np.mean(data[15][4][4],axis=0)[0],np.mean(data[16][4][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][5][4],axis=0)[0],np.mean(data[3][5][4],axis=0)[0],np.mean(data[10][5][4],axis=0)[0],\
+#                                     np.mean(data[13][5][4],axis=0)[0],np.mean(data[14][5][4],axis=0)[0],np.mean(data[15][5][4],axis=0)[0],np.mean(data[16][5][4],axis=0)[0]])])
+# stdelon1600face = np.array([np.std([np.mean(data[2][0][4],axis=0)[0],np.mean(data[4][0][4],axis=0)[0],np.mean(data[6][0][4],axis=0)[0],\
+#                                  np.mean(data[8][0][4],axis=0)[0],np.mean(data[11][0][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][1][4],axis=0)[0],np.mean(data[4][1][4],axis=0)[0],np.mean(data[6][1][4],axis=0)[0],\
+#                                  np.mean(data[8][1][4],axis=0)[0],np.mean(data[11][1][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][2][4],axis=0)[0],np.mean(data[4][2][4],axis=0)[0],np.mean(data[6][2][4],axis=0)[0],\
+#                                  np.mean(data[8][2][4],axis=0)[0],np.mean(data[11][2][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][3][4],axis=0)[0],np.mean(data[4][3][4],axis=0)[0],np.mean(data[6][3][4],axis=0)[0],\
+#                                  np.mean(data[8][3][4],axis=0)[0],np.mean(data[11][3][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][4][4],axis=0)[0],np.mean(data[4][4][4],axis=0)[0],np.mean(data[6][4][4],axis=0)[0],\
+#                                  np.mean(data[8][4][4],axis=0)[0],np.mean(data[11][4][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][5][4],axis=0)[0],np.mean(data[4][5][4],axis=0)[0],np.mean(data[6][5][4],axis=0)[0],\
+#                                  np.mean(data[8][5][4],axis=0)[0],np.mean(data[11][5][4],axis=0)[0]])])
+# stdelon4000face = np.array([np.std([np.mean(data[5][0][4],axis=0)[0],np.mean(data[9][0][4],axis=0)[0],np.mean(data[12][0][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][1][4],axis=0)[0],np.mean(data[9][1][4],axis=0)[0],np.mean(data[12][1][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][2][4],axis=0)[0],np.mean(data[9][2][4],axis=0)[0],np.mean(data[12][2][4],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][3][4],axis=0)[0],np.mean(data[9][3][4],axis=0)[0],np.mean(data[12][3][4],axis=0)[0]])])
+
+# meanelon800back = np.array([np.mean([np.mean(data[0][0][5],axis=0)[0],np.mean(data[3][0][5],axis=0)[0],np.mean(data[10][0][5],axis=0)[0],\
+#                                     np.mean(data[13][0][5],axis=0)[0],np.mean(data[14][0][5],axis=0)[0],np.mean(data[15][0][5],axis=0)[0],np.mean(data[16][0][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][1][5],axis=0)[0],np.mean(data[3][1][5],axis=0)[0],np.mean(data[10][1][5],axis=0)[0],\
+#                                     np.mean(data[13][1][5],axis=0)[0],np.mean(data[14][1][5],axis=0)[0],np.mean(data[15][1][5],axis=0)[0],np.mean(data[16][1][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][2][5],axis=0)[0],np.mean(data[3][2][5],axis=0)[0],np.mean(data[10][2][5],axis=0)[0],\
+#                                     np.mean(data[13][2][5],axis=0)[0],np.mean(data[14][2][5],axis=0)[0],np.mean(data[15][2][5],axis=0)[0],np.mean(data[16][2][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][3][5],axis=0)[0],np.mean(data[3][3][5],axis=0)[0],np.mean(data[10][3][5],axis=0)[0],\
+#                                     np.mean(data[13][3][5],axis=0)[0],np.mean(data[14][3][5],axis=0)[0],np.mean(data[15][3][5],axis=0)[0],np.mean(data[16][3][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][4][5],axis=0)[0],np.mean(data[3][4][5],axis=0)[0],np.mean(data[10][4][5],axis=0)[0],\
+#                                     np.mean(data[13][4][5],axis=0)[0],np.mean(data[14][4][5],axis=0)[0],np.mean(data[15][4][5],axis=0)[0],np.mean(data[16][4][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][5][5],axis=0)[0],np.mean(data[3][5][5],axis=0)[0],np.mean(data[10][5][5],axis=0)[0],\
+#                                     np.mean(data[13][5][5],axis=0)[0],np.mean(data[14][5][5],axis=0)[0],np.mean(data[15][5][5],axis=0)[0],np.mean(data[16][5][5],axis=0)[0]])])
+# meanelon1600back = np.array([np.mean([np.mean(data[2][0][5],axis=0)[0],np.mean(data[4][0][5],axis=0)[0],np.mean(data[6][0][5],axis=0)[0],\
+#                                  np.mean(data[8][0][5],axis=0)[0],np.mean(data[11][0][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][1][5],axis=0)[0],np.mean(data[4][1][5],axis=0)[0],np.mean(data[6][1][5],axis=0)[0],\
+#                                  np.mean(data[8][1][5],axis=0)[0],np.mean(data[11][1][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][2][5],axis=0)[0],np.mean(data[4][2][5],axis=0)[0],np.mean(data[6][2][5],axis=0)[0],\
+#                                  np.mean(data[8][2][5],axis=0)[0],np.mean(data[11][2][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][3][5],axis=0)[0],np.mean(data[4][3][5],axis=0)[0],np.mean(data[6][3][5],axis=0)[0],\
+#                                  np.mean(data[8][3][5],axis=0)[0],np.mean(data[11][3][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][4][5],axis=0)[0],np.mean(data[4][4][5],axis=0)[0],np.mean(data[6][4][5],axis=0)[0],\
+#                                  np.mean(data[8][4][5],axis=0)[0],np.mean(data[11][4][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][5][5],axis=0)[0],np.mean(data[4][5][5],axis=0)[0],np.mean(data[6][5][5],axis=0)[0],\
+#                                  np.mean(data[8][5][5],axis=0)[0],np.mean(data[11][5][5],axis=0)[0]])])
+# meanelon4000back = np.array([np.mean([np.mean(data[5][0][5],axis=0)[0],np.mean(data[9][0][5],axis=0)[0],np.mean(data[12][0][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][1][5],axis=0)[0],np.mean(data[9][1][5],axis=0)[0],np.mean(data[12][1][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][2][5],axis=0)[0],np.mean(data[9][2][5],axis=0)[0],np.mean(data[12][2][5],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][3][5],axis=0)[0],np.mean(data[9][3][5],axis=0)[0],np.mean(data[12][3][5],axis=0)[0]])])
+
+# stdelon800back = np.array([np.std([np.mean(data[0][0][5],axis=0)[0],np.mean(data[3][0][5],axis=0)[0],np.mean(data[10][0][5],axis=0)[0],\
+#                                     np.mean(data[13][0][5],axis=0)[0],np.mean(data[14][0][5],axis=0)[0],np.mean(data[15][0][5],axis=0)[0],np.mean(data[16][0][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][1][5],axis=0)[0],np.mean(data[3][1][5],axis=0)[0],np.mean(data[10][1][5],axis=0)[0],\
+#                                     np.mean(data[13][1][5],axis=0)[0],np.mean(data[14][1][5],axis=0)[0],np.mean(data[15][1][5],axis=0)[0],np.mean(data[16][1][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][2][5],axis=0)[0],np.mean(data[3][2][5],axis=0)[0],np.mean(data[10][2][5],axis=0)[0],\
+#                                     np.mean(data[13][2][5],axis=0)[0],np.mean(data[14][2][5],axis=0)[0],np.mean(data[15][2][5],axis=0)[0],np.mean(data[16][2][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][3][5],axis=0)[0],np.mean(data[3][3][5],axis=0)[0],np.mean(data[10][3][5],axis=0)[0],\
+#                                     np.mean(data[13][3][5],axis=0)[0],np.mean(data[14][3][5],axis=0)[0],np.mean(data[15][3][5],axis=0)[0],np.mean(data[16][3][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][4][5],axis=0)[0],np.mean(data[3][4][5],axis=0)[0],np.mean(data[10][4][5],axis=0)[0],\
+#                                     np.mean(data[13][4][5],axis=0)[0],np.mean(data[14][4][5],axis=0)[0],np.mean(data[15][4][5],axis=0)[0],np.mean(data[16][4][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][5][5],axis=0)[0],np.mean(data[3][5][5],axis=0)[0],np.mean(data[10][5][5],axis=0)[0],\
+#                                     np.mean(data[13][5][5],axis=0)[0],np.mean(data[14][5][5],axis=0)[0],np.mean(data[15][5][5],axis=0)[0],np.mean(data[16][5][5],axis=0)[0]])])
+# stdelon1600back = np.array([np.std([np.mean(data[2][0][5],axis=0)[0],np.mean(data[4][0][5],axis=0)[0],np.mean(data[6][0][5],axis=0)[0],\
+#                                  np.mean(data[8][0][5],axis=0)[0],np.mean(data[11][0][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][1][5],axis=0)[0],np.mean(data[4][1][5],axis=0)[0],np.mean(data[6][1][5],axis=0)[0],\
+#                                  np.mean(data[8][1][5],axis=0)[0],np.mean(data[11][1][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][2][5],axis=0)[0],np.mean(data[4][2][5],axis=0)[0],np.mean(data[6][2][5],axis=0)[0],\
+#                                  np.mean(data[8][2][5],axis=0)[0],np.mean(data[11][2][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][3][5],axis=0)[0],np.mean(data[4][3][5],axis=0)[0],np.mean(data[6][3][5],axis=0)[0],\
+#                                  np.mean(data[8][3][5],axis=0)[0],np.mean(data[11][3][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][4][5],axis=0)[0],np.mean(data[4][4][5],axis=0)[0],np.mean(data[6][4][5],axis=0)[0],\
+#                                  np.mean(data[8][4][5],axis=0)[0],np.mean(data[11][4][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][5][5],axis=0)[0],np.mean(data[4][5][5],axis=0)[0],np.mean(data[6][5][5],axis=0)[0],\
+#                                  np.mean(data[8][5][5],axis=0)[0],np.mean(data[11][5][5],axis=0)[0]])])
+# stdelon4000back = np.array([np.std([np.mean(data[5][0][5],axis=0)[0],np.mean(data[9][0][5],axis=0)[0],np.mean(data[12][0][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][1][5],axis=0)[0],np.mean(data[9][1][5],axis=0)[0],np.mean(data[12][1][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][2][5],axis=0)[0],np.mean(data[9][2][5],axis=0)[0],np.mean(data[12][2][5],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][3][5],axis=0)[0],np.mean(data[9][3][5],axis=0)[0],np.mean(data[12][3][5],axis=0)[0]])])
+
+# meanelon800topp = np.array([np.mean([np.mean(data[0][0][2],axis=0)[0],np.mean(data[3][0][2],axis=0)[0],np.mean(data[10][0][2],axis=0)[0],\
+#                                     np.mean(data[13][0][2],axis=0)[0],np.mean(data[14][0][2],axis=0)[0],np.mean(data[15][0][2],axis=0)[0],np.mean(data[16][0][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][1][2],axis=0)[0],np.mean(data[3][1][2],axis=0)[0],np.mean(data[10][1][2],axis=0)[0],\
+#                                     np.mean(data[13][1][2],axis=0)[0],np.mean(data[14][1][2],axis=0)[0],np.mean(data[15][1][2],axis=0)[0],np.mean(data[16][1][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][2][2],axis=0)[0],np.mean(data[3][2][2],axis=0)[0],np.mean(data[10][2][2],axis=0)[0],\
+#                                     np.mean(data[13][2][2],axis=0)[0],np.mean(data[14][2][2],axis=0)[0],np.mean(data[15][2][2],axis=0)[0],np.mean(data[16][2][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][3][2],axis=0)[0],np.mean(data[3][3][2],axis=0)[0],np.mean(data[10][3][2],axis=0)[0],\
+#                                     np.mean(data[13][3][2],axis=0)[0],np.mean(data[14][3][2],axis=0)[0],np.mean(data[15][3][2],axis=0)[0],np.mean(data[16][3][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][4][2],axis=0)[0],np.mean(data[3][4][2],axis=0)[0],np.mean(data[10][4][2],axis=0)[0],\
+#                                     np.mean(data[13][4][2],axis=0)[0],np.mean(data[14][4][2],axis=0)[0],np.mean(data[15][4][2],axis=0)[0],np.mean(data[16][4][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][5][2],axis=0)[0],np.mean(data[3][5][2],axis=0)[0],np.mean(data[10][5][2],axis=0)[0],\
+#                                     np.mean(data[13][5][2],axis=0)[0],np.mean(data[14][5][2],axis=0)[0],np.mean(data[15][5][2],axis=0)[0],np.mean(data[16][5][2],axis=0)[0]])])
+# meanelon1600topp = np.array([np.mean([np.mean(data[2][0][2],axis=0)[0],np.mean(data[4][0][2],axis=0)[0],np.mean(data[6][0][2],axis=0)[0],\
+#                                  np.mean(data[8][0][2],axis=0)[0],np.mean(data[11][0][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][1][2],axis=0)[0],np.mean(data[4][1][2],axis=0)[0],np.mean(data[6][1][2],axis=0)[0],\
+#                                  np.mean(data[8][1][2],axis=0)[0],np.mean(data[11][1][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][2][2],axis=0)[0],np.mean(data[4][2][2],axis=0)[0],np.mean(data[6][2][2],axis=0)[0],\
+#                                  np.mean(data[8][2][2],axis=0)[0],np.mean(data[11][2][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][3][2],axis=0)[0],np.mean(data[4][3][2],axis=0)[0],np.mean(data[6][3][2],axis=0)[0],\
+#                                  np.mean(data[8][3][2],axis=0)[0],np.mean(data[11][3][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][4][2],axis=0)[0],np.mean(data[4][4][2],axis=0)[0],np.mean(data[6][4][2],axis=0)[0],\
+#                                  np.mean(data[8][4][2],axis=0)[0],np.mean(data[11][4][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][5][2],axis=0)[0],np.mean(data[4][5][2],axis=0)[0],np.mean(data[6][5][2],axis=0)[0],\
+#                                  np.mean(data[8][5][2],axis=0)[0],np.mean(data[11][5][2],axis=0)[0]])])
+# meanelon4000topp = np.array([np.mean([np.mean(data[5][0][2],axis=0)[0],np.mean(data[9][0][2],axis=0)[0],np.mean(data[12][0][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][1][2],axis=0)[0],np.mean(data[9][1][2],axis=0)[0],np.mean(data[12][1][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][2][2],axis=0)[0],np.mean(data[9][2][2],axis=0)[0],np.mean(data[12][2][2],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][3][2],axis=0)[0],np.mean(data[9][3][2],axis=0)[0],np.mean(data[12][3][2],axis=0)[0]])])
+
+# stdelon800topp = np.array([np.std([np.mean(data[0][0][2],axis=0)[0],np.mean(data[3][0][2],axis=0)[0],np.mean(data[10][0][2],axis=0)[0],\
+#                                     np.mean(data[13][0][2],axis=0)[0],np.mean(data[14][0][2],axis=0)[0],np.mean(data[15][0][2],axis=0)[0],np.mean(data[16][0][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][1][2],axis=0)[0],np.mean(data[3][1][2],axis=0)[0],np.mean(data[10][1][2],axis=0)[0],\
+#                                     np.mean(data[13][1][2],axis=0)[0],np.mean(data[14][1][2],axis=0)[0],np.mean(data[15][1][2],axis=0)[0],np.mean(data[16][1][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][2][2],axis=0)[0],np.mean(data[3][2][2],axis=0)[0],np.mean(data[10][2][2],axis=0)[0],\
+#                                     np.mean(data[13][2][2],axis=0)[0],np.mean(data[14][2][2],axis=0)[0],np.mean(data[15][2][2],axis=0)[0],np.mean(data[16][2][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][3][2],axis=0)[0],np.mean(data[3][3][2],axis=0)[0],np.mean(data[10][3][2],axis=0)[0],\
+#                                     np.mean(data[13][3][2],axis=0)[0],np.mean(data[14][3][2],axis=0)[0],np.mean(data[15][3][2],axis=0)[0],np.mean(data[16][3][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][4][2],axis=0)[0],np.mean(data[3][4][2],axis=0)[0],np.mean(data[10][4][2],axis=0)[0],\
+#                                     np.mean(data[13][4][2],axis=0)[0],np.mean(data[14][4][2],axis=0)[0],np.mean(data[15][4][2],axis=0)[0],np.mean(data[16][4][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][5][2],axis=0)[0],np.mean(data[3][5][2],axis=0)[0],np.mean(data[10][5][2],axis=0)[0],\
+#                                     np.mean(data[13][5][2],axis=0)[0],np.mean(data[14][5][2],axis=0)[0],np.mean(data[15][5][2],axis=0)[0],np.mean(data[16][5][2],axis=0)[0]])])
+# stdelon1600topp = np.array([np.std([np.mean(data[2][0][2],axis=0)[0],np.mean(data[4][0][2],axis=0)[0],np.mean(data[6][0][2],axis=0)[0],\
+#                                  np.mean(data[8][0][2],axis=0)[0],np.mean(data[11][0][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][1][2],axis=0)[0],np.mean(data[4][1][2],axis=0)[0],np.mean(data[6][1][2],axis=0)[0],\
+#                                  np.mean(data[8][1][2],axis=0)[0],np.mean(data[11][1][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][2][2],axis=0)[0],np.mean(data[4][2][2],axis=0)[0],np.mean(data[6][2][2],axis=0)[0],\
+#                                  np.mean(data[8][2][2],axis=0)[0],np.mean(data[11][2][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][3][2],axis=0)[0],np.mean(data[4][3][2],axis=0)[0],np.mean(data[6][3][2],axis=0)[0],\
+#                                  np.mean(data[8][3][2],axis=0)[0],np.mean(data[11][3][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][4][2],axis=0)[0],np.mean(data[4][4][2],axis=0)[0],np.mean(data[6][4][2],axis=0)[0],\
+#                                  np.mean(data[8][4][2],axis=0)[0],np.mean(data[11][4][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][5][2],axis=0)[0],np.mean(data[4][5][2],axis=0)[0],np.mean(data[6][5][2],axis=0)[0],\
+#                                  np.mean(data[8][5][2],axis=0)[0],np.mean(data[11][5][2],axis=0)[0]])])
+# stdelon4000topp = np.array([np.std([np.mean(data[5][0][2],axis=0)[0],np.mean(data[9][0][2],axis=0)[0],np.mean(data[12][0][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][1][2],axis=0)[0],np.mean(data[9][1][2],axis=0)[0],np.mean(data[12][1][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][2][2],axis=0)[0],np.mean(data[9][2][2],axis=0)[0],np.mean(data[12][2][2],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][3][2],axis=0)[0],np.mean(data[9][3][2],axis=0)[0],np.mean(data[12][3][2],axis=0)[0]])])
+
+# meanelon800topf = np.array([np.mean([np.mean(data[0][0][3],axis=0)[0],np.mean(data[3][0][3],axis=0)[0],np.mean(data[10][0][3],axis=0)[0],\
+#                                     np.mean(data[13][0][3],axis=0)[0],np.mean(data[14][0][3],axis=0)[0],np.mean(data[15][0][3],axis=0)[0],np.mean(data[16][0][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][1][3],axis=0)[0],np.mean(data[3][1][3],axis=0)[0],np.mean(data[10][1][3],axis=0)[0],\
+#                                     np.mean(data[13][1][3],axis=0)[0],np.mean(data[14][1][3],axis=0)[0],np.mean(data[15][1][3],axis=0)[0],np.mean(data[16][1][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][2][3],axis=0)[0],np.mean(data[3][2][3],axis=0)[0],np.mean(data[10][2][3],axis=0)[0],\
+#                                     np.mean(data[13][2][3],axis=0)[0],np.mean(data[14][2][3],axis=0)[0],np.mean(data[15][2][3],axis=0)[0],np.mean(data[16][2][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][3][3],axis=0)[0],np.mean(data[3][3][3],axis=0)[0],np.mean(data[10][3][3],axis=0)[0],\
+#                                     np.mean(data[13][3][3],axis=0)[0],np.mean(data[14][3][3],axis=0)[0],np.mean(data[15][3][3],axis=0)[0],np.mean(data[16][3][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][4][3],axis=0)[0],np.mean(data[3][4][3],axis=0)[0],np.mean(data[10][4][3],axis=0)[0],\
+#                                     np.mean(data[13][4][3],axis=0)[0],np.mean(data[14][4][3],axis=0)[0],np.mean(data[15][4][3],axis=0)[0],np.mean(data[16][4][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[0][5][3],axis=0)[0],np.mean(data[3][5][3],axis=0)[0],np.mean(data[10][5][3],axis=0)[0],\
+#                                     np.mean(data[13][5][3],axis=0)[0],np.mean(data[14][5][3],axis=0)[0],np.mean(data[15][5][3],axis=0)[0],np.mean(data[16][5][3],axis=0)[0]])])
+# meanelon1600topf = np.array([np.mean([np.mean(data[2][0][3],axis=0)[0],np.mean(data[4][0][3],axis=0)[0],np.mean(data[6][0][3],axis=0)[0],\
+#                                  np.mean(data[8][0][3],axis=0)[0],np.mean(data[11][0][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][1][3],axis=0)[0],np.mean(data[4][1][3],axis=0)[0],np.mean(data[6][1][3],axis=0)[0],\
+#                                  np.mean(data[8][1][3],axis=0)[0],np.mean(data[11][1][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][2][3],axis=0)[0],np.mean(data[4][2][3],axis=0)[0],np.mean(data[6][2][3],axis=0)[0],\
+#                                  np.mean(data[8][2][3],axis=0)[0],np.mean(data[11][2][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][3][3],axis=0)[0],np.mean(data[4][3][3],axis=0)[0],np.mean(data[6][3][3],axis=0)[0],\
+#                                  np.mean(data[8][3][3],axis=0)[0],np.mean(data[11][3][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][4][3],axis=0)[0],np.mean(data[4][4][3],axis=0)[0],np.mean(data[6][4][3],axis=0)[0],\
+#                                  np.mean(data[8][4][3],axis=0)[0],np.mean(data[11][4][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[2][5][3],axis=0)[0],np.mean(data[4][5][3],axis=0)[0],np.mean(data[6][5][3],axis=0)[0],\
+#                                  np.mean(data[8][5][3],axis=0)[0],np.mean(data[11][5][3],axis=0)[0]])])
+# meanelon4000topf = np.array([np.mean([np.mean(data[5][0][3],axis=0)[0],np.mean(data[9][0][3],axis=0)[0],np.mean(data[12][0][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][1][3],axis=0)[0],np.mean(data[9][1][3],axis=0)[0],np.mean(data[12][1][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][2][3],axis=0)[0],np.mean(data[9][2][3],axis=0)[0],np.mean(data[12][2][3],axis=0)[0]]),\
+#                        np.mean([np.mean(data[5][3][3],axis=0)[0],np.mean(data[9][3][3],axis=0)[0],np.mean(data[12][3][3],axis=0)[0]])])
+
+# stdelon800topf = np.array([np.std([np.mean(data[0][0][3],axis=0)[0],np.mean(data[3][0][3],axis=0)[0],np.mean(data[10][0][3],axis=0)[0],\
+#                                     np.mean(data[13][0][3],axis=0)[0],np.mean(data[14][0][3],axis=0)[0],np.mean(data[15][0][3],axis=0)[0],np.mean(data[16][0][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][1][3],axis=0)[0],np.mean(data[3][1][3],axis=0)[0],np.mean(data[10][1][3],axis=0)[0],\
+#                                     np.mean(data[13][1][3],axis=0)[0],np.mean(data[14][1][3],axis=0)[0],np.mean(data[15][1][3],axis=0)[0],np.mean(data[16][1][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][2][3],axis=0)[0],np.mean(data[3][2][3],axis=0)[0],np.mean(data[10][2][3],axis=0)[0],\
+#                                     np.mean(data[13][2][3],axis=0)[0],np.mean(data[14][2][3],axis=0)[0],np.mean(data[15][2][3],axis=0)[0],np.mean(data[16][2][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][3][3],axis=0)[0],np.mean(data[3][3][3],axis=0)[0],np.mean(data[10][3][3],axis=0)[0],\
+#                                     np.mean(data[13][3][3],axis=0)[0],np.mean(data[14][3][3],axis=0)[0],np.mean(data[15][3][3],axis=0)[0],np.mean(data[16][3][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][4][3],axis=0)[0],np.mean(data[3][4][3],axis=0)[0],np.mean(data[10][4][3],axis=0)[0],\
+#                                     np.mean(data[13][4][3],axis=0)[0],np.mean(data[14][4][3],axis=0)[0],np.mean(data[15][4][3],axis=0)[0],np.mean(data[16][4][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[0][5][3],axis=0)[0],np.mean(data[3][5][3],axis=0)[0],np.mean(data[10][5][3],axis=0)[0],\
+#                                     np.mean(data[13][5][3],axis=0)[0],np.mean(data[14][5][3],axis=0)[0],np.mean(data[15][5][3],axis=0)[0],np.mean(data[16][5][3],axis=0)[0]])])
+# stdelon1600topf = np.array([np.std([np.mean(data[2][0][3],axis=0)[0],np.mean(data[4][0][3],axis=0)[0],np.mean(data[6][0][3],axis=0)[0],\
+#                                  np.mean(data[8][0][3],axis=0)[0],np.mean(data[11][0][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][1][3],axis=0)[0],np.mean(data[4][1][3],axis=0)[0],np.mean(data[6][1][3],axis=0)[0],\
+#                                  np.mean(data[8][1][3],axis=0)[0],np.mean(data[11][1][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][2][3],axis=0)[0],np.mean(data[4][2][3],axis=0)[0],np.mean(data[6][2][3],axis=0)[0],\
+#                                  np.mean(data[8][2][3],axis=0)[0],np.mean(data[11][2][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][3][3],axis=0)[0],np.mean(data[4][3][3],axis=0)[0],np.mean(data[6][3][3],axis=0)[0],\
+#                                  np.mean(data[8][3][3],axis=0)[0],np.mean(data[11][3][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][4][3],axis=0)[0],np.mean(data[4][4][3],axis=0)[0],np.mean(data[6][4][3],axis=0)[0],\
+#                                  np.mean(data[8][4][3],axis=0)[0],np.mean(data[11][4][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[2][5][3],axis=0)[0],np.mean(data[4][5][3],axis=0)[0],np.mean(data[6][5][3],axis=0)[0],\
+#                                  np.mean(data[8][5][3],axis=0)[0],np.mean(data[11][5][3],axis=0)[0]])])
+# stdelon4000topf = np.array([np.std([np.mean(data[5][0][3],axis=0)[0],np.mean(data[9][0][3],axis=0)[0],np.mean(data[12][0][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][1][3],axis=0)[0],np.mean(data[9][1][3],axis=0)[0],np.mean(data[12][1][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][2][3],axis=0)[0],np.mean(data[9][2][3],axis=0)[0],np.mean(data[12][2][3],axis=0)[0]]),\
+#                        np.std([np.mean(data[5][3][3],axis=0)[0],np.mean(data[9][3][3],axis=0)[0],np.mean(data[12][3][3],axis=0)[0]])])
 
 
 # ### velocity
@@ -1166,10 +1268,10 @@ width34 = 0.6
 # # ax.plot(time3[0:6]+0.5*width34,meanelon1600back,'--o', color=color5, markersize=10, linewidth=3, label='backward')
 
 # # ax.set_xlim(3,12)
-# ax.set_ylim(100,250)
+# ax.set_ylim(50,350)
 
 # plt.xticks(time3, labels=labels)
-# plt.yticks(np.arange(100,251,50))
+# plt.yticks(np.arange(50,351,100))
 # ax.tick_params(axis='x', labelsize= ticksizeZoom)
 # ax.tick_params(axis='y', labelsize= ticksizeZoom)
 
@@ -1214,27 +1316,27 @@ width34 = 0.6
 
 # ### Shear rate faceward vs. backward zoom in
 # fig, ax = plt.subplots(figsize=(12, 4))
-# # ax.bar(time3-0.5*width34, meanshear800face, yerr=stdshear800face, alpha=0.9, color=color1, ecolor='black', capsize=6, width=width34)
-# # ax.plot(time3[0:6]-0.5*width34,meanshear800face,'--o', color=color4, markersize=10, linewidth=3,label='faceward')
-# ax.bar(time3-0.5*width34, meanshear1600face, yerr=stdshear1600face, alpha=0.9, color=color2, ecolor='black', capsize=6, width=width34)
-# ax.plot(time3[0:6]-0.5*width34,meanshear1600face,'--o', color=color4, markersize=10, linewidth=3,label='faceward')
-# # ax.bar(time3+0.5*width34, meanshear800back, yerr=stdshear800face, hatch='//', color='none', edgecolor=color1, ecolor='black', capsize=6, width=width34)
-# # ax.plot(time3[0:6]+0.5*width34,meanshear800back,'--o', color=color5, markersize=10, linewidth=3, label='backward')
-# ax.bar(time3+0.5*width34, meanshear1600back, yerr=stdshear1600face, hatch='//', color='none', edgecolor=color2, ecolor='black', capsize=6, width=width34)
-# ax.plot(time3[0:6]+0.5*width34,meanshear1600back,'--o', color=color5, markersize=10, linewidth=3, label='backward')
+# ax.bar(time3-0.5*width34, meanshear800face, yerr=stdshear800face, alpha=0.9, color=color1, ecolor='black', capsize=6, width=width34)
+# ax.plot(time3[0:6]-0.5*width34,meanshear800face,'--o', color=color4, markersize=10, linewidth=3,label='faceward')
+# # ax.bar(time3-0.5*width34, meanshear1600face, yerr=stdshear1600face, alpha=0.9, color=color2, ecolor='black', capsize=6, width=width34)
+# # ax.plot(time3[0:6]-0.5*width34,meanshear1600face,'--o', color=color4, markersize=10, linewidth=3,label='faceward')
+# ax.bar(time3+0.5*width34, meanshear800back, yerr=stdshear800face, hatch='//', color='none', edgecolor=color1, ecolor='black', capsize=6, width=width34)
+# ax.plot(time3[0:6]+0.5*width34,meanshear800back,'--o', color=color5, markersize=10, linewidth=3, label='backward')
+# # ax.bar(time3+0.5*width34, meanshear1600back, yerr=stdshear1600face, hatch='//', color='none', edgecolor=color2, ecolor='black', capsize=6, width=width34)
+# # ax.plot(time3[0:6]+0.5*width34,meanshear1600back,'--o', color=color5, markersize=10, linewidth=3, label='backward')
 
 # # ax.set_xlim(3,12)
-# ax.set_ylim(700,1150)
+# ax.set_ylim(250,700)
 
 # plt.xticks(time3, labels=labels)
-# plt.yticks(np.arange(700,1151,150))
+# plt.yticks(np.arange(250,701,150))
 # ax.tick_params(axis='x', labelsize= ticksizeZoom)
 # ax.tick_params(axis='y', labelsize= ticksizeZoom)
 
 # plt.legend(loc=1,fontsize=ticksizeZoom)
 # plt.grid(alpha=0.3)
 
-# plt.savefig('shearFB_1600.png',bbox_inches='tight')
+# plt.savefig('shearFB_800.png',bbox_inches='tight')
 # plt.show()
 
 
@@ -1355,104 +1457,6 @@ width34 = 0.6
 # plt.savefig('elonT_zoom.png',bbox_inches='tight')
 # plt.show()
 
-
-
-
-### Shear rate surface
-fig, ax = plt.subplots()
-ax.plot(time[0:6],meanshear800surface,'--^', color=color1, markersize=8, label='800 1/s')
-ax.fill_between(time[0:6],meanshear800surface-stdshear800surface, meanshear800surface+stdshear800surface, color=color1, alpha=0.2)
-ax.plot(time[0:6],meanshear1600surface,'--o', color=color2, markersize=8, label='1600 1/s')
-ax.fill_between(time[0:6],meanshear1600surface-stdshear1600surface, meanshear1600surface+stdshear1600surface, color=color2, alpha=0.2)
-ax.plot(time[0:4],meanshear4000surface,'--s', color=color3, markersize=8, label='4000 1/s')
-ax.fill_between(time[0:4],meanshear4000surface-stdshear4000surface, meanshear4000surface+stdshear4000surface, color=color3, alpha=0.2)
-# ax.errorbar(time[0:6],meanshear800surface,yerr=stdshear800surface,fmt='--o', color=color1, markersize=6, capsize=3, label='800 1/s')
-# ax.errorbar(time[0:6],meanshear1600surface,yerr=stdshear1600surface,fmt='--o', color=color2, markersize=6, capsize=3, label='1600 1/s')
-# ax.errorbar(time[0:4],meanshear4000surface,yerr=stdshear4000surface,fmt='--o', color=color3, markersize=6, capsize=3, label='4000 1/s')
-
-ax.set_ylabel('shear rate $[1/s]$',fontsize=fontsize)
-ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('Average shear rate on surface', fontsize=fontsize)
-
-# ax.set_ylim(0,5)
-
-ax.tick_params(axis='x', labelsize= ticksize)
-ax.tick_params(axis='y', labelsize= ticksize)
-
-plt.legend(loc=1,fontsize=12)
-plt.grid(alpha=0.3)
-
-plt.savefig('shearS.png',bbox_inches='tight')
-plt.show()
-
-
-## rate of elongation surface
-fig, ax = plt.subplots()
-ax.plot(time[0:6],meanelon800surface,'--^', color=color1, markersize=8, label='800 1/s')
-ax.fill_between(time[0:6],meanelon800surface-stdelon800surface, meanelon800surface+stdelon800surface, color=color1, alpha=0.2)
-ax.plot(time[0:6],meanelon1600surface,'--o', color=color2, markersize=8, label='1600 1/s')
-ax.fill_between(time[0:6],meanelon1600surface-stdelon1600surface, meanelon1600surface+stdelon1600surface, color=color2, alpha=0.2)
-ax.plot(time[0:4],meanelon4000surface,'--s', color=color3, markersize=8, label='4000 1/s')
-ax.fill_between(time[0:4],meanelon4000surface-stdelon4000surface, meanelon4000surface+stdelon4000surface, color=color3, alpha=0.2)
-# ax.errorbar(time[0:6],meanelon800surface,yerr=stdelon800surface,fmt='--o', color=color1, ecolor='k', markersize=6, capsize=3, label='800 1/s')
-# ax.errorbar(time[0:6],meanelon1600surface,yerr=stdelon1600surface,fmt='--o', color=color2, ecolor='k', markersize=6, capsize=3, label='1600 1/s')
-# ax.errorbar(time[0:4],meanelon4000surface,yerr=stdelon4000surface,fmt='--o', color=color3, ecolor='k', markersize=6, capsize=3, label='4000 1/s')
-
-ax.set_ylabel('rate of elongation $[1/s]$',fontsize=fontsize)
-ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('Average rate of elongation on surface', fontsize=fontsize)
-
-# ax.set_ylim(0,5)
-
-ax.tick_params(axis='x', labelsize= ticksize)
-ax.tick_params(axis='y', labelsize= ticksize)
-
-plt.legend(loc=1,fontsize=12)
-plt.grid(alpha=0.3)
-
-plt.savefig('elonS.png',bbox_inches='tight')
-plt.show()
-
-
-
-### Normalised result surface
-fig, ax = plt.subplots()
-ax.plot(time[0:6],meanelon800surface/meanelon800surface[0]*100,'-^', color=color5, markersize=8)
-ax.plot(time[0:6],meanelon1600surface/meanelon1600surface[0]*100,'-o', color=color5, markersize=8)
-ax.plot(time[0:4],meanelon4000surface/meanelon4000surface[0]*100,'-s', color=color5, markersize=8)
-ax.plot(time[0:6],meanshear800surface/meanshear800surface[0]*100,'--^', color=color4, markersize=8)
-ax.plot(time[0:6],meanshear1600surface/meanshear1600surface[0]*100,'--o', color=color4, markersize=8)
-ax.plot(time[0:4],meanshear4000surface/meanshear4000surface[0]*100,'--s', color=color4, markersize=8)
-
-
-ax.set_ylabel('percentage $[\%]$',fontsize=fontsize)
-ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('Normalised average results', fontsize=fontsize)
-
-# ax.set_ylim(0,5)
-
-ax.tick_params(axis='x', labelsize= ticksize)
-ax.tick_params(axis='y', labelsize= ticksize)
-
-marker800 = mlines.Line2D([], [], color='k', marker='^', linestyle='None', markersize=8, label='800 $1/s$')
-marker1600 = mlines.Line2D([], [], color='k', marker='o', linestyle='None', markersize=8, label='1600 $1/s$')
-marker4000 = mlines.Line2D([], [], color='k', marker='s', linestyle='None', markersize=8, label='4000 $1/s$')
-lineElon = mlines.Line2D([], [], color=color5, marker='None', linestyle='-', linewidth=2, label='shear rate')
-lineShear = mlines.Line2D([], [], color=color4, marker='None', linestyle='--', linewidth=2, label='rate of elongation')
-
-ax.legend(
-    handles=[marker800, marker1600, marker4000, lineElon, lineShear],
-    loc=1, # "upper center" puts it below the line
-    ncol=1,
-    fontsize=12
-);
-
-plt.grid(alpha=0.3)
-
-plt.savefig('normalS.png',bbox_inches='tight')
-plt.show()
-
-####-----------------------------not used---------------------------------####
 ## PointZ -- height
 # meanH800face = np.array([np.mean([np.mean(data[0][0][4],axis=0)[0],np.mean(data[3][0][4],axis=0)[0],np.mean(data[10][0][4],axis=0)[0],\
 #                                     np.mean(data[13][0][4],axis=0)[0],np.mean(data[14][0][4],axis=0)[0],np.mean(data[15][0][4],axis=0)[0],np.mean(data[16][0][4],axis=0)[0]]),\
