@@ -1,4 +1,4 @@
-## Image-based flow simulation for platelet aggregate
+## Platelet aggregation dynamics investigation
 
 This repository presents the implementation of image-based flow simulation for *in vitro* platelet aggregates in 3D. The implementation of the finite element simulation is based on open source [FreeFEM](https://freefem.org/).
 
