@@ -78,7 +78,7 @@ data1600 = np.array([1,3,5,6,9])
 data4000 = np.array([4,7,10])
 
 
-## Local binding available time: rupture distance 100nm, threshold 1ms
+## Local binding availability time: rupture distance 100nm, threshold 1ms
 # Top10
 rt800top10 = []
 rt1600top10 = []
@@ -296,7 +296,7 @@ for i in range(data800.shape[0]):
     timearray = []
     for j in range(6):
         temp800 = data[data800[i]][j][3][:,0]
-        temp800_gt1 = temp800[temp800>450]
+        temp800_gt1 = temp800[temp800>600]
         ratio = temp800_gt1.shape[0]/temp800.shape[0]
         timearray.append(ratio)
     elon800top3.append(timearray)
@@ -306,7 +306,7 @@ for i in range(data1600.shape[0]):
     timearray = []
     for j in range(6):
         temp1600 = data[data1600[i]][j][3][:,0]
-        temp1600_gt1 = temp1600[temp1600>450]
+        temp1600_gt1 = temp1600[temp1600>600]
         ratio = temp1600_gt1.shape[0]/temp1600.shape[0]
         timearray.append(ratio)
     elon1600top3.append(timearray)
@@ -316,7 +316,7 @@ for i in range(data4000.shape[0]):
     timearray = []
     for j in range(4):
         temp4000 = data[data4000[i]][j][3][:,0]
-        temp4000_gt1 = temp4000[temp4000>450]
+        temp4000_gt1 = temp4000[temp4000>600]
         ratio = temp4000_gt1.shape[0]/temp4000.shape[0]
         timearray.append(ratio)
     elon4000top3.append(timearray)
@@ -330,7 +330,7 @@ for i in range(data800.shape[0]):
     timearray = []
     for j in range(6):
         temp800 = data[data800[i]][j][5][:,0]
-        temp800_gt1 = temp800[temp800>450]
+        temp800_gt1 = temp800[temp800>600]
         ratio = temp800_gt1.shape[0]/temp800.shape[0]
         timearray.append(ratio)
     elon800bottom3.append(timearray)
@@ -340,7 +340,7 @@ for i in range(data1600.shape[0]):
     timearray = []
     for j in range(6):
         temp1600 = data[data1600[i]][j][5][:,0]
-        temp1600_gt1 = temp1600[temp1600>450]
+        temp1600_gt1 = temp1600[temp1600>600]
         ratio = temp1600_gt1.shape[0]/temp1600.shape[0]
         timearray.append(ratio)
     elon1600bottom3.append(timearray)
@@ -350,7 +350,7 @@ for i in range(data4000.shape[0]):
     timearray = []
     for j in range(4):
         temp4000 = data[data4000[i]][j][5][:,0]
-        temp4000_gt1 = temp4000[temp4000>450]
+        temp4000_gt1 = temp4000[temp4000>600]
         ratio = temp4000_gt1.shape[0]/temp4000.shape[0]
         timearray.append(ratio)
     elon4000bottom3.append(timearray)
@@ -405,69 +405,69 @@ width34 = 0.6
 
 
 
-# ## Local binding available time ratio
-# fig, ax = plt.subplots()
-# ax.bar(time1-2.5*width12, np.mean(rt800top3,axis=0)*100, yerr=np.std(rt800top3,axis=0)*100, alpha=0.9, color=color1, ecolor='black', capsize=2, width=width12)
-# ax.bar(time1-0.5*width12, np.mean(rt1600top3,axis=0)*100, yerr=np.std(rt1600top3,axis=0)*100, alpha=0.9, color=color2, ecolor='black', capsize=2, width=width12)
-# ax.bar(time2+1.5*width12, np.mean(rt4000top3,axis=0)*100, yerr=np.std(rt4000top3,axis=0)*100, alpha=0.9, color=color3, ecolor='black', capsize=2, width=width12)
-# ax.bar(time1-1.5*width12, np.mean(rt800bottom3,axis=0)*100, yerr=np.std(rt800bottom3,axis=0)*100, hatch='////', color='none', edgecolor=color1, ecolor='black', capsize=2, width=width12)
-# ax.bar(time1+0.5*width12, np.mean(rt1600bottom3,axis=0)*100, yerr=np.std(rt1600bottom3,axis=0)*100, hatch='////', color='none', edgecolor=color2, ecolor='black', capsize=2, width=width12)
-# ax.bar(time2+2.5*width12, np.mean(rt4000bottom3,axis=0)*100, yerr=np.std(rt4000bottom3,axis=0)*100, hatch='////', color='none', edgecolor=color3, ecolor='black', capsize=2, width=width12)
+## Local binding availability time ratio
+fig, ax = plt.subplots()
+ax.bar(time1-2.5*width12, np.mean(rt800top3,axis=0)*100, yerr=np.std(rt800top3,axis=0)*100, alpha=0.9, color=color1, ecolor='black', capsize=2, width=width12)
+ax.bar(time1-0.5*width12, np.mean(rt1600top3,axis=0)*100, yerr=np.std(rt1600top3,axis=0)*100, alpha=0.9, color=color2, ecolor='black', capsize=2, width=width12)
+ax.bar(time2+1.5*width12, np.mean(rt4000top3,axis=0)*100, yerr=np.std(rt4000top3,axis=0)*100, alpha=0.9, color=color3, ecolor='black', capsize=2, width=width12)
+ax.bar(time1-1.5*width12, np.mean(rt800bottom3,axis=0)*100, yerr=np.std(rt800bottom3,axis=0)*100, hatch='////', color='none', edgecolor=color1, ecolor='black', capsize=2, width=width12)
+ax.bar(time1+0.5*width12, np.mean(rt1600bottom3,axis=0)*100, yerr=np.std(rt1600bottom3,axis=0)*100, hatch='////', color='none', edgecolor=color2, ecolor='black', capsize=2, width=width12)
+ax.bar(time2+2.5*width12, np.mean(rt4000bottom3,axis=0)*100, yerr=np.std(rt4000bottom3,axis=0)*100, hatch='////', color='none', edgecolor=color3, ecolor='black', capsize=2, width=width12)
 
-# ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
-# ax.set_xlabel('time $[min]$',fontsize=fontsize)
-# plt.title('Local binding available time $>$ 1 $ms$', fontsize=fontsize)
+ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Local binding availability time $>$ 1 $ms$', fontsize=fontsize)
 
-# ax.set_ylim(0,)
-# plt.xticks(time1, labels=labels)
-# ax.tick_params(axis='x', labelsize= ticksize)
-# ax.tick_params(axis='y', labelsize= ticksize)
+ax.set_ylim(0,)
+plt.xticks(time1, labels=labels)
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
 
-# # plt.legend(loc=2,fontsize=12)
-# plt.grid(alpha=0.3)
+# plt.legend(loc=2,fontsize=12)
+plt.grid(alpha=0.3)
 
-# plt.savefig('TBrtRatio.png',bbox_inches='tight')
-# plt.show()
-
-
-# ## Shear rate ratio
-# fig, ax = plt.subplots()
-# ax.bar(time1-1.5*width12backup, np.mean(shear1600top3,axis=0)*100, yerr=np.std(shear1600top3,axis=0)*100, alpha=0.9, color=color2, ecolor='black', capsize=2, width=width12backup)
-# ax.bar(time2+0.5*width12backup, np.mean(shear4000top3,axis=0)*100, yerr=np.std(shear4000top3,axis=0)*100, alpha=0.9, color=color3, ecolor='black', capsize=2, width=width12backup)
-# ax.bar(time1-0.5*width12backup, np.mean(shear1600bottom3,axis=0)*100, yerr=np.std(shear1600bottom3,axis=0)*100, hatch='////', color='none', edgecolor=color2, ecolor='black', capsize=2, width=width12backup)
-# ax.bar(time2+1.5*width12backup, np.mean(shear4000bottom3,axis=0)*100, yerr=np.std(shear4000bottom3,axis=0)*100, hatch='////', color='none', edgecolor=color3, ecolor='black', capsize=2, width=width12backup)
-
-# ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
-# ax.set_xlabel('time $[min]$',fontsize=fontsize)
-# plt.title('Shear rate $>$ 2500 $1/s$', fontsize=fontsize)
-
-# ax.set_ylim(0,)
-
-# plt.xticks(time1, labels=labels)
-# ax.tick_params(axis='x', labelsize= ticksize)
-# ax.tick_params(axis='y', labelsize= ticksize)
-
-# # plt.legend(loc=2,fontsize=12)
-# plt.grid(alpha=0.3)
-
-# plt.savefig('TBshearRatio.png',bbox_inches='tight')
-# plt.show()
+plt.savefig('TBrtRatio.png',bbox_inches='tight')
+plt.show()
 
 
-# ## Shear rate ratio -- zoom in
-# fig, ax = plt.subplots(figsize=(12, 4))
-# bars = ax.bar(time3, np.mean(shear1600bottom3,axis=0)*100, hatch='//', color='none', edgecolor=color2, ecolor='black', capsize=6, width=width12)
+## Shear rate ratio
+fig, ax = plt.subplots()
+ax.bar(time1-1.5*width12backup, np.mean(shear1600top3,axis=0)*100, yerr=np.std(shear1600top3,axis=0)*100, alpha=0.9, color=color2, ecolor='black', capsize=2, width=width12backup)
+ax.bar(time2+0.5*width12backup, np.mean(shear4000top3,axis=0)*100, yerr=np.std(shear4000top3,axis=0)*100, alpha=0.9, color=color3, ecolor='black', capsize=2, width=width12backup)
+ax.bar(time1-0.5*width12backup, np.mean(shear1600bottom3,axis=0)*100, yerr=np.std(shear1600bottom3,axis=0)*100, hatch='////', color='none', edgecolor=color2, ecolor='black', capsize=2, width=width12backup)
+ax.bar(time2+1.5*width12backup, np.mean(shear4000bottom3,axis=0)*100, yerr=np.std(shear4000bottom3,axis=0)*100, hatch='////', color='none', edgecolor=color3, ecolor='black', capsize=2, width=width12backup)
 
-# ax.bar_label(bars,fmt='%0.3f',fontsize=20)
+ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
+ax.set_xlabel('time $[min]$',fontsize=fontsize)
+plt.title('Shear rate $>$ 2500 $1/s$', fontsize=fontsize)
 
-# ax.set_ylim(0,0.2)
+ax.set_ylim(0,)
 
-# plt.xticks(time3, labels=labels)
-# ax.tick_params(axis='x', labelsize= ticksizeZoom)
-# ax.tick_params(axis='y', labelsize= ticksizeZoom)
+plt.xticks(time1, labels=labels)
+ax.tick_params(axis='x', labelsize= ticksize)
+ax.tick_params(axis='y', labelsize= ticksize)
 
-# plt.savefig('TBshearRatio_zoom.png',bbox_inches='tight', transparent=True)
-# plt.show()
+# plt.legend(loc=2,fontsize=12)
+plt.grid(alpha=0.3)
+
+plt.savefig('TBshearRatio.png',bbox_inches='tight')
+plt.show()
+
+
+## Shear rate ratio -- zoom in
+fig, ax = plt.subplots(figsize=(12, 4))
+bars = ax.bar(time3, np.mean(shear1600bottom3,axis=0)*100, hatch='//', color='none', edgecolor=color2, ecolor='black', capsize=6, width=width12)
+
+ax.bar_label(bars,fmt='%0.3f',fontsize=22)
+
+ax.set_ylim(0,0.2)
+
+plt.xticks(time3, labels=labels)
+ax.tick_params(axis='x', labelsize= ticksizeZoom)
+ax.tick_params(axis='y', labelsize= ticksizeZoom)
+
+plt.savefig('TBshearRatio_zoom.png',bbox_inches='tight', transparent=True)
+plt.show()
 
 
 ## Elongation rate ratio
@@ -479,9 +479,9 @@ ax.bar(time2+1.5*width12backup, np.mean(elon4000bottom3,axis=0)*100, yerr=np.std
 
 ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
 ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('Rate of elongation $>$ 450 $1/s$', fontsize=fontsize)
+plt.title('Rate of elongation $>$ 600 $1/s$', fontsize=fontsize)
 
-# ax.set_ylim(0,5)
+ax.set_ylim(0,)
 
 plt.xticks(time1, labels=labels)
 ax.tick_params(axis='x', labelsize= ticksize)
@@ -491,4 +491,19 @@ ax.tick_params(axis='y', labelsize= ticksize)
 plt.grid(alpha=0.3)
 
 plt.savefig('TBelonRatio.png',bbox_inches='tight')
+plt.show()
+
+## Elongation rate ratio -- zoom in
+fig, ax = plt.subplots(figsize=(12, 4))
+bars = ax.bar(time3, np.mean(elon1600bottom3,axis=0)*100, hatch='//', color='none', edgecolor=color2, ecolor='black', capsize=6, width=width12)
+
+ax.bar_label(bars,fmt='%0.3f',fontsize=20)
+
+ax.set_ylim(0,2)
+
+plt.xticks(time3, labels=labels)
+ax.tick_params(axis='x', labelsize= ticksizeZoom)
+ax.tick_params(axis='y', labelsize= ticksizeZoom)
+
+plt.savefig('TBelongRatio_zoom.png',bbox_inches='tight', transparent=True)
 plt.show()

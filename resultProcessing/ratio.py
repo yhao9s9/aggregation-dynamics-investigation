@@ -79,7 +79,7 @@ data1600 = np.array([2,4,6,8,11])
 data4000 = np.array([5,9,12])
 
 
-## Local binding available time: rupture distance 100nm, threshold 1ms
+## Local binding availability time: rupture distance 100nm, threshold 1ms
 rt800ratio = []
 rt1600ratio = []
 rt4000ratio = []
@@ -158,7 +158,7 @@ for i in range(data800.shape[0]):
     timearray = []
     for j in range(6):
         temp800 = data[data800[i]][j][1][:,0]
-        temp800_gt1 = temp800[temp800>450]
+        temp800_gt1 = temp800[temp800>600]
         ratio = temp800_gt1.shape[0]/temp800.shape[0]
         timearray.append(ratio)
     elon800ratio.append(timearray)
@@ -168,7 +168,7 @@ for i in range(data1600.shape[0]):
     timearray = []
     for j in range(6):
         temp1600 = data[data1600[i]][j][1][:,0]
-        temp1600_gt1 = temp1600[temp1600>450]
+        temp1600_gt1 = temp1600[temp1600>600]
         ratio = temp1600_gt1.shape[0]/temp1600.shape[0]
         timearray.append(ratio)
     elon1600ratio.append(timearray)
@@ -178,7 +178,7 @@ for i in range(data4000.shape[0]):
     timearray = []
     for j in range(4):
         temp4000 = data[data4000[i]][j][1][:,0]
-        temp4000_gt1 = temp4000[temp4000>450]
+        temp4000_gt1 = temp4000[temp4000>600]
         ratio = temp4000_gt1.shape[0]/temp4000.shape[0]
         timearray.append(ratio)
     elon4000ratio.append(timearray)
@@ -248,7 +248,7 @@ width12 = 0.7
 width34 = 0.6
 
 
-## Local binding available time ratio
+## Local binding availability time ratio
 fig, ax = plt.subplots()
 ax.errorbar(time[0:6],np.mean(rt800ratio,axis=0)*100,yerr=np.std(rt800ratio,axis=0)*100,fmt='--^', color=color1, markersize=8, capsize=5, label='800 1/s')
 ax.errorbar(time[0:6],np.mean(rt1600ratio,axis=0)*100,yerr=np.std(rt1600ratio,axis=0)*100,fmt='--o', color=color2, markersize=8, capsize=5, label='1600 1/s')
@@ -256,7 +256,7 @@ ax.errorbar(time[0:4],np.mean(rt4000ratio,axis=0)*100,yerr=np.std(rt4000ratio,ax
 
 ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
 ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('Average ratio of surface with local binding \n available time larger than 1 $ms$', fontsize=fontsize)
+plt.title('Ratio of surface with local binding availability \n time larger than 1 $ms$', fontsize=fontsize)
 
 # ax.set_ylim(0,5)
 
@@ -278,7 +278,7 @@ ax.errorbar(time[0:4],np.mean(shear4000ratio,axis=0)*100,yerr=np.std(shear4000ra
 
 ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
 ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('Average ratio of surface with shear \n rate larger than 2500 $1/s$', fontsize=fontsize)
+plt.title('Ratio of surface with shear rate larger \n than 2500 $1/s$', fontsize=fontsize)
 
 # ax.set_ylim(0,5)
 
@@ -301,7 +301,7 @@ ax.errorbar(time[0:4],np.mean(elon4000ratio,axis=0)*100,yerr=np.std(elon4000rati
 
 ax.set_ylabel('ratio $[\%]$',fontsize=fontsize)
 ax.set_xlabel('time $[min]$',fontsize=fontsize)
-plt.title('Average ratio of surface with rate of \n elongation larger than 450 $1/s$', fontsize=fontsize)
+plt.title('Ratio of surface with rate of elongation \n larger than 600 $1/s$', fontsize=fontsize)
 
 # ax.set_ylim(0,5)
 plt.yticks(np.arange(10,81,20))
@@ -337,19 +337,3 @@ plt.show()
 # plt.savefig('rfRatio.png',bbox_inches='tight')
 # plt.show()
 
-
-
-# ### Rupture force ratio-- zoom in
-# fig, ax = plt.subplots()
-# ax.errorbar(time[0:6],np.mean(bf800ratio,axis=0)*100,yerr=np.std(bf800ratio,axis=0)*100,fmt='--^', color=color1, linewidth=3, markersize=12, capsize=6, label='800 1/s')
-# ax.errorbar(time[0:6],np.mean(bf1600ratio,axis=0)*100,yerr=np.std(bf1600ratio,axis=0)*100,fmt='--o', color=color2, linewidth=3, markersize=12, capsize=6, label='1600 1/s')
-
-# # ax.set_ylim(0,5)
-
-# ax.tick_params(axis='x', labelsize= ticksizeZoom)
-# ax.tick_params(axis='y', labelsize= ticksizeZoom)
-
-# plt.grid(alpha=0.3)
-
-# plt.savefig('rfRatio_zoom.png',bbox_inches='tight')
-# plt.show()
