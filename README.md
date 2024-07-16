@@ -11,7 +11,7 @@ The experimental image processing code is implemented in Python and FreeFEM, org
 * `transform.py` contains the following functions:
   - Transform the experimental image data to vtk file which could be further segmented in [3D Slicer](https://www.slicer.org/)  
   - Read fluorescence intensity from the image
-  - Remember to run with `python <transform.py> output.txt` to get the number of intensity values in each case
+  - Remember to run with `python transform.py output.txt` to get the number of intensity values in each case
 
 After having the vtk file for platelet aggregate, the outline of the aggregate could be segmented in 3D Slicer. Then after uniformly remeshing the segmentation stl in [MeshLab](https://www.meshlab.net/), generate the mesh that will be used for flow simulation in [Gmsh](https://gmsh.info/). 
 
